@@ -1,0 +1,28 @@
+{
+  "name": "ecommerce-front-end-capstone-2",
+  "version": "1.0.0",
+  "description": "hack reactor front end capstone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rfe4-fec4-Palisade/ecommerce-front-end-capstone-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rfe4-fec4-Palisade/ecommerce-front-end-capstone-2/issues"
+  },
+  "homepage": "https://github.com/rfe4-fec4-Palisade/ecommerce-front-end-capstone-2#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2"
+  }
+}
