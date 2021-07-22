@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from "styled-components";
-
+import MainReview from './RatingsAndReviews/MainReview.js';
 
 const StyledButton = styled.button `
       background-color: pink;
       font-size: 32px;
       color: white;
 `;
-
-
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +21,7 @@ class App extends React.Component {
       <div>
         <div className="test">{this.state.greeting}</div>
         <StyledButton>Testing styled components</StyledButton>
+        <MainReview/>
       </div>
     )
   }
