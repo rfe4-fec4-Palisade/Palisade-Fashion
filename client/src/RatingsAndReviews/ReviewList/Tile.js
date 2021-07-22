@@ -7,8 +7,25 @@ const ReviewTile = (props) => {
   return (
     <div>
       <div> STAR RATING HERE </div>
-      <div></div>
-      <div></div>
+      <div>{props.review.reviewer_name}</div>
+      <div>{dateParser(props.review.date)}</div>
+      <div>{props.review.summary}</div>
+      <div>{props.review.body}</div>
+      {props.review.recommend ?
+        <div> ✓ I recommend this product </div> : null}
+      {props.review.response ?
+        <div>
+          Response from seller:
+          {props.review.response}
+          </div>
+          : null}
+      {/* <div>
+        Helpful?
+        <span>Yes</span>
+        <span>{props.review.helpfulness}</span>
+        <span>
+      </div> */}
+
     </div>
   )
 }
