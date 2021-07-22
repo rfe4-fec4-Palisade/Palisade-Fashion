@@ -8,8 +8,6 @@ const StyledButton = styled.button `
       color: white;
 `;
 
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
