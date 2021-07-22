@@ -6,6 +6,7 @@ class List extends React.Component {
   }
 
   render() {
+    console.log('we are in list', this.props);
     return (
       <div> This is the list component</div>
     )
