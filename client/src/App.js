@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-
+import MainReview from './RatingsAndReviews/MainReview.js';
 
 const StyledButton = styled.button `
       background-color: pink;
@@ -23,6 +23,7 @@ class App extends React.Component {
       <div>
         <div className="test">{this.state.greeting}</div>
         <StyledButton>Testing styled components</StyledButton>
+        <MainReview/>
       </div>
     )
   }
