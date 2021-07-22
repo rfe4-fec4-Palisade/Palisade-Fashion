@@ -28,7 +28,7 @@ class MainReview extends React.Component {
         <h1>This is the entire review component</h1>
         <Sort/>
         <Breakdown/>
-        <List sortOption={this.state.sort} Reviews={this.state.data}/>
+        <List sortOption={this.state.sort} reviews={this.state.data}/>
         <NewReview/>
       </div>
     )
