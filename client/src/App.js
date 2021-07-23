@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import MainReview from './RatingsAndReviews/MainReview.js';
+// import MainReview from './RatingsAndReviews/MainReview.js';
+import MainOverview from './overview/mainOverview.js';
 
 const StyledButton = styled.button `
       background-color: pink;
@@ -19,9 +20,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="test">{this.state.greeting}</div>
+        {/* <div className="test">{this.state.greeting}</div>
         <StyledButton>Testing styled components</StyledButton>
-        <MainReview/>
+        <MainReview/> */}
+        <MainOverview/>
       </div>
     )
   }
