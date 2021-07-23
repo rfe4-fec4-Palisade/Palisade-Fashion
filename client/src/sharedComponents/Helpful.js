@@ -11,7 +11,7 @@ const Helpful = (props) => {
   return (
     <div>
       {`Helpful? `}
-      <YesButton onClick={()=>{console.log('insert clickhandler function here to make post request')}}>{`Yes`}</YesButton>
+      <YesButton onClick={()=>{return null}}>{`Yes`}</YesButton>
       <span>{` (${props.helpfulness})`}</span>
       <span></span>
     </div>
