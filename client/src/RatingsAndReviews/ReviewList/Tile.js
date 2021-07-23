@@ -15,7 +15,6 @@ const Summary = styled.div`
 `;
 
 const ReviewTile = (props) => {
-  console.log('hello from review tile', props.review)
   return (
     <Tile>
       <div> STAR RATING HERE </div>
