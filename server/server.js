@@ -18,7 +18,8 @@ var getData = function(url) {
     'method': 'GET',
     'url': `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe${url}`,
     'headers': {'Authorization': `${API_KEY}`},
-    'data':''};
+    'data':''
+  };
   return config;
 }
 
@@ -45,6 +46,17 @@ app.get('/:path/:id', (req,res) =>{
 
 
 //reviews
+//QUERY SHOULD LOOK LIKE THIS: https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=19092
+// when requesting from client, make sure the url looks something like this: `/reviews?product_id=${id}`
+
+app.get('/reviews', (req,res) =>{
+  let config = getData(req.url)
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+})
 
 //Questions and Answers
 
