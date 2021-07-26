@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-class Sort extends React.Component {
+
+const Sort = () => {
+ return (
+   <div>
+ )
+}
+{/* class Sort extends React.Component {
   constructor (props) {
     super(props)
   }
@@ -10,6 +16,6 @@ class Sort extends React.Component {
       <div> This is the sort component</div>
     )
   }
-}
+} */}
 
 export default Sort

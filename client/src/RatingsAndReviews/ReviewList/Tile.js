@@ -25,12 +25,12 @@ const ReviewTile = (props) => {
       <div>{props.review.body}</div>
       {props.review.recommend ?
         <div> ✓ I recommend this product </div> : null}
-      {props.review.response ?
+      {/* {props.review.response ?
         <div>
           Response from seller
           {props.review.response}
           </div>
-          : null}
+          : null} */}
 
       <Response response={props.review.response}/>
       <Helpful helpfulness={props.review.helpfulness}/>
