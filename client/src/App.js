@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import MainReview from './RatingsAndReviews/MainReview.js';
 import axios from 'axios';
 import RelatedItems from './RelatedItems/RelatedItemsList/relatedItems.js';
+import MainOverview from './overview/mainOverview.js';
 
 const StyledButton = styled.button `
       background-color: pink;
@@ -36,6 +37,7 @@ const App = () => {
       <StyledButton>Testing styled components</StyledButton>
       {/* <MainReview testProp={currentProduct} /> */}
       <RelatedItems/>
+      {/* <MainOverview/> */}
     </div>
   )
 
