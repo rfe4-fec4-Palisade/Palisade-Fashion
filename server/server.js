@@ -55,12 +55,11 @@ app.get('/:path/:id', (req,res) =>{
 
 //products/related
 app.get('/products/19089/related', (req,res) =>{
-  console.log('req.params', req.params)
   let config = getData(req.url)
   console.log('this is req.url',req.url)
-  console.log('hello testing from app.get')
   axios(config)
     .then((data)=>{
+      console.log('The data:', data.data)
       res.status(201).send(data.data);
     })
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})

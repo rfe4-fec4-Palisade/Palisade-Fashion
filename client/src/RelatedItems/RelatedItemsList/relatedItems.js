@@ -6,16 +6,25 @@ const RelatedItems = () => {
   const [relatedProducts, updateRelatedProducts] = useState([])
   const getRelatedItemsData = () => {
     axios.get('http://localhost:3000/products/19089/related')
-    .then(result => console.log(result));
+    .then((result) => {
+      updateRelatedProducts(result.data);
+    })
+    .catch((err) => {
+      console.log('Error', err);
+    })
   }
 
   useEffect(() => {
     getRelatedItemsData();
   }, [])
 
+  const listRelated = relatedProducts.map((item) => {
+    return <Card key={item} id={item}/>
+  })
+
   return (
     <div>
-      <Card/>
+      {listRelated}
     </div>
   )
 }
