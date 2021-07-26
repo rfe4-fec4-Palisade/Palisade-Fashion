@@ -10,9 +10,6 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 // url: https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/
 
-//products
-
-
 var getData = function(url) {
   const config = {
     'method': 'GET',
@@ -22,6 +19,20 @@ var getData = function(url) {
   };
   return config;
 }
+// initial product request
+app.get('/products', (req,res) =>{
+  console.log('req.params', req.params)
+  let config = getData(req.url)
+  console.log('this is req.url',req.url)
+  console.log('hello testing from app.get')
+  axios(config)
+    .then((data)=>{
+      console.log('axios get request is working')
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+})
+
 
 
 app.get('/:path/:id', (req,res) =>{
@@ -46,7 +57,7 @@ app.get('/:path/:id', (req,res) =>{
 
 
 //reviews
-//QUERY SHOULD LOOK LIKE THIS: https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews?product_id=19092
+//QUERY SHOULD LOOK LIKE THIS: https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/review?product_id=19092
 // when requesting from client, make sure the url looks something like this: `/reviews?product_id=${id}`
 
 app.get('/reviews', (req,res) =>{

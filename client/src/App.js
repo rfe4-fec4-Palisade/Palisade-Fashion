@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import MainReview from './RatingsAndReviews/MainReview.js'
+import MainReview from './RatingsAndReviews/MainReview.js';
+import axios from 'axios';
 
 
 const StyledButton = styled.button `
@@ -9,23 +10,35 @@ const StyledButton = styled.button `
       color: white;
 `;
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      greeting: 'hello world'
-    }
+const App = () => {
+  const [allProducts, setProducts] = useState([])
+  const [currentProduct, setProduct] = useState(19089)
+
+  const fetchData = () => {
+    axios.get('http://localhost:3000/products')
+      .then((results) => {
+        results = results.data;
+        setProducts(results)
+      })
+      .catch((err) => {
+        console.log('Error', err);
+      })
   }
 
-  render() {
-    return (
-      <div>
-        <div className="test">{this.state.greeting}</div>
-        <StyledButton>Testing styled components</StyledButton>
-        <MainReview />
-      </div>
-    )
-  }
+  useEffect(() => {
+    fetchData();
+  }, [])
+
+
+  return (
+    <div>
+      <div className="test"></div>
+      <StyledButton>Testing styled components</StyledButton>
+      <MainReview testProp={currentProduct} />
+    </div>
+  )
+
+
 }
 
 export default App;
