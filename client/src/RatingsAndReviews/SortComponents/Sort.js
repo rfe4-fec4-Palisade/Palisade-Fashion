@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import Option from './Option.js';
 
+const Sort = (props) => {
+  const [options, setOptions] = useState(['Relevance', 'Helpful', 'Newest']);
 
-const Sort = () => {
+  useEffect(() => {
+    var sortOptions = ['Relevance', 'Helpful', 'Newest']
+    for (let i = 0; i < sortOptions.length; i++) {
+      let currentOption = sortOptions[i];
+      if ( currentOption === props.sortOption ) {
+        sortOptions.splice(i, 1);
+        sortOptions.unshift(currentOption);
+      } else {
+        continue;
+      }
+    }
+    setOptions(sortOptions);
+  }, []);
+
  return (
-   <div>
+   <div>{props.count} reviews, sorted by
+     <select onChange={(event)=> {props.changeSortOption(event.target.value)}}>
+       {options.map((option)=> <Option option={option} />)}
+     </select>
+   </div>
  )
 }
-{/* class Sort extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <div> This is the sort component</div>
-    )
-  }
-} */}
+// make it so current sort option is in form view and make other options dynamic
 
 export default Sort

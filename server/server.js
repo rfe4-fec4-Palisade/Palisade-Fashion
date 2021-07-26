@@ -61,11 +61,6 @@ app.get('/products/:id/styles', (req,res) =>{
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
 })
 
-
-
-
-
-
 //products/related
 app.get('/products/:path/related', (req,res) =>{
   let config = getData(req.url)
