@@ -37,10 +37,10 @@ const MainReview = (props) => {
     if (option === 'Relevance') {
       searchQuery = 'relevant'
     } else {
-      searchQuery = option;
+      searchQuery = option.toLowerCase();
     }
-    getReviews(currentProduct, searchQuery)
     setSort(option)
+    getReviews(currentProduct, searchQuery)
   }
 
 
