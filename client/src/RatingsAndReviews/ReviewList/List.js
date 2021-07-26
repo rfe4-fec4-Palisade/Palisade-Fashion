@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ReviewTile from './Tile.js'
 
 const List = ({sortOption, reviews}) => {
-  console.log('reviews inside list', reviews)
   const renderView = () => {
     if (sortOption === "default") {
       return reviews.map((review)=><ReviewTile review={review}/>)
