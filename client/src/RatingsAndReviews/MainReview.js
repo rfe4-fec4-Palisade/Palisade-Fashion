@@ -39,8 +39,8 @@ const MainReview = (props) => {
     } else {
       searchQuery = option;
     }
-    getReviews(currentProduct, searchQuery)
     setSort(option)
+    getReviews(currentProduct, searchQuery)
   }
 
 
