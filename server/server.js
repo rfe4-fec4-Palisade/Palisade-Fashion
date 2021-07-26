@@ -54,7 +54,7 @@ app.get('/:path/:id', (req,res) =>{
 
 
 //products/related
-app.get('/products/19089/related', (req,res) =>{
+app.get('/products/:path/related', (req,res) =>{
   let config = getData(req.url)
   console.log('this is req.url',req.url)
   axios(config)
