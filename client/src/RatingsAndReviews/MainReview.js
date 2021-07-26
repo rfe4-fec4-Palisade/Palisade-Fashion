@@ -14,8 +14,8 @@ const MainReview = (props) => {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
 
-  const getReviews = (id) => {
-    axios.get(`/reviews?product_id=${id}`)
+  const getReviews = (id, sort = 'relevant') => {
+    axios.get(`/reviews?product_id=${id}&sort=${sort}`)
       .then((response) => {
         let reviews = response.data.results
         let count = response.data.count
@@ -32,12 +32,25 @@ const MainReview = (props) => {
     }
   }, [])
 
+  const changeSortOption = (option) => {
+    console.log('this is option in changeSortOption', option)
+    var searchQuery;
+    if (option === 'Relevance') {
+      searchQuery = 'relevant'
+    } else {
+      searchQuery = option;
+    }
+    getReviews(currentProduct, searchQuery)
+    setSort(option)
+  }
+
+
     return (
         <div className="main-review">
           <h1>This is the entire review component</h1>
-          <Sort sortOption={sort} reviews={data} count={count}/>
+          <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
           <Breakdown/>
-          <List sortOption={sort} reviews={data}/>
+          <List reviews={data}/>
           <NewReview/>
       </div>
     )

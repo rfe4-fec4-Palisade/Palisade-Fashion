@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import Option from './Option.js';
 
 const Sort = (props) => {
-  const [options, setOptions] = useState(['Helpful', 'Newest']);
+  const [options, setOptions] = useState(['Relevance', 'Helpful', 'Newest']);
 
-  useEffect() => {
+  useEffect(() => {
     var sortOptions = ['Relevance', 'Helpful', 'Newest']
-    var availableOptions = sortOptions.forEach((option, index)=> {
-      if (option === props.sortOption) {
-        sortOptions.slice(index,1)
+    for (let i = 0; i < sortOptions.length; i++) {
+      let currentOption = sortOptions[i];
+      if ( currentOption === props.sortOption ) {
+        sortOptions.splice(i, 1);
+        sortOptions.unshift(currentOption);
+      } else {
+        continue;
       }
-    });
-    setOptions(availableOptions);
-  }
+    }
+    setOptions(sortOptions);
+  }, []);
 
-  console.log('props in sort', props)
  return (
    <div>{props.count} reviews, sorted by
-     <select>
-       <option value ={props.sortOption}> {props.sortOption}</option>
-       {options.map((option)=><option value={option}> {option} </option>)}
+     <select onChange={(event)=> {props.changeSortOption(event.target.value)}}>
+       {options.map((option)=> <Option option={option} />)}
      </select>
    </div>
  )

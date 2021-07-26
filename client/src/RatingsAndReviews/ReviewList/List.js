@@ -3,9 +3,9 @@ import ReviewTile from './Tile.js'
 
 const List = ({sortOption, reviews}) => {
   const renderView = () => {
-    if (sortOption === "Relevance") {
-      return reviews.map((review)=><ReviewTile review={review}/>)
-    }
+      return (
+        reviews.map((review)=><ReviewTile review={review}/>)
+      )
   }
 
   return (
