@@ -1,17 +1,33 @@
 // main review file that will render all child components.
 // make the get request here and populate state
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sort from './SortComponents/sort.js';
 import List from './ReviewList/List.js';
 import Breakdown from './RatingBreakdown/Breakdown.js';
 import NewReview from './WriteNewReview/NewReview.js';
 import dummyData from './dummyData.js'
+import axios from 'axios';
 
 const MainReview = (props) => {
   const [sort, setSort] = useState('default');
-  const [data, setData] = useState(dummyData.results);
+  const [currentProduct, setProduct] = useState(props.currentProduct)
+  const [data, setData] = useState([]);
 
-    console.log(props)
+  const getReviews = (id) => {
+    axios.get(`/reviews?product_id=${id}`)
+      .then((response) => {
+        let reviews = response.data.results
+        setData(reviews)})
+      .catch((err) => {console.log(err)})
+  }
+
+  useEffect(()=>{
+    getReviews(currentProduct)
+    return () => {
+      setData({});
+    }
+  }, [])
+
     return (
         <div className="main-review">
           <h1>This is the entire review component</h1>
