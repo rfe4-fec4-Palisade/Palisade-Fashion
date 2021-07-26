@@ -9,7 +9,7 @@ import dummyData from './dummyData.js'
 import axios from 'axios';
 
 const MainReview = (props) => {
-  const [sort, setSort] = useState('default');
+  const [sort, setSort] = useState('Relevance');
   const [currentProduct, setProduct] = useState(props.currentProduct)
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
