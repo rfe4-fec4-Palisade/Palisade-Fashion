@@ -1,17 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-
-class RelatedItems extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-
-  render() {
-    return (
-      <div>
-        <div>Cool Stuff Goes Here</div>
-      </div>
-    )
-  }
+const RelatedItems = () => {
+  return (
+    <div>
+      <div>This is Related Items Component</div>
+    </div>
+  )
 }
+
+export default RelatedItems;
