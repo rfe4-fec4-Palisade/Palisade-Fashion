@@ -12,12 +12,16 @@ const MainReview = (props) => {
   const [sort, setSort] = useState('default');
   const [currentProduct, setProduct] = useState(props.currentProduct)
   const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
 
   const getReviews = (id) => {
     axios.get(`/reviews?product_id=${id}`)
       .then((response) => {
         let reviews = response.data.results
-        setData(reviews)})
+        let count = response.data.count
+        setData(reviews)
+        setCount(count)
+      })
       .catch((err) => {console.log(err)})
   }
 
@@ -31,7 +35,7 @@ const MainReview = (props) => {
     return (
         <div className="main-review">
           <h1>This is the entire review component</h1>
-          <Sort/>
+          <Sort sortOption={sort} reviews={data} count={count}/>
           <Breakdown/>
           <List sortOption={sort} reviews={data}/>
           <NewReview/>

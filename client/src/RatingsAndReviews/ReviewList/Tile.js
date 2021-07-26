@@ -2,6 +2,7 @@ import React from 'react';
 import dateParser from '../../helperFunctions/dateParser.js';
 import styled from 'styled-components';
 import Helpful from '../../sharedComponents/Helpful.js'
+import Response from './Response'
 
 const Tile = styled.div`
     border-bottom: 1px solid grey;
@@ -30,10 +31,9 @@ const ReviewTile = (props) => {
           {props.review.response}
           </div>
           : null}
+
+      <Response response={props.review.response}/>
       <Helpful helpfulness={props.review.helpfulness}/>
-
-
-
     </Tile>
   )
 }
