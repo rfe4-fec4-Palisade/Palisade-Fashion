@@ -33,7 +33,6 @@ const MainReview = (props) => {
   }, [])
 
   const changeSortOption = (option) => {
-    console.log('this is option in changeSortOption', option)
     var searchQuery;
     if (option === 'Relevance') {
       searchQuery = 'relevant'
