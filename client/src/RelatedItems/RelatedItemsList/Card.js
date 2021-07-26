@@ -17,7 +17,7 @@ const Card = (props) => {
 
   console.log(card);
   return (
-    <div>
+    <div className='card' onClick={() => console.log('YOU CLICKED THIS CARD')}>
       <h2>{id}: {card.name}</h2>
       <div>{card.slogan}</div>
       <div>{card.description}</div>
