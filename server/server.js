@@ -54,7 +54,17 @@ app.get('/:path/:id', (req,res) =>{
 
 
 //products/related
-
+app.get('/products/19089/related', (req,res) =>{
+  console.log('req.params', req.params)
+  let config = getData(req.url)
+  console.log('this is req.url',req.url)
+  console.log('hello testing from app.get')
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+})
 
 //reviews
 //QUERY SHOULD LOOK LIKE THIS: https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/review?product_id=19092
