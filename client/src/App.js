@@ -37,7 +37,7 @@ const App = () => {
       <StyledButton>Testing styled components</StyledButton>
       <MainReview currentProduct={currentProduct} />
       {/* <MainReview testProp={currentProduct} /> */}
-      <RelatedItems/>
+      <RelatedItems currentProduct={currentProduct}/>
       {/* <MainOverview/> */}
     </div>
   )
