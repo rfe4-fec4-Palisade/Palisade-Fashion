@@ -1,20 +1,14 @@
 import React from 'react';
 
-class SocialMedia extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
+function SocialMedia () {
 
-    }
-  }
-
-  render() {
-    return <ul>
+  return (
+    <ul>
       <li>FaceBook</li>
       <li>Instagram</li>
       <li>Twitter</li>
     </ul>
-  }
+  )
 }
 
 export default SocialMedia;
