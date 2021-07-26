@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import MainReview from './RatingsAndReviews/MainReview.js';
 import axios from 'axios';
-
+import RelatedItems from './RelatedItems/RelatedItemsList/relatedItems.js';
 
 const StyledButton = styled.button `
       background-color: pink;
@@ -35,6 +35,7 @@ const App = () => {
       <div className="test"></div>
       <StyledButton>Testing styled components</StyledButton>
       {/* <MainReview testProp={currentProduct} /> */}
+      <RelatedItems/>
     </div>
   )
 
