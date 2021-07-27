@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Option from './Option.js';
+import Styled from 'styled-components';
+
+const Drop = Styled.select`
+  border: 0px;
+  outline: 0px;
+  text-decoration: underline;
+`;
 
 const Sort = (props) => {
   const [options, setOptions] = useState(['Relevance', 'Helpful', 'Newest']);
@@ -20,9 +27,9 @@ const Sort = (props) => {
 
  return (
    <div>{props.count} reviews, sorted by
-     <select onChange={(event)=> {props.changeSortOption(event.target.value)}}>
+     <Drop onChange={(event)=> {props.changeSortOption(event.target.value)}}>
        {options.map((option)=> <Option option={option} />)}
-     </select>
+     </Drop>
    </div>
  )
 }

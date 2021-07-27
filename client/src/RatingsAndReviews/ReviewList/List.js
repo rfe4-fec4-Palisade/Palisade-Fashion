@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReviewTile from './Tile.js'
 
 const List = ({sortOption, reviews}) => {
+
   const renderView = () => {
       return (
         reviews.map((review)=><ReviewTile review={review}/>)
@@ -9,7 +10,7 @@ const List = ({sortOption, reviews}) => {
   }
 
   return (
-    <div> This is the list component
+    <div>
       <div>{renderView()}</div>
     </div>
   )

@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Form from './Form.js'
 
-class NewReview extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
-  render() {
+const NewReview = (props) => {
     return (
-      <div> This is the new review component</div>
+     <div>
+       <div> MORE REVIEWS </div>
+       <div> ADD A REVIEW + </div>
+       <Form/>
+     </div>
     )
-  }
+
 }
 
 export default NewReview;
