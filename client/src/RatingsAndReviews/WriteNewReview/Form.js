@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Characteristics from './Characteristics.js'
+import ReactDom from 'react-dom';
+import Characteristics from './Characteristics.js';
 
-const Form = (props) => {
+const Form = ({ isOpen, onClose }) => {
   const [rating, setRating] = useState(0) //star component 1-5
   const [recommend, setRecommend] = useState(false)
   const [characteristics, setCharacteristics] = useState(
@@ -52,32 +53,38 @@ const Form = (props) => {
 
  }
 
-  // this is working
-  const handleCharChange = (field, value) => {
-    let newState = characteristics;
-    newState.forEach((char) => {
-      if (char.field === field) {
-        char.value = value*1;
+ // this is working
+ const handleCharChange = (field, value) => {
+   let newState = characteristics;
+   newState.forEach((char) => {
+     if (char.field === field) {
+       char.value = value*1;
       }
     })
     setCharacteristics(newState);
   }
 
-  return (
-    <form>
-      <p>Overall Rating</p>
-      <input type="range" min="0" max="5"/>
-      <p>Do you recommend this product?</p>
-      <input type="radio" name="recommend" value="Yes"/>Yes
-      <input type="radio" name="recommend" value="No"/>No
-      {characteristics.map((char) => <Characteristics char={char} handleCharChange={handleCharChange}/>)}
-      <input type="text" placeholder="Write a summary here"/>
-      <input type="text" placeholder="Write details here"/>
-      <input type="text" placeholder="nickname"/>
-      <input type="text" placeholder="email"/>
+  if (!isOpen) return null;
 
-
-    </form>
+  return ReactDom.createPortal (
+    <div className="modal">
+      <button className="close" onClick={onClose}>
+        X close
+      </button>
+      <form>
+        <p>Overall Rating</p>
+        <input type="range" min="0" max="5"/>
+        <p>Do you recommend this product?</p>
+        <input type="radio" name="recommend" value="Yes"/>Yes
+        <input type="radio" name="recommend" value="No"/>No
+        {characteristics.map((char) => <Characteristics char={char} handleCharChange={handleCharChange}/>)}
+        <input type="text" placeholder="Write a summary here"/>
+        <input type="text" placeholder="Write details here"/>
+        <input type="text" placeholder="nickname"/>
+        <input type="text" placeholder="email"/>
+      </form>
+    </div>,
+    document.getElementById('formModal')
   )
 
 
