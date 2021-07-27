@@ -49,11 +49,14 @@ const Form = ({ isOpen, onClose }) => {
   const [nickname, setName] = useState('')
   const [email, setEmail] = useState('')
 
-  const handleChange = () => {
-
+  const handleRecChange = (value) => {
+    if (JSON.parse(value) === true) {
+      setRecommend(true);
+    } else {
+      setRecommend(false);
+    }
  }
 
- // this is working
  const handleCharChange = (field, value) => {
    let newState = characteristics;
    newState.forEach((char) => {
@@ -62,6 +65,22 @@ const Form = ({ isOpen, onClose }) => {
       }
     })
     setCharacteristics(newState);
+  }
+
+  const handleTextChange = (event) => {
+    const {name, value} = event.target;
+    if (name === 'Summary') {
+      setSummary(value)
+    }
+    if (name === 'Body') {
+      setBody(value)
+    }
+    if (name === 'Name') {
+      setName(value)
+    }
+    if (name === 'Email') {
+      setEmail(value)
+    }
   }
 
   if (!isOpen) return null;
@@ -73,20 +92,19 @@ const Form = ({ isOpen, onClose }) => {
       </button>
       <form>
         <p>Overall Rating</p>
-        <input type="range" min="0" max="5"/>
+        <input type="range" min="0" max="5" step="1" onChange={(event)=>{setRating(event.target.value*1)}}/>
         <p>Do you recommend this product?</p>
-        <input type="radio" name="recommend" value="Yes"/>Yes
-        <input type="radio" name="recommend" value="No"/>No
+        <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
+        <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
         {characteristics.map((char) => <Characteristics char={char} handleCharChange={handleCharChange}/>)}
-        <input type="text" placeholder="Write a summary here"/>
-        <input type="text" placeholder="Write details here"/>
-        <input type="text" placeholder="nickname"/>
-        <input type="text" placeholder="email"/>
+        <input type="text" placeholder="Write a summary here" name="Summary" onChange={(event)=>{handleTextChange(event)}}/>
+        <input type="text" placeholder="Write details here" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
+        <input type="text" placeholder="nickname" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
+        <input type="text" placeholder="email" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
       </form>
     </div>,
     document.getElementById('formModal')
   )
-
 
 };
 
