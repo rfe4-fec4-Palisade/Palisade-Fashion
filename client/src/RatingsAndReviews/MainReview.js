@@ -14,7 +14,6 @@ const MainReview = (props) => {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
 
-  console.log('data', data)
   const getReviews = (id, sort = 'relevant') => {
     axios.get(`/reviews?product_id=${id}&sort=${sort}`)
       .then((response) => {
