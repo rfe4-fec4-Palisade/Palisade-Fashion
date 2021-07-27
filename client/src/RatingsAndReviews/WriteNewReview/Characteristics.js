@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 const Characteristics = (props) => {
 
   return (
-    <form onChange={(event)=>{props.handleCharChange(props.char.field, event.target.value)}}>
+    <div onChange={(event)=>{props.handleCharChange(props.char.field, event.target.value)}}>
       <input type="radio" name={props.field} value="1"/> {props.char.lowest}
       <input type="radio" name={props.field} value="2"/>
       <input type="radio" name={props.field} value="3"/>
       <input type="radio" name={props.field} value="4"/>
       <input type="radio" name={props.field} value="5"/> {props.char.highest}
-    </form>
+    </div>
   )
 
 
