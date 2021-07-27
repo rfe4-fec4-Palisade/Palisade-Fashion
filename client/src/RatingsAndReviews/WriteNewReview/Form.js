@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 import Characteristics from './Characteristics.js';
-
-const Form = ({ isOpen, onClose }) => {
-  const [rating, setRating] = useState(0) //star component 1-5
+import axios from 'axios';
+const Form = ({ id, isOpen, onClose }) => {
+  const [rating, setRating] = useState(1) //star component 1-5
   const [recommend, setRecommend] = useState(false)
   const [characteristics, setCharacteristics] = useState(
     [
@@ -83,6 +83,28 @@ const Form = ({ isOpen, onClose }) => {
     }
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    var requestBody =
+      {
+        "product_id": id,
+        "rating": rating,
+        "summary": summary,
+        "body": body,
+        "recommend": recommend,
+        "name": nickname,
+        "email": email,
+        "photos": [],
+        "characteristics": {}
+      }
+    axios.post('/reviews', requestBody)
+      .then((response) => {
+        console.log('posted!')
+      })
+      .catch((err) => {console.log(err)})
+  };
+
+
   if (!isOpen) return null;
 
   return ReactDom.createPortal (
@@ -90,9 +112,9 @@ const Form = ({ isOpen, onClose }) => {
       <button className="close" onClick={onClose}>
         X close
       </button>
-      <form>
+      <form onSubmit={(event)=>{handleSubmit(event)}}>
         <p>Overall Rating</p>
-        <input type="range" min="0" max="5" step="1" onChange={(event)=>{setRating(event.target.value*1)}}/>
+        <input type="range" min="1" max="5" step="1" defaultValue="1" onChange={(event)=>{setRating(event.target.value*1)}}/>
         <p>Do you recommend this product?</p>
         <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
         <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
@@ -101,6 +123,7 @@ const Form = ({ isOpen, onClose }) => {
         <input type="text" placeholder="Write details here" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
         <input type="text" placeholder="nickname" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
         <input type="text" placeholder="email" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
+        <input type="submit"/>
       </form>
     </div>,
     document.getElementById('formModal')

@@ -50,7 +50,7 @@ const MainReview = (props) => {
           <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
           <Breakdown/>
           <List reviews={data}/>
-          <NewReview/>
+          <NewReview id={currentProduct}/>
       </div>
     )
 };

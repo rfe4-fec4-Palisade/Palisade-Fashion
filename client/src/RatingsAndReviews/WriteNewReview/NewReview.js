@@ -5,14 +5,12 @@ import Form from './Form.js'
 
 const NewReview = (props) => {
   const [open, setOpen] = useState(false);
-
-
     return (
      <div>
        <div> MORE REVIEWS </div>
        <div onClick={()=>{setOpen(true)}}> ADD A REVIEW + </div>
        <div id="formModal"></div>
-       <Form isOpen={open} onClose={()=>{setOpen(false)}}/>
+       <Form id={props.id} isOpen={open} onClose={()=>{setOpen(false)}}/>
      </div>
     )
 
