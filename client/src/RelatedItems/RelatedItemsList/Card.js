@@ -32,7 +32,7 @@ const Card = (props) => {
       <div className="container">
       <div className="button-container">
         <button className="button" onClick={() => setOpenP(true)}>
-          Open Portal Modal
+          Compare
         </button>
       </div>
 
