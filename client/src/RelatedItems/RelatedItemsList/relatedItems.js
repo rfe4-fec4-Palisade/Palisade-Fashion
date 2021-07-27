@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Card from './Card.js';
 
 const RelatedItems = (props) => {
@@ -19,6 +20,8 @@ const RelatedItems = (props) => {
     getRelatedItemsData();
   }, [])
 
+
+
   const listRelated = relatedProducts.map((item) => {
     return <Card key={item} id={item}/>
   })
@@ -27,6 +30,7 @@ const RelatedItems = (props) => {
     <div>
       {listRelated}
     </div>
+
   )
 }
 
