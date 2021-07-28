@@ -59,7 +59,6 @@ const MainReview = (props) => {
     getReviews(currentProduct, searchQuery)
   }
 
-console.log('metadata', metadata)
     return (
         <div className="main-review">
           <h1>This is the entire review component</h1>

@@ -55,7 +55,6 @@ const App = () => {
       }
     }, [])
 
-  console.log('this is the metadata in App', metadata)
     // useEffect(() => {
     //   console.log('this is the all product', allProducts)
     //   const random = getRandomInt(0, allProducts.length - 1);
