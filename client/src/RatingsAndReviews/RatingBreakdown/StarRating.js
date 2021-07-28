@@ -3,10 +3,10 @@ import Percentage from './Percentage.js';
 import Styled from 'styled-components'
 
 const ProgressBar = Styled.div`
-
 `
-const Element = Styled.div`
-display:inline-block;
+const Element = Styled.span`
+display: flex;
+flex-direction: row;
 `
 const StarRating = ({total, count, rating}) => {
   // console.log('total', total)

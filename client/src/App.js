@@ -16,6 +16,7 @@ const StyledButton = styled.button `
 const App = () => {
   const [allProducts, setProducts] = useState([])
   const [currentProduct, setProduct] = useState(19089)
+  const [metadata, setMetadata] = useState({})
 
   // const getRandomInt = (min, max) => {
   //   min = Math.ceil(min);
@@ -34,12 +35,27 @@ const App = () => {
       })
     }
 
+    const getMetadata = (id) => {
+      axios.get(`/reviews/meta?product_id=${id}`)
+      .then((response) => {
+        let newMeta = response.data
+        setMetadata(newMeta)
+      })
+      .catch((err) => {console.log(err)})
+    }
+
     useEffect(() => {
       fetchData();
-      console.log('in useeffect', allProducts);
     }, [])
 
+    useEffect(()=>{
+      getMetadata(currentProduct)
+      return () => {
+        setMetadata({});
+      }
+    }, [])
 
+  console.log('this is the metadata in App', metadata)
     // useEffect(() => {
     //   console.log('this is the all product', allProducts)
     //   const random = getRandomInt(0, allProducts.length - 1);
@@ -54,7 +70,7 @@ const App = () => {
     <div>
       <div className="test"></div>
       <StyledButton>Testing styled components</StyledButton>
-      <RatingStars/>
+      <RatingStars ratings={metadata.ratings}/>
       <MainReview currentProduct={currentProduct} />
       <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
       <QuestionAndAnswer product={currentProduct} />
