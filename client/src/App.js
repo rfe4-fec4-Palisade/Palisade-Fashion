@@ -70,11 +70,11 @@ const App = () => {
     <div>
       <div className="test"></div>
       <StyledButton>Testing styled components</StyledButton>
-      <RatingStars ratings={metadata.ratings}/>
+      {/* <RatingStars ratings={metadata}/> */}
       <MainReview currentProduct={currentProduct} />
-      <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
+      {/* <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
       <QuestionAndAnswer product={currentProduct} />
-      <MainOverview currentProduct={currentProduct}/>
+      <MainOverview currentProduct={currentProduct}/> */}
     </div>
   )
 
