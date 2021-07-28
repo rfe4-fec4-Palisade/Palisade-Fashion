@@ -8,9 +8,20 @@ const Wrapper = styled.div `
 `;
 
 const RelatedItems = (props) => {
+  console.log('relateditems', props);
   var product = props.currentProduct;
   const [relatedProducts, updateRelatedProducts] = useState([])
   const [current, updateCurrentProduct] = useState({})
+
+  const [currentSlide, nextSlide] = useState({first: 0, last: 3});
+  const handleClick = () => {
+    let {first, last} = currentSlide;
+    nextSlide({first: first + 4, last: last + 4})
+    if (first >= relatedProducts.length - 1) {
+      nextSlide({first: 0, last: 3})
+    }
+  }
+
   const getRelatedItemsData = () => {
     axios.get(`http://localhost:3000/products/${product}/related`)
     .then((result) => {
@@ -41,15 +52,18 @@ const RelatedItems = (props) => {
 
 
 
-  const listRelated = relatedProducts.map((item) => {
+  const listRelated = relatedProducts.map((item, index) => {
+
+
     return (
-        <Card key={item} id={item} currentProduct={current}/>
+        <Card key={index} index={index} currentSlide={currentSlide} id={item} currentProduct={current}/>
     )
   })
 
   return (
     <div>
       <div id='modalHere'></div>
+      <button onClick={handleClick}>More Products</button>
       <Wrapper>
         {listRelated}
       </Wrapper>
