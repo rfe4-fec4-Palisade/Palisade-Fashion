@@ -44,7 +44,7 @@ const App = () => {
       <MainReview currentProduct={currentProduct} />
       <RelatedItems currentProduct={currentProduct}/>
       <QuestionAndAnswer product={currentProduct} />
-     {/* <MainOverview/> */}
+      <MainOverview currentProduct={currentProduct}/> 
     </div>
   )
 
