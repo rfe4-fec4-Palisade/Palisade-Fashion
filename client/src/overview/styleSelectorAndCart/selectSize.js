@@ -6,6 +6,8 @@ function SelectSize({ styleSelected }) {
   const [sizeSelected, setSize] = useState('');
   const [quantitySelected, setQuantity] = useState('');
   const [qtyAvailable, setAvailableQty] = useState('');
+  const [skuOfStyle, setSku] = useState('');
+
   const skus = styleSelected.skus;
   console.log(skus)
 
@@ -13,7 +15,7 @@ function SelectSize({ styleSelected }) {
     const index = e.target.options.selectedIndex;
     const skuNumber = e.target.options[index].getAttribute('data-code');
     let quantity = skus[skuNumber]['quantity']
-
+    setSku(skuNumber);
     setSize(e.target.value);
     setAvailableQty(quantity);
   }
@@ -53,7 +55,7 @@ function SelectSize({ styleSelected }) {
             <br></br>
             <SelectQuantity sizeChosen={sizeSelected} qtyAvailable={qtyAvailable}/>
             <br></br>
-            <AddToCart/>
+            <AddToCart sizeChosen={sizeSelected} sku={skuOfStyle}/>
             <p>Favorite Item</p>
           </div>
         )

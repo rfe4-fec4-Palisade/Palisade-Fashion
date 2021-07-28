@@ -11,11 +11,11 @@ const Thumbnails = styled.img `
 
 // need to add a checkmark on image for currently selected style
 
-function ShowAllStyles({ eachStyle }) {
+function ShowAllStyles({ eachStyle, styleClicked }) {
   const firstImage = eachStyle.photos[0]; // display first thumbnail image for each style for User to click on
 
     return (
-      <Thumbnails src={firstImage.thumbnail_url}/>
+      <Thumbnails src={firstImage.thumbnail_url} onClick={styleClicked.bind(null, eachStyle)}/>
     )
 }
 
