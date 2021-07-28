@@ -35,12 +35,14 @@ const Card = (props) => {
 
   return (
     <div>
-      <StyledCard className='card' onClick={() => setOpenP(!openp)}>
+      <StyledCard className='card'>
         <h2>{id}: {card.name}</h2>
         <div>{card.slogan}</div>
         <div>{card.description}</div>
         <div>${card.default_price}</div>
         <div>{card.category}</div>
+        <button onClick={() => props.setProduct(id)}>Go To</button>
+        <button onClick={() => setOpenP(!openp)}>View Details</button>
       </StyledCard>
       <PortalModal
         message="Compare:"
