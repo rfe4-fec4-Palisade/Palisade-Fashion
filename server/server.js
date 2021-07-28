@@ -21,10 +21,10 @@ var getData = function(url) {
 }
 // initial product request
 app.get('/products', (req,res) =>{
-  console.log('req.params', req.params)
+  // console.log('req.params', req.params)
   let config = getData(req.url)
-  console.log('this is req.url',req.url)
-  console.log('hello testing from app.get')
+  console.log('PRODUCTS this is req.url',req.url)
+  // console.log('hello testing from app.get')
   axios(config)
     .then((data)=>{
       console.log('axios get request is working')
@@ -107,6 +107,28 @@ app.get('/reviews/meta', (req, res) => {
 });
 
 //Questions and Answers
+//Example for Q&A  -> https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=19092
+app.get('/qa/questions/', (req,res) =>{
+  let config = getData(req.url)
+  console.log('Q&A this is req.url', req.url)
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+})
+
+app.get('/qa/questions/:id/answers', (req,res) =>{
+  let config = getData(req.url)
+  console.log('ANSWER LIST req.url', req.url)
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+})
+
+
 
 //cart
 
