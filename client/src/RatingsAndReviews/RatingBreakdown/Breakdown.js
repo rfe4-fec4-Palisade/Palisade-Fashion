@@ -25,7 +25,12 @@ const Breakdown = (props) => {
   */
  useEffect(()=>{
     const ratings = props.metadata.ratings
-    setTotal(+ratings["1"] + +ratings["2"]+ +ratings["3"] + +ratings["4"] + +ratings["5"])
+    let num = 0
+    for (var key in ratings) {
+      num += +ratings[key]
+    }
+    setTotal(num)
+    // setTotal(+ratings["1"] + +ratings["2"]+ +ratings["3"] + +ratings["4"] + +ratings["5"])
   }, [])
 
 
@@ -35,7 +40,7 @@ const Breakdown = (props) => {
 
     return (
       <div>
-        {bars.map((bar) => <StarRating key={bar} total={total} count={props.metadata.ratings[bar]} rating={bar}/>)}
+        {bars.map((bar) => <StarRating key={bar} total={total} count={props.metadata.ratings[bar]} rating={bar} filter={props.filter}/>)}
       </div>
     )
 }

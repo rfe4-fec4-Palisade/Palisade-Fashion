@@ -15,7 +15,7 @@ const MainReview = (props) => {
   const [metadata, setMetadata] = useState({});
 
   const getReviews = (id, sort = 'relevant') => {
-    axios.get(`/reviews?product_id=${id}&sort=${sort}`)
+    axios.get(`/reviews?product_id=${id}&sort=${sort}&count=50`)
       .then((response) => {
         let reviews = response.data.results
         let count = response.data.count
@@ -59,11 +59,15 @@ const MainReview = (props) => {
     getReviews(currentProduct, searchQuery)
   }
 
+  const filter = () => {
+
+  }
+
     return (
         <div className="main-review">
           <h1>This is the entire review component</h1>
           <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
-          <Breakdown id={currentProduct} metadata={metadata}/>
+          <Breakdown id={currentProduct} metadata={metadata} filter={filter}/>
           <List reviews={data}/>
           <NewReview id={currentProduct} metadata={metadata}/>
       </div>
