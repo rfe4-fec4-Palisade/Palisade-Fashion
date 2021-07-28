@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Description from './productDescription/Description.js';
 import ProductInfo from './productInfo.js';
-import ImageGallery from './imageGallery/ImageGallery.js';
 import SelectedStyle from './styleSelectorAndCart/StyleAndCart.js';
 import axios from 'axios';
 
@@ -27,8 +26,6 @@ function MainOverview(props) {
     return ( <div>
       <h1>Topmost Level: Main Overview</h1>
       <div>--------------------------------</div>
-      <ImageGallery/>
-      <div>--------------------------------</div>
       <ProductInfo currentProduct={product}/>
       <div>--------------------------------</div>
       <SelectedStyle id={props.currentProduct}/>
@@ -36,7 +33,6 @@ function MainOverview(props) {
       <Description currentProduct={product}/>
     </div>
     )
-
 
 }
 

@@ -6,7 +6,8 @@ const StrikeThrough = styled.p `
   `;
 
 const OnSale = styled.p `
-  color: red;`;
+  color: red;
+  `;
 
 function Price({ styleSelected }) {
   const salePrice = styleSelected.sale_price;
