@@ -5,8 +5,8 @@ function SocialMedia () {
   return (
     <ul>
       <li>FaceBook</li>
-      <li>Instagram</li>
       <li>Twitter</li>
+      <li>Pinterest</li>
     </ul>
   )
 }
