@@ -56,7 +56,7 @@ const App = () => {
       <StyledButton>Testing styled components</StyledButton>
       <RatingStars/>
       <MainReview currentProduct={currentProduct} />
-      {/* <RelatedItems currentProduct={currentProduct}/>
+      <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
       <QuestionAndAnswer product={currentProduct} />
       <MainOverview currentProduct={currentProduct}/>
     </div>

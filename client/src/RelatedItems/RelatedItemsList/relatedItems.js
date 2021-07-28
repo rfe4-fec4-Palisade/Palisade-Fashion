@@ -14,13 +14,17 @@ const RelatedItems = (props) => {
   const [current, updateCurrentProduct] = useState({})
 
   const [currentSlide, nextSlide] = useState({first: 0, last: 3});
+  const {first, last} = currentSlide;
   const handleClick = () => {
-    let {first, last} = currentSlide;
     nextSlide({first: first + 4, last: last + 4})
-    if (first >= relatedProducts.length - 1) {
-      nextSlide({first: 0, last: 3})
-    }
   }
+
+  useEffect(() => {
+    if (first < relatedProducts.length) {
+      return null;
+    }
+    nextSlide({first: 0, last: 3});
+  })
 
   const getRelatedItemsData = () => {
     axios.get(`http://localhost:3000/products/${product}/related`)
@@ -56,7 +60,7 @@ const RelatedItems = (props) => {
 
 
     return (
-        <Card key={index} index={index} currentSlide={currentSlide} id={item} currentProduct={current}/>
+        <Card key={index} index={index} currentSlide={currentSlide} id={item} currentProduct={current} setProduct={props.setProduct}/>
     )
   })
 
