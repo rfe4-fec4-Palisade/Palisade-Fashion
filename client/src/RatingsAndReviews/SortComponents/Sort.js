@@ -28,7 +28,7 @@ const Sort = (props) => {
  return (
    <div>{props.count} reviews, sorted by
      <Drop onChange={(event)=> {props.changeSortOption(event.target.value)}}>
-       {options.map((option)=> <Option option={option} />)}
+       {options.map((option)=> <Option key={option} option={option} />)}
      </Drop>
    </div>
  )
