@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import MainReview from './RatingsAndReviews/MainReview.js';
 import axios from 'axios';
+import QuestionAndAnswer from '../src/Q&AComponents/Q&Acontainer.js';
 
 
 const StyledButton = styled.button `
@@ -34,7 +35,8 @@ const App = () => {
     <div>
       <div className="test"></div>
       <StyledButton>Testing styled components</StyledButton>
-      {/* <MainReview testProp={currentProduct} /> */}
+      <MainReview testProp={currentProduct} />
+      <QuestionAndAnswer product={currentProduct} />
     </div>
   )
 
