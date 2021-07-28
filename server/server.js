@@ -97,6 +97,15 @@ app.post('/reviews', (req, res) => {
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
 })
 
+app.get('/reviews/meta', (req, res) => {
+  let config = getData(req.url)
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+});
+
 //Questions and Answers
 
 //cart

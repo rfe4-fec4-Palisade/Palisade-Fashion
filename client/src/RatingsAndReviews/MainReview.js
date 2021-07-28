@@ -12,6 +12,7 @@ const MainReview = (props) => {
   const [currentProduct, setProduct] = useState(props.currentProduct)
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
+  const [metadata, setMetadata] = useState({});
 
   const getReviews = (id, sort = 'relevant') => {
     axios.get(`/reviews?product_id=${id}&sort=${sort}`)
@@ -24,10 +25,21 @@ const MainReview = (props) => {
       .catch((err) => {console.log(err)})
   }
 
+  const getMetadata = (id) => {
+    axios.get(`/reviews/meta?product_id=${id}`)
+    .then((response) => {
+      let metadata = response.data
+      setMetadata(data)
+    })
+    .catch((err) => {console.log(err)})
+  }
+
   useEffect(()=>{
     getReviews(currentProduct)
+    getMetadata(currentProduct)
     return () => {
       setData({});
+      setMetadata({});
     }
   }, [])
 
