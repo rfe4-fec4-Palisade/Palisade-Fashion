@@ -8,7 +8,7 @@ function ProductInfo ({ currentProduct }) {
       {/* <StarsComponent/> */}
       <span>Star Component</span>
       <br></br>
-      {/* // onclick send user to Reviews section */}
+      {/* // onclick send user to Reviews section href="#Id of Ratings HTML Tag"*/}
       <a href="#">Read All Reviews</a>
       <br></br>
       <span>Category: {currentProduct.category}</span>
