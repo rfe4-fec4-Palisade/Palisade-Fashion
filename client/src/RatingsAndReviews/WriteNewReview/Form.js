@@ -121,7 +121,6 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
 
 
   if (!isOpen) return null;
-  console.log('characteristics in form', characteristics)
 
   return ReactDom.createPortal (
     <div className="modal">
