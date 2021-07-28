@@ -3,6 +3,10 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Card from './Card.js';
 
+const Wrapper = styled.div `
+  display: flex;
+`;
+
 const RelatedItems = (props) => {
   var product = props.currentProduct;
   const [relatedProducts, updateRelatedProducts] = useState([])
@@ -39,14 +43,16 @@ const RelatedItems = (props) => {
 
   const listRelated = relatedProducts.map((item) => {
     return (
-      <Card key={item} id={item} currentProduct={current}/>
+        <Card key={item} id={item} currentProduct={current}/>
     )
   })
 
   return (
     <div>
       <div id='modalHere'></div>
-      {listRelated}
+      <Wrapper>
+        {listRelated}
+      </Wrapper>
     </div>
 
   )
