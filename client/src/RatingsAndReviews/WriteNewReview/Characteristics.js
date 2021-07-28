@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Characteristics = (props) => {
-  console.log(props);
+
   if (!props.metadata.characteristics.hasOwnProperty(props.char.field)) {
     return null;
   }
