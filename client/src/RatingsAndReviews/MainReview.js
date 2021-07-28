@@ -28,17 +28,24 @@ const MainReview = (props) => {
   const getMetadata = (id) => {
     axios.get(`/reviews/meta?product_id=${id}`)
     .then((response) => {
-      let metadata = response.data
-      setMetadata(data)
+      let newMeta = response.data
+      setMetadata(newMeta)
+      console.log('this is metadata', metadata)
     })
     .catch((err) => {console.log(err)})
   }
 
   useEffect(()=>{
     getReviews(currentProduct)
-    getMetadata(currentProduct)
     return () => {
       setData({});
+
+    }
+  }, [])
+
+  useEffect(()=>{
+    getMetadata(currentProduct)
+    return () => {
       setMetadata({});
     }
   }, [])
@@ -61,7 +68,7 @@ const MainReview = (props) => {
           <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
           <Breakdown/>
           <List reviews={data}/>
-          <NewReview id={currentProduct}/>
+          <NewReview id={currentProduct} metadata={metadata}/>
       </div>
     )
 };

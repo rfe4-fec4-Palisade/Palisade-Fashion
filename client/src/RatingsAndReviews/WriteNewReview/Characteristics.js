@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 
 const Characteristics = (props) => {
+  console.log(props);
+  if (!props.metadata.characteristics.hasOwnProperty(props.char.field)) {
+    return null;
+  }
 
   return (
     <div onChange={(event)=>{props.handleCharChange(props.char.field, event.target.value)}}>
+      {props.char.field}
       <input type="radio" name={props.field} value="1"/> {props.char.lowest}
       <input type="radio" name={props.field} value="2"/>
       <input type="radio" name={props.field} value="3"/>
