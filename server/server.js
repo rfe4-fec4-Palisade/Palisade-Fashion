@@ -77,14 +77,34 @@ app.get('/products/:path/related', (req,res) =>{
 //QUERY SHOULD LOOK LIKE THIS: https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/review?product_id=19092
 // when requesting from client, make sure the url looks something like this: `/reviews?product_id=${id}`
 
-app.get('/reviews', (req,res) =>{
+app.get('/reviews', (req, res) => {
   let config = getData(req.url)
   axios(config)
     .then((data)=>{
       res.status(201).send(data.data);
     })
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+});
+
+app.post('/reviews', (req, res) => {
+  let config = getData(req.url);
+  config.data = req.body;
+  config.method = 'POST';
+  axios(config)
+    .then((data)=>{
+      res.status(201).send('posted!');
+    })
+    .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
 })
+
+app.get('/reviews/meta', (req, res) => {
+  let config = getData(req.url)
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+});
 
 //Questions and Answers
 
@@ -96,3 +116,6 @@ app.get('/reviews', (req,res) =>{
 app.listen(port, () => {
   console.log(`listening in on port ${port}`)
 })
+
+
+

@@ -5,7 +5,6 @@ import Sort from './SortComponents/sort.js';
 import List from './ReviewList/List.js';
 import Breakdown from './RatingBreakdown/Breakdown.js';
 import NewReview from './WriteNewReview/NewReview.js';
-import dummyData from './dummyData.js'
 import axios from 'axios';
 
 const MainReview = (props) => {
@@ -13,6 +12,7 @@ const MainReview = (props) => {
   const [currentProduct, setProduct] = useState(props.currentProduct)
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
+  const [metadata, setMetadata] = useState({});
 
   const getReviews = (id, sort = 'relevant') => {
     axios.get(`/reviews?product_id=${id}&sort=${sort}`)
@@ -25,10 +25,27 @@ const MainReview = (props) => {
       .catch((err) => {console.log(err)})
   }
 
+  const getMetadata = (id) => {
+    axios.get(`/reviews/meta?product_id=${id}`)
+    .then((response) => {
+      let newMeta = response.data
+      setMetadata(newMeta)
+      console.log('this is metadata', metadata)
+    })
+    .catch((err) => {console.log(err)})
+  }
+
   useEffect(()=>{
     getReviews(currentProduct)
     return () => {
       setData({});
+    }
+  }, [])
+
+  useEffect(()=>{
+    getMetadata(currentProduct)
+    return () => {
+      setMetadata({});
     }
   }, [])
 
@@ -50,37 +67,9 @@ const MainReview = (props) => {
           <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
           <Breakdown/>
           <List reviews={data}/>
-          <NewReview/>
+          <NewReview id={currentProduct} metadata={metadata}/>
       </div>
     )
 };
-
-// class MainReview extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       // sort default is regular view
-//         // helpful, newest, relevant
-//         // pass this.state.sort and data down to the sort component
-//         // the sort component should render out  the dropdown list
-//         // also pass in a function on click that will change the sort value here.
-//         // according to sort value, render out the list.
-//       sort: 'default',
-//       data: dummyData.results
-//     }
-//   }
-
-//   render() {
-//     return (
-//       <div className="main-review">
-//         <h1>This is the entire review component</h1>
-//         <Sort/>
-//         <Breakdown/>
-//         <List sortOption={this.state.sort} reviews={this.state.data}/>
-//         <NewReview/>
-//       </div>
-//     )
-//   }
-// }
 
 export default MainReview;

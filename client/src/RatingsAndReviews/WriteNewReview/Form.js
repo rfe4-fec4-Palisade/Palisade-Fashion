@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
 import Characteristics from './Characteristics.js';
+import axios from 'axios';
+import Photos from './Photos.js';
 
-const Form = ({ isOpen, onClose }) => {
-  const [rating, setRating] = useState(0) //star component 1-5
+const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
+  const [rating, setRating] = useState(1) //star component 1-5
   const [recommend, setRecommend] = useState(false)
+
   const [characteristics, setCharacteristics] = useState(
     [
       {
@@ -44,10 +47,12 @@ const Form = ({ isOpen, onClose }) => {
         value: 0
       },
     ])
+
   const [summary, setSummary] = useState('')
   const [body, setBody] = useState('')
   const [nickname, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [photos, setPhotos] = useState([])
 
   const handleRecChange = (value) => {
     if (JSON.parse(value) === true) {
@@ -83,24 +88,59 @@ const Form = ({ isOpen, onClose }) => {
     }
   }
 
+  const uploadPhoto = (link) => {
+    if (photos.length < 5) {
+      var newState = photos;
+      newState.push(link);
+      setPhotos(newState);
+    } else {
+      alert('maximum number of photos reached')
+    }
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    var requestBody =
+      {
+        "product_id": id,
+        "rating": rating,
+        "summary": summary,
+        "body": body,
+        "recommend": recommend,
+        "name": nickname,
+        "email": email,
+        "photos": photos,
+        "characteristics": {}
+      }
+    axios.post('/reviews', requestBody)
+      .then((response) => {
+        console.log('posted!')
+      })
+      .catch((err) => {console.log(err)})
+  };
+
+
   if (!isOpen) return null;
+  console.log('characteristics in form', characteristics)
 
   return ReactDom.createPortal (
     <div className="modal">
       <button className="close" onClick={onClose}>
         X close
       </button>
-      <form>
+      <form onSubmit={(event)=>{handleSubmit(event)}}>
         <p>Overall Rating</p>
-        <input type="range" min="0" max="5" step="1" onChange={(event)=>{setRating(event.target.value*1)}}/>
+        <input type="range" min="1" max="5" step="1" defaultValue="1" onChange={(event)=>{setRating(event.target.value*1)}}/>
         <p>Do you recommend this product?</p>
         <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
         <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
-        {characteristics.map((char) => <Characteristics char={char} handleCharChange={handleCharChange}/>)}
+        {characteristics.map((char) => <Characteristics char={char} metadata={metadata} handleCharChange={handleCharChange}/>)}
         <input type="text" placeholder="Write a summary here" name="Summary" onChange={(event)=>{handleTextChange(event)}}/>
         <input type="text" placeholder="Write details here" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
         <input type="text" placeholder="nickname" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
         <input type="text" placeholder="email" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
+        <Photos uploadPhoto={uploadPhoto}/>
+        <input type="submit"/>
       </form>
     </div>,
     document.getElementById('formModal')
