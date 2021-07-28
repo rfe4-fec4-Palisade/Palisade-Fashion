@@ -16,22 +16,26 @@ const Card = (props) => {
   const [card, updateCard] = useState({})
   const [openp, setOpenP] = useState(false);
 
+
+
   var id = props.id;
   const getProduct = (id) => {
     axios.get(`http://localhost:3000/products/${id}`)
     .then(result => updateCard(result.data));
   }
 
-
-
   useEffect(() => {
     getProduct(id)
   }, [])
 
-  console.log('from Card.js', card);
+  console.log(props.currentSlide);
+  if (props.index < props.currentSlide.first ||  props.index > props.currentSlide.last) {
+    return null;
+  }
+
   return (
     <div>
-      <StyledCard className='card' onClick={() => setOpenP(true)}>
+      <StyledCard className='card' onClick={() => setOpenP(!openp)}>
         <h2>{id}: {card.name}</h2>
         <div>{card.slogan}</div>
         <div>{card.description}</div>
@@ -44,7 +48,6 @@ const Card = (props) => {
         currentProduct={props.currentProduct}
         setOpenP={setOpenP}
         isOpen={openp}
-        onClick={() => setOpenP(false)}
       />
     </div>
   )
