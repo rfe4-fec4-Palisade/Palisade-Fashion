@@ -30,17 +30,11 @@ const Breakdown = (props) => {
       num += +ratings[key]
     }
     setTotal(num)
-    // setTotal(+ratings["1"] + +ratings["2"]+ +ratings["3"] + +ratings["4"] + +ratings["5"])
   }, [])
-
-
-    // let ratingTotal = props.metadata.ratings.1 + props.metadata.ratings.2 + props.metadata.ratings.3 + props.metadata.ratings.4;
-
-
 
     return (
       <div>
-        {bars.map((bar) => <StarRating key={bar} total={total} count={props.metadata.ratings[bar]} rating={bar} filter={props.filter}/>)}
+        {bars.map((bar) => <StarRating key={bar} total={total} count={props.metadata.ratings[bar]} rating={bar} filter={props.filter} onFilter={props.onFilter} />)}
       </div>
     )
 }
