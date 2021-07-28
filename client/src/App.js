@@ -26,6 +26,10 @@ const App = () => {
       })
   }
 
+  const fetchMetadata = () => {
+    
+  }
+
   useEffect(() => {
     fetchData();
   }, [])

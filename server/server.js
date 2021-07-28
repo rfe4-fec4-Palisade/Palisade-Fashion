@@ -90,7 +90,6 @@ app.post('/reviews', (req, res) => {
   let config = getData(req.url);
   config.data = req.body;
   config.method = 'POST';
-  console.log('req.body', req.body)
   axios(config)
     .then((data)=>{
       res.status(201).send('posted!');

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 import Characteristics from './Characteristics.js';
 import axios from 'axios';
+import Photos from './Photos.js';
+
 const Form = ({ id, isOpen, onClose }) => {
   const [rating, setRating] = useState(1) //star component 1-5
   const [recommend, setRecommend] = useState(false)
@@ -48,6 +50,7 @@ const Form = ({ id, isOpen, onClose }) => {
   const [body, setBody] = useState('')
   const [nickname, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [photos, setPhotos] = useState([])
 
   const handleRecChange = (value) => {
     if (JSON.parse(value) === true) {
@@ -83,8 +86,18 @@ const Form = ({ id, isOpen, onClose }) => {
     }
   }
 
+  const uploadPhoto = (link) => {
+    if (photos.length < 5) {
+      var newState = photos;
+      newState.push(link);
+      setPhotos(newState);
+    } else {
+      alert('maximum number of photos reached')
+    }
+  }
+
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     var requestBody =
       {
         "product_id": id,
@@ -94,7 +107,7 @@ const Form = ({ id, isOpen, onClose }) => {
         "recommend": recommend,
         "name": nickname,
         "email": email,
-        "photos": [],
+        "photos": photos,
         "characteristics": {}
       }
     axios.post('/reviews', requestBody)
@@ -123,6 +136,7 @@ const Form = ({ id, isOpen, onClose }) => {
         <input type="text" placeholder="Write details here" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
         <input type="text" placeholder="nickname" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
         <input type="text" placeholder="email" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
+        <Photos uploadPhoto={uploadPhoto}/>
         <input type="submit"/>
       </form>
     </div>,
