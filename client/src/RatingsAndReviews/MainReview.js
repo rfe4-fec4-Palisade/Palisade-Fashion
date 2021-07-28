@@ -39,7 +39,6 @@ const MainReview = (props) => {
     getReviews(currentProduct)
     return () => {
       setData({});
-
     }
   }, [])
 

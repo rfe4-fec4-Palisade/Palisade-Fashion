@@ -13,7 +13,7 @@ const StyledButton = styled.button `
 
 const App = () => {
   const [allProducts, setProducts] = useState([])
-  const [currentProduct, setProduct] = useState(19093)
+  const [currentProduct, setProduct] = useState(19089)
 
   const fetchData = () => {
     axios.get('http://localhost:3000/products')
