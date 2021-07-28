@@ -4,6 +4,7 @@ import MainReview from './RatingsAndReviews/MainReview.js';
 import axios from 'axios';
 import RelatedItems from './RelatedItems/RelatedItemsList/relatedItems.js';
 import MainOverview from './overview/mainOverview.js';
+import QuestionAndAnswer from './Q&AComponents/Q&Acontainer.js'
 
 const StyledButton = styled.button `
       background-color: pink;
@@ -54,7 +55,8 @@ const App = () => {
       <StyledButton>Testing styled components</StyledButton>
       <MainReview currentProduct={currentProduct} />
       <RelatedItems currentProduct={currentProduct}/>
-      <MainOverview/>
+      <QuestionAndAnswer product={currentProduct} />
+      <MainOverview currentProduct={currentProduct}/> 
     </div>
   )
 

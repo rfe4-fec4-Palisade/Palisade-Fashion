@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
 function ProductDesc({ singleProduct }) {
-  // slogan
-  // detailed
 
   return (
     <div>
-      <h3>Slogan/CatchPhrase: {singleProduct.slogan}</h3>
-      <p>Detailed Product Description: {singleProduct.description}</p>
+      <h3>{singleProduct.slogan}</h3>
+      <p>{singleProduct.description}</p>
     </div>
   )
 }
