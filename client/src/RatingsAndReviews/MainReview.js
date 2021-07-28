@@ -30,7 +30,6 @@ const MainReview = (props) => {
     .then((response) => {
       let newMeta = response.data
       setMetadata(newMeta)
-      console.log('this is metadata', metadata)
     })
     .catch((err) => {console.log(err)})
   }
