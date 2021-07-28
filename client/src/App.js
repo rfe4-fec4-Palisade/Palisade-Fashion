@@ -40,14 +40,10 @@ const App = () => {
     <div>
       <div className="test"></div>
       <StyledButton>Testing styled components</StyledButton>
-<<<<<<< HEAD
-      <MainReview testProp={currentProduct} />
-      <QuestionAndAnswer product={currentProduct} />
-=======
       <MainReview currentProduct={currentProduct} />
       <RelatedItems currentProduct={currentProduct}/>
+      <QuestionAndAnswer product={currentProduct} />
      {/* <MainOverview/> */}
->>>>>>> fc5cb8a841968d70fea42e3754f1c203cb7d79a9
     </div>
   )
 

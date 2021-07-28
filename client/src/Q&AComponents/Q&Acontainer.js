@@ -14,8 +14,6 @@ and organization.
 
 function QuestionAndAnswer(props) {
 
-
-
   return(
     <div>
       <SearchBarQA />

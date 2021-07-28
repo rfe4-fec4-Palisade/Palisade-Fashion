@@ -33,20 +33,6 @@ app.get('/products', (req,res) =>{
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
 })
 
-<<<<<<< HEAD
-
-
-// app.get('/:path/:id', (req,res) =>{
-//   let config = getData(req.url)
-//   console.log('GENERAL PATH: this is req.url',req.url)
-//   axios(config)
-//     .then((data)=>{
-//       console.log('axios get request is working')
-//       res.status(201).send(data.data);
-//     })
-//     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
-// })
-=======
 // Req needed for Overview - ID
 app.get('/products/:id', (req,res) =>{
   console.log('req.params', req.params)
@@ -60,7 +46,6 @@ app.get('/products/:id', (req,res) =>{
     })
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
 })
->>>>>>> fc5cb8a841968d70fea42e3754f1c203cb7d79a9
 
 // Req needed for Overview: Styles
 app.get('/products/:id/styles', (req,res) =>{
