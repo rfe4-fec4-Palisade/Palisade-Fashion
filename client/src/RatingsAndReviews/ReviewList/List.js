@@ -4,13 +4,13 @@ import ReviewTile from './Tile.js'
 const List = ({sortOption, reviews}) => {
 
   const renderView = () => {
-    if (sortOption === "default") {
-      return reviews.map((review)=><ReviewTile review={review}/>)
-    }
+      return (
+        reviews.map((review)=><ReviewTile review={review}/>)
+      )
   }
 
   return (
-    <div> This is the list component
+    <div>
       <div>{renderView()}</div>
     </div>
   )

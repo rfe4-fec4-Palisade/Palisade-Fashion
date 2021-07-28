@@ -1,20 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class Features extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
+function Features ({ singleFeature }) {
 
-    }
-  }
-
-  render () {
-    return <ul>
-      <li>Feature #1</li>
-      <li>Feature #2</li>
-      <li>Feature #3</li>
+  return (
+    <ul>
+      <li>Feature #1: { singleFeature.feature }</li>
+      <li>Value #1: { singleFeature.value }</li>
     </ul>
-  }
+  )
 }
 
 export default Features;

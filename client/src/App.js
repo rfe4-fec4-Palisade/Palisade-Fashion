@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import MainReview from './RatingsAndReviews/MainReview.js';
 import axios from 'axios';
-import QuestionAndAnswer from '../src/Q&AComponents/Q&Acontainer.js';
-
+import RelatedItems from './RelatedItems/RelatedItemsList/relatedItems.js';
+import MainOverview from './overview/mainOverview.js';
+import QuestionAndAnswer from './Q&AComponents/Q&Acontainer.js'
 
 const StyledButton = styled.button `
       background-color: pink;
@@ -26,6 +27,10 @@ const App = () => {
       })
   }
 
+  const fetchMetadata = () => {
+
+  }
+
   useEffect(() => {
     fetchData();
   }, [])
@@ -35,8 +40,14 @@ const App = () => {
     <div>
       <div className="test"></div>
       <StyledButton>Testing styled components</StyledButton>
+<<<<<<< HEAD
       <MainReview testProp={currentProduct} />
       <QuestionAndAnswer product={currentProduct} />
+=======
+      <MainReview currentProduct={currentProduct} />
+      <RelatedItems currentProduct={currentProduct}/>
+     {/* <MainOverview/> */}
+>>>>>>> fc5cb8a841968d70fea42e3754f1c203cb7d79a9
     </div>
   )
 

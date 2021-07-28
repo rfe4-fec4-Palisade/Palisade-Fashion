@@ -1,24 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Description from './productDescription/Description.js';
+import ProductInfo from './productInfo/productInfo.js';
+import ImageGallery from './imageGallery/imageGallery.js';
+import SelectedStyle from './styleSelectorAndCart/styleAndCart.js';
 import { API_KEY } from '../../../config.js';
 import axios from 'axios';
 
-class MainOverview extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      products: []
-    }
-  }
+function MainOverview() {
 
 
-  render() {
     return ( <div>
-      <h1>Main Overview</h1>
+      <h1>Topmost Level: Main Overview</h1>
+      <ImageGallery/>
+      <ProductInfo/>
+      <SelectedStyle/>
       <Description/>
     </div>
     )
-  }
+
 
 }
 

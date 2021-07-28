@@ -1,20 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class ProductDesc extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      slogan: '',
-      detailed: ''
-    }
-  }
+function ProductDesc({ singleProduct }) {
+  // slogan
+  // detailed
 
-  render () {
-    return <div>
-      <h3>Slogan/CatchPhrase</h3>
-      <p>Detailed Product Description</p>
-      </div>
-  }
+  return (
+    <div>
+      <h3>Slogan/CatchPhrase: {singleProduct.slogan}</h3>
+      <p>Detailed Product Description: {singleProduct.description}</p>
+    </div>
+  )
 }
 
 export default ProductDesc;
