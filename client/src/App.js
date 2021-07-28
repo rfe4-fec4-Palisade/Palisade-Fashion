@@ -4,7 +4,8 @@ import MainReview from './RatingsAndReviews/MainReview.js';
 import axios from 'axios';
 import RelatedItems from './RelatedItems/RelatedItemsList/relatedItems.js';
 import MainOverview from './overview/mainOverview.js';
-import QuestionAndAnswer from './Q&AComponents/Q&Acontainer.js'
+import QuestionAndAnswer from './Q&AComponents/Q&Acontainer.js';
+import RatingStars from './sharedComponents/Stars/RatingStars.js';
 
 const StyledButton = styled.button `
       background-color: pink;
@@ -53,10 +54,11 @@ const App = () => {
     <div>
       <div className="test"></div>
       <StyledButton>Testing styled components</StyledButton>
+      <RatingStars/>
       <MainReview currentProduct={currentProduct} />
       {/* <RelatedItems currentProduct={currentProduct}/>
       <QuestionAndAnswer product={currentProduct} />
-      <MainOverview currentProduct={currentProduct}/>  */}
+      <MainOverview currentProduct={currentProduct}/>
     </div>
   )
 
