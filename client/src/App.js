@@ -21,6 +21,7 @@ const App = () => {
       .then((results) => {
         results = results.data;
         setProducts(results)
+
       })
       .catch((err) => {
         console.log('Error', err);
