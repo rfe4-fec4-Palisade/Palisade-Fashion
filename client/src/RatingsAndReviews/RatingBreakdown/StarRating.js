@@ -3,10 +3,12 @@ import Percentage from './Percentage.js';
 import Styled from 'styled-components'
 
 const ProgressBar = Styled.div`
-`
-const Element = Styled.span`
+
 display: flex;
-flex-direction: row;
+align-items: flex-start;
+`
+
+const Element = Styled.div`
 `
 const StarRating = ({total, count, rating}) => {
   // console.log('total', total)
@@ -16,7 +18,7 @@ const StarRating = ({total, count, rating}) => {
   return (
     <ProgressBar>
       <Element>{rating} stars</Element>
-      <Element><Percentage percentage={count/total * 100}/></Element>
+      <Percentage percentage={count/total * 100}/>
       <Element>{count}</Element>
     </ProgressBar>
   )
