@@ -30,7 +30,6 @@ const MainReview = (props) => {
     .then((response) => {
       let newMeta = response.data
       setMetadata(newMeta)
-      console.log('this is metadata', metadata)
     })
     .catch((err) => {console.log(err)})
   }
@@ -60,12 +59,12 @@ const MainReview = (props) => {
     getReviews(currentProduct, searchQuery)
   }
 
-
+console.log('metadata', metadata)
     return (
         <div className="main-review">
           <h1>This is the entire review component</h1>
           <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
-          <Breakdown/>
+          <Breakdown id={currentProduct} metadata={metadata}/>
           <List reviews={data}/>
           <NewReview id={currentProduct} metadata={metadata}/>
       </div>
