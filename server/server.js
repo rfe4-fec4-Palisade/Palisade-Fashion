@@ -112,11 +112,21 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
   config.method = 'PUT';
   axios(config)
     .then((data)=>{
-      res.status(201).send(data.data);
+      res.status(204).send(data.data);
     })
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
 });
 
+app.put('/reviews/:review_id/report', (req, res) => {
+  let config = getData(req.url)
+  config.data = req.body;
+  config.method = 'PUT';
+  axios(config)
+    .then((data)=>{
+      res.status(204).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+});
 
 //Questions and Answers
 //Example for Q&A  -> https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=19092

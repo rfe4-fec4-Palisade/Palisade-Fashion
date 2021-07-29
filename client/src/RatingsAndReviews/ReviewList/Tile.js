@@ -18,8 +18,14 @@ const Summary = styled.div`
 
 const sendHelpful = (id) => {
   axios.put(`/reviews/${id}/helpful`, {review_id: id})
-    .then((response) => { console.log("you marked this review as helpful")})
+    .then((response) => {console.log("You marked this review as helpful")})
     .catch((err) => {console.log(err)})
+}
+
+const sendReport = (id) => {
+  axios.put(`/reviews/${id}/report`, {review_id: id})
+  .then((response) => {console.log('You reported this review')})
+  .catch((err) => {console.log(err)})
 }
 
 const ReviewTile = (props) => {
@@ -34,7 +40,7 @@ const ReviewTile = (props) => {
         {props.review.recommend ?
         <div> ✓ I recommend this product </div> : null}
         <Response response={props.review.response}/>
-        <Helpful helpfulness={props.review.helpfulness} sendHelpful={sendHelpful} id={props.review.review_id}/>
+        <Helpful helpfulness={props.review.helpfulness} sendHelpful={sendHelpful} sendReport={sendReport} id={props.review.review_id} />
       </Tile>
     )
   } else {
@@ -48,15 +54,8 @@ const ReviewTile = (props) => {
           <div>{props.review.body}</div>
           {props.review.recommend ?
             <div> ✓ I recommend this product </div> : null}
-          {/* {props.review.response ?
-            <div>
-              Response from seller
-              {props.review.response}
-              </div>
-              : null} */}
-
           <Response response={props.review.response}/>
-          <Helpful helpfulness={props.review.helpfulness}/>
+          <Helpful helpfulness={props.review.helpfulness} sendHelpful={sendHelpful} sendReport={sendReport} id={props.review.review_id}/>
         </Tile>
       )
     } else {
