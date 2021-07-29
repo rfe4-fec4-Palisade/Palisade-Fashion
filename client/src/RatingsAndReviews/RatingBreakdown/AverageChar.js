@@ -21,7 +21,6 @@ const Icon = Styled.div`
 `
 
 const AverageChar = ({char}) => {
-  console.log(char)
   return (
     <div>
       <div>{char[0]}</div>
