@@ -7,11 +7,10 @@ const Button = styled.span`
   text-decoration: underline;
   `
 const Helpful = (props) => {
-
   return (
     <div>
       {`Helpful? `}
-      <Button onClick={()=>{return null}}>{`Yes`}</Button>
+      <Button onClick={()=>{props.sendHelpful(props.id)}}>{`Yes`}</Button>
       <span>{` (${props.helpfulness})  |  `}</span>
       <Button onClick={()=>{return null}}>{`Report`}</Button>
       <span></span>
