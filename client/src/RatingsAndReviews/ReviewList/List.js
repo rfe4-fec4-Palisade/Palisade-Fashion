@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import ReviewTile from './Tile.js'
 
-const List = ({sortOption, reviews}) => {
+const List = ({sortOption, reviews, filter}) => {
 
   const renderView = () => {
       return (
-        reviews.map((review)=><ReviewTile review={review}/>)
+        reviews.map((review)=><ReviewTile review={review} filter={filter}/>)
       )
   }
 

@@ -16,26 +16,53 @@ const Summary = styled.div`
 `;
 
 const ReviewTile = (props) => {
-  return (
-    <Tile>
-      <div> STAR RATING HERE </div>
-      <div>{props.review.reviewer_name}</div>
-      <div>{dateParser(props.review.date)}</div>
-      <Summary>{props.review.summary}</Summary>
-      <div>{props.review.body}</div>
-      {props.review.recommend ?
-        <div> ✓ I recommend this product </div> : null}
-      {/* {props.review.response ?
-        <div>
-          Response from seller
-          {props.review.response}
-          </div>
-          : null} */}
+  if (props.filter.length === 0) {
+    return (
+      <Tile>
+        <div> Star rating here: {props.review.rating} </div>
+        <div>{props.review.reviewer_name}</div>
+        <div>{dateParser(props.review.date)}</div>
+        <Summary>{props.review.summary}</Summary>
+        <div>{props.review.body}</div>
+        {props.review.recommend ?
+          <div> ✓ I recommend this product </div> : null}
+        {/* {props.review.response ?
+          <div>
+            Response from seller
+            {props.review.response}
+            </div>
+            : null} */}
 
-      <Response response={props.review.response}/>
-      <Helpful helpfulness={props.review.helpfulness}/>
-    </Tile>
-  )
+        <Response response={props.review.response}/>
+        <Helpful helpfulness={props.review.helpfulness}/>
+      </Tile>
+    )
+  } else {
+    if (props.filter.indexOf(+props.review.rating) !== -1) {
+      return (
+        <Tile>
+          <div> Star rating here: {props.review.rating} </div>
+          <div>{props.review.reviewer_name}</div>
+          <div>{dateParser(props.review.date)}</div>
+          <Summary>{props.review.summary}</Summary>
+          <div>{props.review.body}</div>
+          {props.review.recommend ?
+            <div> ✓ I recommend this product </div> : null}
+          {/* {props.review.response ?
+            <div>
+              Response from seller
+              {props.review.response}
+              </div>
+              : null} */}
+
+          <Response response={props.review.response}/>
+          <Helpful helpfulness={props.review.helpfulness}/>
+        </Tile>
+      )
+    } else {
+      return null;
+    }
+  }
 }
 
 export default ReviewTile;
