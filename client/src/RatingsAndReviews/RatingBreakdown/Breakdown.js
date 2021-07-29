@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StarRating from './StarRating';
+import CurrentFilters from './CurrentFilters.js';
 
 const Breakdown = (props) => {
   if( props.metadata.ratings === undefined ) {
@@ -34,7 +35,11 @@ const Breakdown = (props) => {
 
     return (
       <div>
+        <div>
         {bars.map((bar) => <StarRating key={bar} total={total} count={props.metadata.ratings[bar]} rating={bar} filter={props.filter} onFilter={props.onFilter} />)}
+        {props.filter.length === 0 ? null : `Current Filters`}
+        {props.filter.map((rating)=><CurrentFilters rating={rating}/>)}
+        </div>
       </div>
     )
 }

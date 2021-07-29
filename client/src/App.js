@@ -15,7 +15,7 @@ const StyledButton = styled.button `
 
 const App = () => {
   const [allProducts, setProducts] = useState([])
-  const [currentProduct, setProduct] = useState(19089)
+  const [currentProduct, setProduct] = useState(19093)
   const [metadata, setMetadata] = useState({})
 
   // const getRandomInt = (min, max) => {
