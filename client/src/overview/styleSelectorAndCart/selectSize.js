@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SelectQuantity from './selectQuantity.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 import AddToCart from './addToCart.js';
 
 function SelectSize({ styleSelected }) {
@@ -56,7 +58,8 @@ function SelectSize({ styleSelected }) {
             <SelectQuantity sizeChosen={sizeSelected} qtyAvailable={qtyAvailable}/>
             <br></br>
             <AddToCart sizeChosen={sizeSelected} sku={skuOfStyle}/>
-            <p>Favorite Item</p>
+            <br></br>
+            <FontAwesomeIcon icon={faStar} size="2x"/>
           </div>
         )
     }
