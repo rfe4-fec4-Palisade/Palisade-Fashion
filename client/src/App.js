@@ -7,12 +7,6 @@ import MainOverview from './overview/mainOverview.js';
 import QuestionAndAnswer from './Q&AComponents/Q&Acontainer.js';
 import RatingStars from './sharedComponents/Stars/RatingStars.js';
 
-const StyledButton = styled.button `
-      background-color: pink;
-      font-size: 32px;
-      color: white;
-`;
-
 const App = () => {
   const [allProducts, setProducts] = useState([])
   const [currentProduct, setProduct] = useState(19093)
@@ -68,12 +62,10 @@ const App = () => {
   return (
     <div>
       <div className="test"></div>
-      <StyledButton>Testing styled components</StyledButton>
-      <RatingStars ratings={metadata}/>
-      <MainReview currentProduct={currentProduct} />
+      <MainOverview currentProduct={currentProduct}/>
       <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
       <QuestionAndAnswer product={currentProduct} />
-      <MainOverview currentProduct={currentProduct}/>
+      <MainReview currentProduct={currentProduct} />
     </div>
   )
 
