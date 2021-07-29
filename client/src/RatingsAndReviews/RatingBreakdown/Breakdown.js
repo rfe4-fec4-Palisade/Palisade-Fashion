@@ -6,7 +6,7 @@ const Breakdown = (props) => {
     return null;
   }
   const [total, setTotal] = useState(0);
-  const [bars, setBars] = useState([1,2,3,4,5])
+  const [bars, setBars] = useState([5,4,3,2,1])
   /*
   {
     "product_id": "19089",
