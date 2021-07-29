@@ -11,6 +11,7 @@ const StyledCard = styled.div `
   width: 250px
 `;
 
+
 const Card = (props) => {
 
   const [card, updateCard] = useState({})
@@ -35,6 +36,13 @@ const Card = (props) => {
 
   return (
     <div>
+      <PortalModal
+        message="Compare:"
+        card={card}
+        currentProduct={props.currentProduct}
+        setOpenP={setOpenP}
+        isOpen={openp}
+      />
       <StyledCard className='card'>
         <h2>{id}: {card.name}</h2>
         <div>{card.slogan}</div>
@@ -44,13 +52,6 @@ const Card = (props) => {
         <button onClick={() => props.setProduct(id)}>Go To</button>
         <button onClick={() => setOpenP(!openp)}>View Details</button>
       </StyledCard>
-      <PortalModal
-        message="Compare:"
-        card={card}
-        currentProduct={props.currentProduct}
-        setOpenP={setOpenP}
-        isOpen={openp}
-      />
     </div>
   )
 }
