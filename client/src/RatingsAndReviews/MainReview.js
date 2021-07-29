@@ -12,6 +12,7 @@ const MainReview = (props) => {
   const [count, setCount] = useState(0);
   const [metadata, setMetadata] = useState({});
   const [filter, setFilter] = useState([]);
+  const [num, setNum] = useState(1);
 
   const getReviews = (id, sort = 'relevant') => {
     axios.get(`/reviews?product_id=${id}&sort=${sort}&count=500`)
@@ -74,7 +75,8 @@ const MainReview = (props) => {
           <h1>This is the entire review component</h1>
           <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
           <Breakdown id={currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>
-          <List reviews={data} filter={filter}/>
+          <List reviews={data} filter={filter} num={num}/>
+          {num+1 === count ? null : <div onClick={()=>{setNum(num+2)}}>MORE REVIEWS</div>}
           <NewReview id={currentProduct} metadata={metadata}/>
       </div>
     )
