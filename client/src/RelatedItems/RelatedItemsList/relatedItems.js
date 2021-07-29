@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import OutfitList from '../OutfitList/outfitList.js';
 import Card from './Card.js';
 
 const Wrapper = styled.div `
@@ -71,6 +72,7 @@ const RelatedItems = (props) => {
       <Wrapper>
         {listRelated}
       </Wrapper>
+      <OutfitList/>
     </div>
 
   )
