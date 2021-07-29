@@ -25,17 +25,14 @@ const Container = Styled.div`
     var num = 0
     if (props.metadata.ratings) {
       for (const [key, value] of Object.entries(props.metadata.ratings)) {
-        console.log(`${key}: ${value}`);
         total += key * value;
         num += +value
       }
       avg = total/num
-      console.log('useeffect', total, num, avg, average)
       setAverage(avg);
     }
   }, [props.metadata.ratings])
 
-  console.log(average)
   return (
     <Container>
       <StyledStars>

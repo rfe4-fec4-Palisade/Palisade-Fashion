@@ -62,9 +62,9 @@ const App = () => {
   return (
     <div>
       <div className="test"></div>
-      <MainOverview currentProduct={currentProduct}/>
+      {/* <MainOverview currentProduct={currentProduct}/>
       <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
-      <QuestionAndAnswer product={currentProduct} />
+      <QuestionAndAnswer product={currentProduct} /> */}
       <MainReview currentProduct={currentProduct} />
     </div>
   )

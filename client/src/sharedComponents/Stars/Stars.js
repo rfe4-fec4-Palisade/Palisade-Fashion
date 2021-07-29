@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaStar, FaStarHalfAlt, FaRegStar} from 'react-icons/fa';
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
 import Styled from 'styled-components';
 
