@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import AnswerItem from '../Q&AComponents/answerItem.js';
-import { API_KEY } from '../../../config.js'
+import { API_KEY } from '../../../config.js';
+import LoadMoreQs from '../Q&AComponents/LoadMoreQs.js'
+import AddaQuestion from '../Q&AComponents/AddaQuestion.js';
 
 /*
 Quick Description:
@@ -30,7 +32,7 @@ class QandAitem extends React.Component {
 
 
   componentDidMount() {
-    axios(`http://localhost:3000/qa/questions?product_id=${this.props.id.product}`)
+    axios(`/qa/questions?product_id=${this.props.id.parentProps.product}`)
     .then((res) => {
 
       var result;
@@ -54,18 +56,32 @@ class QandAitem extends React.Component {
 
 
   render() {
-
+    // console.log(this.props)
     const questionData = this.state.questionData;
+  //  console.log('this is question data', questionData);
+    const searchTerm = this.props.id.searchTerm;
+    var filteredSearch = questionData;
+
+
+
+    if (Array.isArray(questionData)) {
+      filteredSearch = questionData.filter(question => (
+        question.question_body.toLowerCase().includes(searchTerm.toLowerCase())
+      ))
+    }
 
     if (this.state.questionData.length > 1) {
       return (
         <div>
-          {questionData.map(question =>
+          {filteredSearch.map(question =>
               <ul key={question.question_id}>
               <StyledList><h4>Q: {question.question_body}</h4></StyledList>
+
                <AnswerItem answers={question.question_id}/>
             </ul>
         )}
+            <LoadMoreQs />
+            <AddaQuestion />
     </div>
       )
     }
@@ -74,6 +90,8 @@ class QandAitem extends React.Component {
       <ul>
         <StyledList><h4>Q: {this.state.questionData.question_body}</h4></StyledList>
          <AnswerItem answers={this.state.questionData.question_id}/>
+         <LoadMoreQs />
+         <AddaQuestion />
       </ul>
     </div>
     )

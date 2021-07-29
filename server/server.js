@@ -119,6 +119,11 @@ app.get('/qa/questions/', (req,res) =>{
 })
 
 app.get('/qa/questions/:id/answers', (req,res) =>{
+  //edge case for async loaded data in url necessary for api request
+  if (req.url.includes(undefined)) {
+    return null
+  }
+  //regular api request
   let config = getData(req.url)
   console.log('ANSWER LIST req.url', req.url)
   axios(config)
