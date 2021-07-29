@@ -1,42 +1,19 @@
 import React, { useState } from 'react';
 import ReviewTile from './Tile.js'
 
-const List = ({sortOption, reviews, filter}) => {
-
-  const renderView = () => {
-      return (
-        reviews.map((review)=><ReviewTile review={review} filter={filter}/>)
-      )
-  }
+const List = ({sortOption, reviews, filter, num}) => {
 
   return (
+
     <div>
-      <div>{renderView()}</div>
+      {reviews.map((review, index) => {
+        return index <= num ?
+        <ReviewTile review={review} filter={filter}/> :
+        null;
+        }
+      )}
     </div>
   )
 
 }
-
-// class List extends React.Component {
-//   constructor (props) {
-//     super(props)
-//     this.state = {}
-//     this.renderRiew = this.renderView.bind(this)
-//   }
-
-//   renderView () {
-//     if (this.props.sortOption === "default") {
-//       return this.props.reviews.map((review)=><ReviewTile review={review}/>)
-//     }
-//   }
-//   render() {
-//     return (
-//       <div> This is the list component
-//         <div>{this.renderView()}</div>
-//       </div>
-
-//     )
-//   }
-// }
-
 export default List;
