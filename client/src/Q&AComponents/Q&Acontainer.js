@@ -7,20 +7,28 @@ import QandAitem from '../Q&AComponents/q&a-Item.js';
 Quick Description:
 This is the major container for all larger (and consquently smaller sub components)
 in the Questions and Answer sections.
-Not meant to have a lot of functionality other than housing all relative components
-and organization.
+Not meant to have a lot of functionality other than housing components and helping
+the search bar with passing information along to QandAItem.
+
+This component is currenlty using a hook to get the target value from search bar
+and pass it down to QandAitem to be rendered accordingly along with productID stored in props item.
 */
 
 
 function QuestionAndAnswer(props) {
+  const [searchField, setSearchField] =useState('');
+
+  var propsPackage = {
+    'parentProps': props,
+    'searchTerm': searchField
+  }
 
   return(
     <div>
-      <SearchBarQA />
-      <QandAitem id={props}/>
+      <SearchBarQA handleChange={(event) => {setSearchField(event.target.value)}}/>
+      <QandAitem id={propsPackage}/>
     </div>
   )
-
 
 };
 

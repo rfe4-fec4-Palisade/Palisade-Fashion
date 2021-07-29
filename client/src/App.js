@@ -25,7 +25,7 @@ const App = () => {
   // }
 
   const fetchData = () => {
-    axios.get('http://localhost:3000/products')
+    axios.get('/products')
       .then((results) => {
         results = results.data;
         setProducts(results);
@@ -78,6 +78,40 @@ const App = () => {
   )
 
 
+
+
 }
 
 export default App;
+
+
+/*
+  const getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+var random = getRandomInt(0, allProducts.length)
+
+  var idHolder = {
+    item: 'Loading in case there is no data...'
+  }
+
+  if (allProducts.length) {
+    idHolder = allProducts[random]
+  }
+
+  if (!allProducts.length) {
+    return (
+      <div>
+        <h3>Loading data...</h3>
+      </div>
+    )
+  } else {
+    return (
+    <div>
+    </div>
+  )
+  }
+*/

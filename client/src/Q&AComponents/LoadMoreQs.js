@@ -12,7 +12,9 @@ function LoadMoreQs(props) {
 
 
   return(
-
+    <div>
+      <button className='addQuestions' type='submit' >MORE ANSWERED QUESTIONS</button>
+    </div>
   )
 
 

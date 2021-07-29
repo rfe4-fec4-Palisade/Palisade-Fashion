@@ -36,7 +36,7 @@ class AnswerItem extends React.Component {
   componentDidMount(event) {
 
       setTimeout(() => {
-        axios(`http://localhost:3000/qa/questions/${this.props.answers}/answers`)
+        axios(`/qa/questions/${this.props.answers}/answers`)
         .then((res) => {
           // console.log('this is answers list', res)
           const data = res.data.results;
@@ -47,7 +47,7 @@ class AnswerItem extends React.Component {
         .catch((err) => {
           console.log('error retrieving answer list:', err);
         })
-      }, 500)
+      }, 400)
 
   }
 
@@ -95,7 +95,6 @@ class AnswerItem extends React.Component {
         )}
 
         <LoadMoreAns loadMore={payLoad}/>
-        <AddaQuestion />
 
       </div>
     )
