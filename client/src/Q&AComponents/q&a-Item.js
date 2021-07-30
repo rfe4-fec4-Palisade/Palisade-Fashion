@@ -5,29 +5,73 @@ import AnswerItem from '../Q&AComponents/answerItem.js';
 import { API_KEY } from '../../../config.js';
 import LoadMoreQs from '../Q&AComponents/LoadMoreQs.js'
 import AddaQuestion from '../Q&AComponents/AddaQuestion.js';
+import Helpful from '../sharedComponents/Helpful.js';
+import Helpful2 from '../Q&AComponents/Helpful2.0.js'
 
 /*
 Quick Description:
-This is large component takes care of the Q: and A: divs that are renders on browser.
+This large component takes care of the Q: and A: divs that are renders on browser.
 Originally was meant to use hooks, but had to switch to class component to use 'ComponentDidMount'.
 ComponentDidMount returns the data intercepted from the API request sent by server.
 This data is checked for length because there may be multiple questions per product ID and
 it has to render them accordingly.
 
-It also passes down the question_id to the answerItem subcomponent that deals with smaller indivdual
+It also passes down the question_id to the answerItem subcomponent that deals with smaller indivdual and separate information to the loadMoreQs button.
 answer sections.
 */
 
 const StyledList = styled.li `
-  list-style-type: none
+  list-style-type: none;
+  display: flex;
+  height: 29px;
 `;
+
+
+const style = {
+  display: 'block',
+  padding: '3px',
+  width: '100%'
+}
+
+const title = {
+  fontFamily: 'Arial, sans-serif',
+  float: 'left',
+  margin: '10px',
+  width: '40px',
+  height: '25px'
+}
+
+const parrafo = {
+  fontFamily: 'Arial, sans-serif',
+  float: 'right',
+  margin: '10px',
+  width: '50%',
+  height: '25px'
+}
+
+
+const help = {
+  fontFamily: 'Arial, sans-serif',
+  margin: '10px',
+  color: '#273746',
+  fontSize: '12px'
+}
+
+const spain = {
+  borderBottom: '1px dashed #ABB2B9 ',
+  width: '80%'
+}
+
+
 
 class QandAitem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questionData: ''
+      questionData: '',
+      loadMoreQs: false,
     }
+    this.handleLoadClick = this.handleLoadClick.bind(this);
   }
 
 
@@ -55,43 +99,75 @@ class QandAitem extends React.Component {
   }
 
 
+  handleLoadClick(event) {
+
+    this.setState(prevState => ({
+      loadMoreQs: !prevState.loadMoreQs
+    }))
+
+  }
+
+
   render() {
-    // console.log(this.props)
+    //questionData variable (ref to value in state) for further use
+    //payLoad is passed down to loadMoreQuestions button component
     const questionData = this.state.questionData;
-  //  console.log('this is question data', questionData);
-    const searchTerm = this.props.id.searchTerm;
-    var filteredSearch = questionData;
-
-
-
-    if (Array.isArray(questionData)) {
-      filteredSearch = questionData.filter(question => (
-        question.question_body.toLowerCase().includes(searchTerm.toLowerCase())
-      ))
+    const productID = this.props.id.parentProps.product
+    let payLoad = {
+      func: this.handleLoadClick,
+      leng: questionData.length
     }
 
+    // if (this.state.questionData.question_helpfulness === undefined) {
+    //   return null;
+    // }
+
+    //conditional render if there is more than 1 question else render just one
     if (this.state.questionData.length > 1) {
+      //if there is more than one question, render 2 first
+      //if loadmore button is click, questions rendered expands to full size
+        //search is still applicable to limited or expanded search
+
+      var questionDataSliced = this.state.questionData.slice(0, 2);
+      const searchTerm = this.props.id.searchTerm;
+      var filteredSearch = questionDataSliced;
+      const loadedMoreQs = this.state.loadMoreQs;
+
+      if (loadedMoreQs === true) {
+        questionDataSliced = this.state.questionData.slice(0, questionData.length)
+        filteredSearch = questionDataSliced
+      }
+
+
+      if (Array.isArray(questionData)) {
+        var filteredSlicedSearch = filteredSearch.filter(question => (
+          question.question_body.toLowerCase().includes(searchTerm.toLowerCase())
+        ))
+      }
       return (
-        <div>
-          {filteredSearch.map(question =>
+        <div style={style}>
+          {filteredSlicedSearch.map(question =>
               <ul key={question.question_id}>
-              <StyledList><h4>Q: {question.question_body}</h4></StyledList>
+              <StyledList><h4 style={title}>Q:</h4><h4 style={parrafo}>{question.question_body}</h4><Helpful2 style={help} helpfulness={question.question_id}/></StyledList>
 
                <AnswerItem answers={question.question_id}/>
+               <div style={spain}></div>
             </ul>
         )}
-            <LoadMoreQs />
-            <AddaQuestion />
+            <LoadMoreQs loadMore={payLoad}/>
+            <AddaQuestion data={productID} />
     </div>
       )
     }
+
     return (
-      <div>
+      <div style={style}>
       <ul>
-        <StyledList><h4>Q: {this.state.questionData.question_body}</h4></StyledList>
+      <StyledList><h4 style={title}>Q:</h4><h4 style={parrafo}>{this.state.questionData.question_body}</h4> <Helpful2 style={help} helpfulness={this.state.questionData.question_id}/></StyledList>
          <AnswerItem answers={this.state.questionData.question_id}/>
-         <LoadMoreQs />
-         <AddaQuestion />
+         <div style={spain}></div>
+         <LoadMoreQs loadMore={payLoad}/>
+         <AddaQuestion data={productID} />
       </ul>
     </div>
     )

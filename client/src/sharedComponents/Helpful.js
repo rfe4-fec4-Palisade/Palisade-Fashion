@@ -23,13 +23,17 @@ const Helpful = (props) => {
   const [clickedH, setClickedH] = useState(false);
   const [clickedR, setClickedR] = useState(false);
 
+
   useEffect(()=>{
     setClickedH(false);
     setClickedR(false);
   }, [props.id])
 
+
   return (
+
     <Text>
+    <div style={props.style}>
       {`Helpful? `}
       {clickedH ? <Thanks>Thank you for your feedback</Thanks> : <Button onClick={()=>{props.sendHelpful(props.id); setClickedH(true) }}>{`Yes`}</Button>}
       <span>{` (${props.helpfulness})  |  `}</span>

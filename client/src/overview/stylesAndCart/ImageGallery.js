@@ -7,27 +7,27 @@ import styled from 'styled-components';
 import Thumbnail from './thumbnail.js';
 
 const LargeImage = styled.img `
-  object-fit: contain;
-  width: 500px;
-  height: 500px;
+  object-fit: cover;
+  width: 750px;
+  height: 550px;
   overflow: hidden;
-  `;
+`;
 
 function ImageGallery ({ imageSelected }) {
   const [mainImageIndex, setMainImage] = useState(0);
-  const [allPhotos, setPhotos] = useState([]); // contains an array of all photos to display
+  const [allPhotos, setPhotos] = useState([]);
 
-  // console.log(imageSelected)
-  // console.log(imageSelected.photos)
   let photos = imageSelected.photos;
+
+  let style = {
+    cursor: 'zoom-in'
+  };
 
   useEffect(() => {
     setPhotos(photos)
   }, [])
 
-  // onClick of right arrow display photos at next index
   const rightArrowClicked = () => {
-    console.log('show next image')
     let currentIndex = mainImageIndex;
     currentIndex++;
     if (photos[currentIndex]) {
@@ -35,7 +35,6 @@ function ImageGallery ({ imageSelected }) {
     }
   }
 
-   // onClick of left arrow display photos at prev index
    const leftArrowClicked = () => {
     let currentIndex = mainImageIndex;
     currentIndex--;
@@ -53,50 +52,53 @@ function ImageGallery ({ imageSelected }) {
     setMainImage(index);
   }
 
+  const upDownArrows = (newIndex) => {
+    setMainImage(newIndex);
+  }
+
   if (photos === undefined) { // photos have not loaded yet due to async
     return null;
   } else {
 
-    if (photos === null) { // no images available for product
+    if (photos[0].url === null) { // no images available for product
       return (
-        <LargeImage src="https://streetspotr.com/wp-content/uploads/2017/08/Out-of-Stock_Titelbild.png"/>
+        <LargeImage src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'/>
       )
     }
     if (mainImageIndex === 0) {
       return (
         <div>
-          <Thumbnail currentPhoto={imageSelected} currentIndex={mainImageIndex} changeMainImg={changeMainImg}/>
+          <Thumbnail currentPhoto={imageSelected} currentIndex={mainImageIndex} changeMainImg={changeMainImg} upDown={upDownArrows}/>
           <br></br>
-          <LargeImage src={photos[mainImageIndex].url}/>
+          <LargeImage style={style} src={photos[mainImageIndex].url} onClick={expandImage}/>
           <FontAwesomeIcon icon={['fas', 'arrow-right']} onClick={rightArrowClicked}/>
           <br></br>
-          <FontAwesomeIcon icon={['fas', 'expand']} size="2x" onClick={expandImage}/>
+          <FontAwesomeIcon icon={['fas', 'expand']} size="2x" onClick={expandImage} style={style}/>
         </div>
       )
-    } if (mainImageIndex === photos.length-1) {
+    } if (mainImageIndex === photos.length -1) {
       return (
-            <div>
-              <Thumbnail currentPhoto={imageSelected} currentIndex={mainImageIndex} changeMainImg={changeMainImg}/>
-              <br></br>
-              <FontAwesomeIcon icon={['fas', 'arrow-left']} onClick={leftArrowClicked}/>
-              <LargeImage src={photos[mainImageIndex].url}/>
-              <br></br>
-              <FontAwesomeIcon icon={['fas', 'expand']} size="2x" onClick={expandImage}/>
-            </div>
+        <div>
+          <Thumbnail currentPhoto={imageSelected} currentIndex={mainImageIndex} changeMainImg={changeMainImg} upDown={upDownArrows}/>
+          <br></br>
+          <FontAwesomeIcon style={style} icon={['fas', 'arrow-left']} onClick={leftArrowClicked}/>
+          <LargeImage src={photos[mainImageIndex].url} onClick={expandImage}/>
+          <br></br>
+          <FontAwesomeIcon icon={['fas', 'expand']} size="2x" onClick={expandImage} style={style}/>
+        </div>
           )
     } else {
       return (
         <div>
-          <Thumbnail currentPhoto={imageSelected} currentIndex={mainImageIndex} changeMainImg={changeMainImg}/>
+          <Thumbnail currentPhoto={imageSelected} currentIndex={mainImageIndex} changeMainImg={changeMainImg} upDown={upDownArrows}/>
           <br></br>
           <FontAwesomeIcon icon={['fas', 'arrow-left']} onClick={leftArrowClicked}/>
-          <LargeImage src={photos[mainImageIndex].url}/>
+          <LargeImage style={style} src={photos[mainImageIndex].url} onClick={expandImage}/>
           <FontAwesomeIcon icon={['fas', 'arrow-right']} onClick={rightArrowClicked}/>
           <br></br>
-          <FontAwesomeIcon icon={['fas', 'expand']} size="2x" onClick={expandImage}/>
+          <FontAwesomeIcon icon={['fas', 'expand']} size="2x" onClick={expandImage} style={style}/>
         </div>
       )
-
     }
   }
 }
