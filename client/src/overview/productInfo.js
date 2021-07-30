@@ -3,12 +3,16 @@ import RatingStars from '../sharedComponents/Stars/RatingStars.js';
 
 function ProductInfo ({ currentProduct, metadata, totalReviews }) {
 
+  const cursor = {
+    cursor: 'pointer'
+  }
+
   return (
     <div>
 
       <RatingStars metadata={metadata}/>
       <br></br>
-      <a href="#Reviews">Read All {totalReviews} Reviews</a>
+      <a href="#Reviews" style={cursor}>Read All {totalReviews} Reviews</a>
       <br></br>
       <span>Category: {currentProduct.category}</span>
       <br></br>

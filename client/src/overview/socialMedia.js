@@ -17,11 +17,11 @@ function SocialMedia () {
   }
 
   return (
-    <ul>
+    <div>
       <FontAwesomeIcon icon={['fab', 'facebook']} size="2x" onClick={clickedFB}/>
       <FontAwesomeIcon icon={['fab', 'twitter-square']} size="2x"onClick={clickedTwitter}/>
       <FontAwesomeIcon icon={['fab', 'pinterest']} size="2x" onClick={clickedPinterest}/>
-    </ul>
+    </div>
   )
 }
 

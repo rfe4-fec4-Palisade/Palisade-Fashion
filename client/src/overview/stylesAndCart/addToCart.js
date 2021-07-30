@@ -30,11 +30,14 @@ function AddToCart(props) {
     })
   }
 
+  const cursor = {
+    cursor: 'pointer'
+  }
 
   return (
     <>
     <SizeNotSelected>{displayMessage}</SizeNotSelected>
-    <button onClick={addingToCart}>Add To Cart</button>
+    <button onClick={addingToCart} style={cursor}>Add To Cart</button>
     </>
   )
 }

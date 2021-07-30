@@ -6,53 +6,82 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas);
 
 const ThumbnailStyle = styled.img `
-    object-fit: contain;
-    width: 4%;
-    height: 4%;
+    object-fit: cover;
+    width: 70px;
+    height: 70px;
     overflow: hidden;
+    padding: 2px;
   `;
 
-function Thumbnail ({ currentPhoto, currentIndex, changeMainImg }) {
+function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
+  const [current, setCurrent] = useState(0);
   let allStyles = currentPhoto.photos;
+
+  useEffect(() => {
+    setCurrent(currentIndex)
+  }, [currentIndex])
 
   const style = { border: '3px solid red' };
 
-  const upArrowClicked = (e) => {
-    console.log('event in thumbnail', e)
-    console.log(currentIndex)
-    // let currentIndex = mainImageIndex;
-    // currentIndex++;
-    // if (photos[currentIndex]) {
-    //   setMainImage(currentIndex);
-    // }
+  const upArrowClicked = () => {
+    let highlightedIndex = current;
+    highlightedIndex--;
+    if (highlightedIndex >= 0) {
+      setCurrent(highlightedIndex);
+      upDown(highlightedIndex);
+    }
   }
 
-  const downArrowClicked = (e) => {
-    console.log('event in thumbnail', e)
-    console.log(currentIndex)
-    currentIndex = 1;
-    console.log(currentIndex)
-    // let currentIndex = mainImageIndex;
-    // currentIndex--;
-    // if (photos[currentIndex]) {
-    //   setMainImage(currentIndex);
-    // }
+  const downArrowClicked = () => {
+    let highlightedIndex = current;
+    highlightedIndex++;
+    if (highlightedIndex < allStyles.length) {
+      setCurrent(highlightedIndex);
+      upDown(highlightedIndex);
+    }
   }
 
-  return (
-    <>
-      {allStyles.map((item, index) => {
-        if (currentIndex == index) {
-          return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
-        } else {
-          return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
-        }
-      })}
-      <FontAwesomeIcon icon={['fas', 'arrow-up']} onClick={upArrowClicked}/>
-      <FontAwesomeIcon icon={['fas', 'arrow-down']} onClick={downArrowClicked}/>
-    </>
-    // Need to highlight matching thumbnail as main image changes
-  )
+  if (currentIndex === 0) {
+    return (
+      <>
+        {allStyles.map((item, index) => {
+          if (current == index) {
+            return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
+          } else {
+            return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
+          }
+        })}
+        <FontAwesomeIcon icon={['fas', 'arrow-down']} onClick={downArrowClicked}/>
+      </>
+    )
+  } else if (currentIndex === allStyles.length - 1) {
+    return (
+      <>
+        {allStyles.map((item, index) => {
+          if (current == index) {
+            return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
+          } else {
+            return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
+          }
+        })}
+        <FontAwesomeIcon icon={['fas', 'arrow-up']} onClick={upArrowClicked}/>
+      </>
+    )
+  } else {
+    return (
+      <>
+        {allStyles.map((item, index) => {
+          if (current == index) {
+            return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
+          } else {
+            return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
+          }
+        })}
+        <FontAwesomeIcon icon={['fas', 'arrow-up']} onClick={upArrowClicked}/>
+        <FontAwesomeIcon icon={['fas', 'arrow-down']} onClick={downArrowClicked}/>
+      </>
+    )
+  }
 }
 
 export default Thumbnail;
