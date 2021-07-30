@@ -20,6 +20,5 @@ import { shallow, mount, render } from 'enzyme';
 
 it('should render correctly with no props', () => {
   const component = shallow(<App />);
-
   expect(component).toMatchSnapshot();
 });
