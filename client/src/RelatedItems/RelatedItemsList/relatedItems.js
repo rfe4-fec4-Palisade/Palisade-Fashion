@@ -16,8 +16,7 @@ const Arrow = styled.div `
 `;
 
 const RelatedItems = (props) => {
-  var product = props.currentProduct;
-  console.log('current prodyct',product)
+  console.log('current product',props.currentProduct)
   const [relatedProducts, updateRelatedProducts] = useState([])
   const [current, updateCurrentProduct] = useState({})
 
@@ -28,7 +27,7 @@ const RelatedItems = (props) => {
 
 
   const getRelatedItemsData = () => {
-    axios.get(`http://localhost:3000/products/${product}/related`)
+    axios.get(`http://localhost:3000/products/${props.currentProduct}/related`)
     .then((result) => {
       updateRelatedProducts(result.data);
     })
@@ -38,7 +37,7 @@ const RelatedItems = (props) => {
   }
 
   const getCurrentProduct = () => {
-    axios.get(`http://localhost:3000/products/${product}`)
+    axios.get(`http://localhost:3000/products/${props.currentProduct}`)
     .then((result) => {
       updateCurrentProduct(result.data);
     })
@@ -50,11 +49,11 @@ const RelatedItems = (props) => {
 
   useEffect(() => {
     getRelatedItemsData();
-  }, [product])
+  }, [props.currentProduct])
 
   useEffect(() => {
     getCurrentProduct();
-  }, [product])
+  }, [props.currentProduct])
 
   useEffect(() => {
     if (currentSlide < relatedProducts.length) {
@@ -66,8 +65,6 @@ const RelatedItems = (props) => {
 
 
   const listRelated = relatedProducts.map((item, index) => {
-
-
     return (
         <Card key={index} index={index} currentSlide={currentSlide} id={item} currentProduct={current} setProduct={props.setProduct} metadata={props.metadata}/>
     )
@@ -81,7 +78,7 @@ const RelatedItems = (props) => {
       <Wrapper>
         {listRelated}
       </Wrapper>
-      <OutfitList/>
+      <OutfitList currentProduct={props.currentProduct}/>
     </div>
 
   )
