@@ -7,22 +7,46 @@ import axios from 'axios';
 import IndReviewStars from './Stars/IndReviewStars.js'
 
 const Tile = styled.div`
-  border-bottom: 1px solid grey;
-  font-family: Helvetica, sans-serif;
-  font-size: 12px;
-  color: grey;
-  display:flex;
-  flex-direction: column;
-  width: 100%
-  float: left;
+border-bottom: 1px dashed #E0E0E0;
+font-family: Arial, sans-serif;
+font-size: 12px;
+color: grey;
+display:flex;
+flex-direction: column;
+width: 100%
+float: left;
+padding: 10px;
 `;
 
 const Summary = styled.div`
-  font-weight: bold;
+color: black;
+font-size: 15px;
+// font-weight: bold;
+padding: 5px;
+`;
+
+const Body = styled.div`
+padding: 5px;
+font-size: 12px;
 `;
 
 const Star = styled.div`
+color: black;
+padding: 5px;
+`
+const Space = styled.div`
+width: 7px;
+`
 
+const NameDate = styled.div`
+display: flex;
+flex-direction: row;
+`
+
+const TileTop = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
 `
 
 const sendHelpful = (id) => {
@@ -41,15 +65,20 @@ const ReviewTile = (props) => {
   if (props.filter.length === 0) {
     return (
       <Tile>
-        <Star>
-          <IndReviewStars rating={props.review.rating}/>
-        </Star>
-        <div>{props.review.reviewer_name}</div>
-        <div>{dateParser(props.review.date)}</div>
+        <TileTop>
+          <Star>
+            <IndReviewStars rating={props.review.rating}/>
+          </Star>
+          <NameDate>
+            <div>{props.review.reviewer_name}</div>
+            <Space></Space>
+            <div>{dateParser(props.review.date)}</div>
+          </NameDate>
+        </TileTop>
         <Summary>{props.review.summary}</Summary>
-        <div>{props.review.body}</div>
+        <Body>{props.review.body}</Body>
         {props.review.recommend ?
-        <div> ✓ I recommend this product </div> : null}
+        <Body> ✓ I recommend this product </Body> : null}
         <Response response={props.review.response}/>
         <Helpful helpfulness={props.review.helpfulness} sendHelpful={sendHelpful} sendReport={sendReport} id={props.review.review_id} />
       </Tile>
@@ -58,18 +87,23 @@ const ReviewTile = (props) => {
     if (props.filter.indexOf(+props.review.rating) !== -1) {
       return (
         <Tile>
+        <TileTop>
           <Star>
             <IndReviewStars rating={props.review.rating}/>
           </Star>
-          <div>{props.review.reviewer_name}</div>
-          <div>{dateParser(props.review.date)}</div>
-          <Summary>{props.review.summary}</Summary>
-          <div>{props.review.body}</div>
-          {props.review.recommend ?
-            <div> ✓ I recommend this product </div> : null}
-          <Response response={props.review.response}/>
-          <Helpful helpfulness={props.review.helpfulness} sendHelpful={sendHelpful} sendReport={sendReport} id={props.review.review_id}/>
-        </Tile>
+          <NameDate>
+            <div>{props.review.reviewer_name}</div>
+            <Space></Space>
+            <div>{dateParser(props.review.date)}</div>
+          </NameDate>
+        </TileTop>
+        <Summary>{props.review.summary}</Summary>
+        <Body>{props.review.body}</Body>
+        {props.review.recommend ?
+        <Body> ✓ I recommend this product </Body> : null}
+        <Response response={props.review.response}/>
+        <Helpful helpfulness={props.review.helpfulness} sendHelpful={sendHelpful} sendReport={sendReport} id={props.review.review_id} />
+      </Tile>
       )
     } else {
       return null;

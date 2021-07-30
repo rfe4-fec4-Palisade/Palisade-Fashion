@@ -1,17 +1,18 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-const Whole = Styled.div`
-background: gray;
+const Whole = Styled.span`
+background: #E0E0E0;
 display: block;
-height: 8px;
+height: 6px;
 width: 100%;
+border-radius: 10px;
+margin-top: 10px;
 `
 const Portion = Styled.div`
-
-background: green;
+background: #90EE90;
 display: block;
-height: 8px;
+height: 6px;
 width: ${props => props.percentage}%;
 `
 const Percentage = ({percentage}) => {
