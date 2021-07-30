@@ -21,13 +21,18 @@ function ImageGallery ({ imageSelected }) {
   // console.log(imageSelected.photos)
   let photos = imageSelected.photos;
 
+  // const style = {
+  //   width: '200px';
+  //   height: '200px';
+  //   cursor: 'url(https://img.favpng.com/5/0/4/magnifying-glass-symbol-computer-icons-sign-png-favpng-W4TBmcGTCcASqCpw1ccux4Dnp.jpg), auto';
+  // };
+
   useEffect(() => {
     setPhotos(photos)
   }, [])
 
   // onClick of right arrow display photos at next index
   const rightArrowClicked = () => {
-    console.log('show next image')
     let currentIndex = mainImageIndex;
     currentIndex++;
     if (photos[currentIndex]) {
@@ -57,9 +62,9 @@ function ImageGallery ({ imageSelected }) {
     return null;
   } else {
 
-    if (photos === null) { // no images available for product
+    if (photos[0].url === null) { // no images available for product
       return (
-        <LargeImage src="https://streetspotr.com/wp-content/uploads/2017/08/Out-of-Stock_Titelbild.png"/>
+        <LargeImage src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'/>
       )
     }
     if (mainImageIndex === 0) {

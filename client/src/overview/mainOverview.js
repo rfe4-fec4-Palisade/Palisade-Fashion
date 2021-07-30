@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Description from './productDescription/Description.js';
 import ProductInfo from './productInfo.js';
-import SelectedStyle from './styleSelectorAndCart/StyleAndCart.js';
+import SelectedStyle from './stylesAndCart/DisplayStylesAndCart.js';
+import SocialMedia from './socialMedia.js';
+import Features from './features.js';
 import axios from 'axios';
 
 function MainOverview(props) {
   const [product, setProduct] = useState([]);
+  const [totalReviews, setReviews] = useState(0);
 
   useEffect(() => { // useEffect is called after page is rendered
     function atelierReq() {
@@ -22,17 +24,34 @@ function MainOverview(props) {
     atelierReq();
   }, [])
 
+  useEffect(() => {
+    function reviewsReq() {
+      let productID = props.currentProduct;
+      axios.get(`http://localhost:3000/reviews?product_id=${productID}&count=40`)
+      .then((res) => {
+        setReviews(res.data.results.length);
+      })
+      .catch((err) => {
+        console.log('there was an error!: ', err)
+      })
+    }
+    reviewsReq();
+  }, [])
 
-    return ( <div>
-      <h1>Topmost Level: Main Overview</h1>
-      <div>--------------------------------</div>
-      <ProductInfo currentProduct={product}/>
-      <div>--------------------------------</div>
-      <SelectedStyle id={props.currentProduct}/>
-      <div>--------------------------------</div>
-      <Description currentProduct={product}/>
-    </div>
-    )
+
+  return ( <div>
+    <h1>Topmost Level: Main Overview</h1>
+    <div>--------------------------------</div>
+    <ProductInfo currentProduct={product} metadata={props.metadata} totalReviews={totalReviews}/>
+    <div>--------------------------------</div>
+    <SelectedStyle id={props.currentProduct}/>
+    <div>--------------------------------</div>
+    <h3>{product.slogan}</h3>
+    <p>{product.description}</p>
+    <Features oneProduct={product}/>
+    <SocialMedia/>
+  </div>
+  )
 
 }
 
