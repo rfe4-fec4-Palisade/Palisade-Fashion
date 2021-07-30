@@ -26,7 +26,6 @@ const Helpful = (props) => {
     <div>
       {`Helpful? `}
       {clickedH ? <Thanks>Thank you for your feedback</Thanks> : <Button onClick={()=>{props.sendHelpful(props.id); setClickedH(true) }}>{`Yes`}</Button>}
-
       <span>{` (${props.helpfulness})  |  `}</span>
       {clickedR ? <Thanks>Thank you for your feedback</Thanks> : <Button onClick={()=>{props.sendReport(props.id); setClickedR(true) }}>{`Report`}</Button>}
     </div>

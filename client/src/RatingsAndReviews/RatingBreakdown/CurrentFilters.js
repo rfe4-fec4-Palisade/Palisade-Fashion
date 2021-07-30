@@ -1,11 +1,16 @@
 import React from 'react';
+import Styled from 'styled-components'
+
+const Container = Styled.div`
+  width: 100%;
+`
 
 const CurrentFilters = ({rating}) => {
 
   return (
-    <div>
+    <Container>
       {rating} Stars
-    </div>
+    </Container>
   )
 }
 

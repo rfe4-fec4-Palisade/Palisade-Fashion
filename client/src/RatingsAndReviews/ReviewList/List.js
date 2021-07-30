@@ -3,7 +3,8 @@ import ReviewTile from './Tile.js'
 import Styled from 'styled-components';
 
 const Container = Styled.div`
-  height: 200px;
+  height: 300px;
+  width: 100%;
   overflow: auto;
 `
 

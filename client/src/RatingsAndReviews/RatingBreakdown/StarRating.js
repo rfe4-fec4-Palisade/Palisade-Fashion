@@ -5,21 +5,28 @@ import Styled from 'styled-components';
 const ProgressBar = Styled.div`
 display: flex;
 align-items: flex-start;
-font-size: 14px;
+height: 25px;
+padding: 5px;
 `
 
-const Element = Styled.div`
 
+const Element = Styled.div`
+  height: 25px;
+  width: 25px;
+  padding: 5px;
 `
 const Filtered = Styled.div`
   text-decoration: underline;
   color: black;
-
+  white-space: nowrap;
+  padding-right: 5px;
 `
 
 const NotFiltered = Styled.div`
   text-decoration: underline;
   color: grey;
+  white-space: nowrap;
+  padding-right: 5px;
   &:hover {
     color: black
   }
