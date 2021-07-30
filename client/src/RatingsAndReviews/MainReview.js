@@ -71,7 +71,7 @@ const MainReview = (props) => {
   }
 
     return (
-        <div className="main-review">
+        <div className="main-review" id="Reviews">
           <h1>This is the entire review component</h1>
           <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
           <Breakdown id={currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>

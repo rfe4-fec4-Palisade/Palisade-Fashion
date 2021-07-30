@@ -1,4 +1,19 @@
 import React, { useState } from 'react';
+import Styled from 'styled-components';
+
+const Panel = Styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  `;
+
+const Radios = Styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 5px;
+`
 
 const Characteristics = (props) => {
 
@@ -7,14 +22,16 @@ const Characteristics = (props) => {
   }
 
   return (
-    <div onChange={(event)=>{props.handleCharChange(props.char.field, event.target.value)}}>
-      {props.char.field}
-      <input type="radio" name={props.field} value="1"/> {props.char.lowest}
-      <input type="radio" name={props.field} value="2"/>
-      <input type="radio" name={props.field} value="3"/>
-      <input type="radio" name={props.field} value="4"/>
-      <input type="radio" name={props.field} value="5"/> {props.char.highest}
-    </div>
+    <Panel onChange={(event)=>{props.handleCharChange(props.char.field, event.target.value)}}>
+      <div>{props.char.field}</div>
+      <Radios>
+        {props.char.lowest} <input type="radio" name={props.field} value="1"/>
+        <input type="radio" name={props.field} value="2"/>
+        <input type="radio" name={props.field} value="3"/>
+        <input type="radio" name={props.field} value="4"/>
+        <input type="radio" name={props.field} value="5"/> {props.char.highest}
+      </Radios>
+    </Panel>
   )
 
 
