@@ -7,12 +7,6 @@ import MainOverview from './overview/mainOverview.js';
 import QuestionAndAnswer from './Q&AComponents/Q&Acontainer.js';
 import RatingStars from './sharedComponents/Stars/RatingStars.js';
 
-const StyledButton = styled.button `
-      background-color: pink;
-      font-size: 32px;
-      color: white;
-`;
-
 const App = () => {
   const [allProducts, setProducts] = useState([])
   const [currentProduct, setProduct] = useState(19093)
@@ -31,6 +25,7 @@ const App = () => {
   const fetchData = () => {
     axios.get('/products')
       .then((results) => {
+        console.log('results', results.data)
         results = results.data;
         setProducts(results);
       })
@@ -38,6 +33,8 @@ const App = () => {
         console.log('Error', err);
       })
     }
+
+
 
     const getMetadata = (id) => {
       axios.get(`/reviews/meta?product_id=${id}`)
@@ -47,6 +44,7 @@ const App = () => {
       })
       .catch((err) => {console.log(err)})
     }
+
 
     useEffect(() => {
       fetchData();
@@ -72,13 +70,10 @@ const App = () => {
   return (
     <div>
       <div className="test"></div>
-      <StyledButton>Testing styled components</StyledButton>
       <MainOverview currentProduct={currentProduct}/>
-      <RatingStars ratings={metadata}/>
-      <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
+      <RelatedItems currentProduct={currentProduct} setProduct={setProduct} metadata={metadata}/>
       <QuestionAndAnswer product={currentProduct} />
       <MainReview currentProduct={currentProduct} />
-
     </div>
   )
 

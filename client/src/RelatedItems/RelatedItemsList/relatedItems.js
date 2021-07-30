@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import OutfitList from '../OutfitList/outfitList.js';
 import Card from './Card.js';
+import {FaAngleRight} from 'react-icons/fa';
 
 const Wrapper = styled.div `
   display: flex;
 `;
 
+const Arrow = styled.div `
+  position: relative;
+  left: 1250px;
+  top: 350px;
+`;
+
 const RelatedItems = (props) => {
-  console.log('relateditems', props);
   var product = props.currentProduct;
   const [relatedProducts, updateRelatedProducts] = useState([])
   const [current, updateCurrentProduct] = useState({})
 
-  const [currentSlide, nextSlide] = useState({first: 0, last: 3});
-  const {first, last} = currentSlide;
+  const [currentSlide, nextSlide] = useState(0);
   const handleClick = () => {
-    nextSlide({first: first + 4, last: last + 4})
+    nextSlide(currentSlide + 4)
   }
 
-  useEffect(() => {
-    if (first < relatedProducts.length) {
-      return null;
-    }
-    nextSlide({first: 0, last: 3});
-  })
 
   const getRelatedItemsData = () => {
     axios.get(`http://localhost:3000/products/${product}/related`)
@@ -46,6 +46,7 @@ const RelatedItems = (props) => {
     })
   }
 
+
   useEffect(() => {
     getRelatedItemsData();
   }, [])
@@ -54,23 +55,31 @@ const RelatedItems = (props) => {
     getCurrentProduct();
   }, [])
 
+  useEffect(() => {
+    if (currentSlide < relatedProducts.length) {
+      return null;
+    } else {
+      nextSlide(0);
+    }
+  }, [currentSlide])
 
 
   const listRelated = relatedProducts.map((item, index) => {
 
 
     return (
-        <Card key={index} index={index} currentSlide={currentSlide} id={item} currentProduct={current} setProduct={props.setProduct}/>
+        <Card key={index} index={index} currentSlide={currentSlide} id={item} currentProduct={current} setProduct={props.setProduct} metadata={props.metadata}/>
     )
   })
 
   return (
     <div>
       <div id='modalHere'></div>
-      <button onClick={handleClick}>More Products</button>
+      <Arrow><FaAngleRight size={70} onClick={handleClick}/></Arrow>
       <Wrapper>
         {listRelated}
       </Wrapper>
+      <OutfitList/>
     </div>
 
   )

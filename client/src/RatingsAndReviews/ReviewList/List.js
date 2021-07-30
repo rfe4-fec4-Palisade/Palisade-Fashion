@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import ReviewTile from './Tile.js'
+import Styled from 'styled-components';
+
+const Container = Styled.div`
+  height: 200px;
+  overflow: auto;
+`
 
 const List = ({sortOption, reviews, filter, num}) => {
 
   return (
-
-    <div>
+    <Container>
       {reviews.map((review, index) => {
         return index <= num ?
-        <ReviewTile review={review} filter={filter}/> :
+        <ReviewTile review={review} filter={filter} key={index}/> :
         null;
         }
       )}
-    </div>
+    </Container>
   )
 
 }

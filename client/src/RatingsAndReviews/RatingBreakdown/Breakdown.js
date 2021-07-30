@@ -3,6 +3,7 @@ import StarRating from './StarRating';
 import CurrentFilters from './CurrentFilters.js';
 import Recommend from './Recommend.js';
 import AverageChar from './AverageChar.js';
+import AverageRating from './AverageRating.js';
 
 const Breakdown = (props) => {
   if( props.metadata.ratings === undefined ) {
@@ -11,26 +12,6 @@ const Breakdown = (props) => {
   const [total, setTotal] = useState(0);
   const [bars, setBars] = useState([5,4,3,2,1]);
 
-  /*
-     "characteristics": {
-        "Size": {
-            "id": 64072,
-            "value": "2.9047619047619048"
-        },
-        "Width": {
-            "id": 64073,
-            "value": "2.6363636363636364"
-        },
-        "Comfort": {
-            "id": 64074,
-            "value": "3.0000000000000000"
-        },
-        "Quality": {
-            "id": 64075,
-            "value": "2.6666666666666667"
-        }
-    }
-  */
  useEffect(()=>{
     const ratings = props.metadata.ratings
     let num = 0
@@ -42,6 +23,7 @@ const Breakdown = (props) => {
 
     return (
       <div>
+        <AverageRating metadata={props.metadata}/>
         <Recommend recommended={props.metadata.recommended} />
         <div>
         {bars.map((bar) => <StarRating key={bar} total={total} count={props.metadata.ratings[bar]} rating={bar} filter={props.filter} onFilter={props.onFilter} />)}

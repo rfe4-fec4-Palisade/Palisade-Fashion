@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
 import Characteristics from './Characteristics.js';
+import Styled from 'styled-components'
 import axios from 'axios';
 import Photos from './Photos.js';
+import ReviewStar from './ReviewStar.js'
 
 const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
-  const [rating, setRating] = useState(1) //star component 1-5
+  const [rating, setRating] = useState(1)
   const [recommend, setRecommend] = useState(false)
-
   const [characteristics, setCharacteristics] = useState(
     [
       {
@@ -119,6 +120,9 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
       .catch((err) => {console.log(err)})
   };
 
+  const changeRating = (value) => {
+    setRating(value);
+  };
 
   if (!isOpen) return null;
 
@@ -129,15 +133,17 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
       </button>
       <form onSubmit={(event)=>{handleSubmit(event)}}>
         <p>Overall Rating</p>
-        <input type="range" min="1" max="5" step="1" defaultValue="1" onChange={(event)=>{setRating(event.target.value*1)}}/>
+        <ReviewStar rating={rating} changeRating={changeRating}/>
         <p>Do you recommend this product?</p>
         <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
         <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
-        {characteristics.map((char) => <Characteristics char={char} metadata={metadata} handleCharChange={handleCharChange}/>)}
-        <input type="text" placeholder="Write a summary here" name="Summary" onChange={(event)=>{handleTextChange(event)}}/>
-        <input type="text" placeholder="Write details here" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
-        <input type="text" placeholder="nickname" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
-        <input type="text" placeholder="email" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
+        {characteristics.map((char) => <Characteristics char={char} metadata={metadata} handleCharChange={handleCharChange} key={char.field}/>)}
+        <input type="text" placeholder="Example: Best purchase ever!" name="Summary" onChange={(event)=>{handleTextChange(event)}}/>
+        <input type="text" placeholder="Why did you like the product or not?" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
+        <input type="text" placeholder="Example:Jackson11!" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
+        <div>For privacy reasons, do not use your full name or email address</div>
+        <input type="text" placeholder="Example: jackson11@email.com" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
+        <div>For authentication reasons, you will not be emailed</div>
         <Photos uploadPhoto={uploadPhoto}/>
         <input type="submit"/>
       </form>

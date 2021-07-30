@@ -1,17 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-
-class OutfitList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-
-  render() {
-    return (
-      <div>
-        <div>Cool Stuff Goes Here</div>
-      </div>
-    )
-  }
+const OutfitList = (props) => {
+  return (
+    <div>
+      <div>Add to Outfit + </div>
+    </div>
+  )
 }
+
+
+export default OutfitList;
