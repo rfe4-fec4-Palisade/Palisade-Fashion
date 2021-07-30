@@ -6,7 +6,6 @@ import Features from './Features/features.js'
 const Background = styled.div `
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
   position: absolute;
   display: flex;
   justify-content-center;
@@ -18,6 +17,7 @@ const ModalWrapper = styled.div `
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.8);
   background-color: lightblue;
   position: relative;
+  top: 75px;
   left: 550px;
   color: #000;
   display: grid;
@@ -27,8 +27,6 @@ const ModalWrapper = styled.div `
 `;
 
 const ModalContent = styled.div `
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #141414;
@@ -41,8 +39,6 @@ const PortalModal = ({currentProduct, card, message, isOpen, setOpenP}) => {
       <ModalWrapper>
         <ModalContent>
           <h2>{message}</h2>
-          <div>{card.name} - {currentProduct.name}</div>
-          <div>{card.default_price} - {currentProduct.default_price}</div>
           <Features currentProduct={currentProduct} card={card}/>
         </ModalContent>
       </ModalWrapper>

@@ -3,6 +3,7 @@ import SelectSize from './selectSize.js';
 import ShowAllStyles from './showAllStyles.js';
 import ImageGallery from './ImageGallery.js';
 import Thumbnail from './thumbnail.js';
+import Checkmark from './checkmark.js';
 import Price from './price.js';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -10,6 +11,8 @@ import axios from 'axios';
 function SelectedStyle (props) {
   const [allStyles, setAllStyles] = useState([]);
   const [oneStyle, setStyle] = useState([]);
+  const [currentStyle, setCurrent] = useState('');
+  const [defaultSelected, setDefault] = useState(true);
 
   useEffect(() => {
     function getStyles() {
@@ -26,21 +29,24 @@ function SelectedStyle (props) {
     getStyles();
   }, [])
 
-  const userSelectedStyle = (clickedItem) => { // item will be entire object of style clicked by user
-    console.log(clickedItem)
-    console.log('clicked!')
+  const userSelectedStyle = (clickedItem, e) => { // item will be entire object of style clicked by user
     setStyle(clickedItem);
+    setCurrent(clickedItem.style_id);
+    setDefault(false);
   }
 
   return (
     <div>
+      {/* <Thumbnail imageSelected={oneStyle}/> */}
       <ImageGallery imageSelected={oneStyle}/>
-      <Thumbnail/>
       <div>--------------------------------</div>
       <Price styleSelected={oneStyle}/>
-      <p>Style Name: {oneStyle.name}</p>
-      {allStyles.map((item) => {
-        return <ShowAllStyles key={item.style_id} eachStyle={item} styleClicked={userSelectedStyle}/>
+      <p>Current Style: {oneStyle.name}</p>
+      {allStyles.map((item, index) => {
+        return  <React.Fragment key={item.style_id}>
+          <Checkmark  key={item.style_id} styleID={item.style_id} currentStyle={currentStyle} defaultShown={defaultSelected} initial={index} photo={item.photos[0].url}/>
+          <ShowAllStyles  eachStyle={item} styleClicked={userSelectedStyle}/>
+        </React.Fragment>
       })}
       <SelectSize styleSelected={oneStyle}/>
     </div>

@@ -21,6 +21,7 @@ const App = () => {
   const fetchData = () => {
     axios.get('/products')
       .then((results) => {
+        console.log('results', results.data)
         results = results.data;
         setProducts(results);
       })
@@ -28,6 +29,8 @@ const App = () => {
         console.log('Error', err);
       })
     }
+
+
 
     const getMetadata = (id) => {
       axios.get(`/reviews/meta?product_id=${id}`)
@@ -37,6 +40,7 @@ const App = () => {
       })
       .catch((err) => {console.log(err)})
     }
+
 
     useEffect(() => {
       fetchData();
@@ -63,7 +67,7 @@ const App = () => {
     <div>
       <div className="test"></div>
       <MainOverview currentProduct={currentProduct}/>
-      <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
+      <RelatedItems currentProduct={currentProduct} setProduct={setProduct} metadata={metadata}/>
       <QuestionAndAnswer product={currentProduct} />
       <MainReview currentProduct={currentProduct} />
     </div>
