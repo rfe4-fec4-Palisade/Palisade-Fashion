@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import {RiStarFill, RiStarHalfFill, RiStarLine} from 'react-icons/ri';
 
 import Styled from 'styled-components';
 
@@ -9,30 +9,22 @@ const EachStar = Styled.span`
 
 `
 
-const Radio = Styled.input`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  clip: rect(1px, 1px, 1px, 1px);
-  `
-
 const renderStar = (grade, average) => {
   if (grade <= average) {
-    return <EachStar><FaStar className="star"/></EachStar>
+    return <EachStar><RiStarFill className="star"/></EachStar>
   }
 
   if (grade >= average && grade <= Math.ceil(average)) {
-    return <EachStar><FaStarHalfAlt className="star"/></EachStar>
+    return <EachStar><RiStarHalfFill className="star"/></EachStar>
   }
 
   if (grade > Math.ceil(average)) {
-    return <EachStar><FaRegStar className="star"/></EachStar>
+    return <EachStar><RiStarLine className="star"/></EachStar>
   }
 }
 
 const Star = ( {index, grade, average} ) => {
+
   return (
     <label className='starry' name='rating' >
       {renderStar(grade, average)}

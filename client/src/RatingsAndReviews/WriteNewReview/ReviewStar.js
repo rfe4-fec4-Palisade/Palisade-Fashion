@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {FaStar} from 'react-icons/fa';
+import {RiStarFill} from 'react-icons/ri';
 import Styled from 'styled-components';
 
 const Radio = Styled.input`
@@ -35,7 +35,7 @@ const ReviewStar = ({rating, changeRating}) => {
               value={value}
               onClick={()=>{changeRating(value)}}
               ></Radio>
-            <FaStar
+            <RiStarFill
               className="star"
               color={value <= (hover || rating) ? "black" : "e4e5e9"}
               onMouseEnter={()=>setHover(value)}
