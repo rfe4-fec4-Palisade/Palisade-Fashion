@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 // url: https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/
 
 var getData = function(url) {
-  const config = {
+  var config = {
     'method': 'GET',
     'url': `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe${url}`,
     'headers': {'Authorization': `${API_KEY}`},
@@ -132,7 +132,7 @@ app.put('/reviews/:review_id/report', (req, res) => {
 //Example for Q&A  -> https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=19092
 app.get('/qa/questions/', (req,res) =>{
   let config = getData(req.url)
-  console.log('Q&A this is req.url', req.url)
+  // console.log('Q&A this is req.url', req.url)
   axios(config)
     .then((data)=>{
       res.status(201).send(data.data);
@@ -147,12 +147,26 @@ app.get('/qa/questions/:id/answers', (req,res) =>{
   }
   //regular api request
   let config = getData(req.url)
-  console.log('ANSWER LIST req.url', req.url)
+  // console.log('ANSWER LIST req.url', req.url)
   axios(config)
     .then((data)=>{
       res.status(201).send(data.data);
     })
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+})
+
+//post Question
+app.post('/qa/questions', (req,res) =>{
+  console.log('Posting Question for QA!')
+  let config = getData(req.url)
+  config.method = 'POST';
+  config.data = req.body;
+  // console.log('this is config', config)
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(400).send(err)})
 })
 
 

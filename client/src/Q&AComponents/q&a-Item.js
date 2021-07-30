@@ -8,13 +8,13 @@ import AddaQuestion from '../Q&AComponents/AddaQuestion.js';
 
 /*
 Quick Description:
-This is large component takes care of the Q: and A: divs that are renders on browser.
+This large component takes care of the Q: and A: divs that are renders on browser.
 Originally was meant to use hooks, but had to switch to class component to use 'ComponentDidMount'.
 ComponentDidMount returns the data intercepted from the API request sent by server.
 This data is checked for length because there may be multiple questions per product ID and
 it has to render them accordingly.
 
-It also passes down the question_id to the answerItem subcomponent that deals with smaller indivdual
+It also passes down the question_id to the answerItem subcomponent that deals with smaller indivdual and separate information to the loadMoreQs button.
 answer sections.
 */
 
@@ -26,8 +26,10 @@ class QandAitem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questionData: ''
+      questionData: '',
+      loadMoreQs: false,
     }
+    this.handleLoadClick = this.handleLoadClick.bind(this);
   }
 
 
@@ -55,33 +57,58 @@ class QandAitem extends React.Component {
   }
 
 
+  handleLoadClick(event) {
+
+    this.setState(prevState => ({
+      loadMoreQs: !prevState.loadMoreQs
+    }))
+
+  }
+
+
   render() {
-    // console.log(this.props)
+    //questionData variable (ref to value in state) for further use
+    //payLoad is passed down to loadMoreQuestions button component
     const questionData = this.state.questionData;
-  //  console.log('this is question data', questionData);
-    const searchTerm = this.props.id.searchTerm;
-    var filteredSearch = questionData;
-
-
-
-    if (Array.isArray(questionData)) {
-      filteredSearch = questionData.filter(question => (
-        question.question_body.toLowerCase().includes(searchTerm.toLowerCase())
-      ))
+    const productID = this.props.id.parentProps.product
+    let payLoad = {
+      func: this.handleLoadClick,
+      leng: questionData.length
     }
 
+    //conditional render if there is more than 1 question else render just one
     if (this.state.questionData.length > 1) {
+      //if there is more than one question, render 2 first
+      //if loadmore button is click, questions rendered expands to full size
+        //search is still applicable to limited or expanded search
+
+      var questionDataSliced = this.state.questionData.slice(0, 2);
+      const searchTerm = this.props.id.searchTerm;
+      var filteredSearch = questionDataSliced;
+      const loadedMoreQs = this.state.loadMoreQs;
+
+      if (loadedMoreQs === true) {
+        questionDataSliced = this.state.questionData.slice(0, questionData.length)
+        filteredSearch = questionDataSliced
+      }
+
+
+      if (Array.isArray(questionData)) {
+        var filteredSlicedSearch = filteredSearch.filter(question => (
+          question.question_body.toLowerCase().includes(searchTerm.toLowerCase())
+        ))
+      }
       return (
         <div>
-          {filteredSearch.map(question =>
+          {filteredSlicedSearch.map(question =>
               <ul key={question.question_id}>
               <StyledList><h4>Q: {question.question_body}</h4></StyledList>
 
                <AnswerItem answers={question.question_id}/>
             </ul>
         )}
-            <LoadMoreQs />
-            <AddaQuestion />
+            <LoadMoreQs loadMore={payLoad}/>
+            <AddaQuestion data={productID} />
     </div>
       )
     }
@@ -90,8 +117,8 @@ class QandAitem extends React.Component {
       <ul>
         <StyledList><h4>Q: {this.state.questionData.question_body}</h4></StyledList>
          <AnswerItem answers={this.state.questionData.question_id}/>
-         <LoadMoreQs />
-         <AddaQuestion />
+         <LoadMoreQs loadMore={payLoad}/>
+         <AddaQuestion data={productID} />
       </ul>
     </div>
     )

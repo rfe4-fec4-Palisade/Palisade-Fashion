@@ -18,6 +18,10 @@ const App = () => {
   const [currentProduct, setProduct] = useState(19093)
   const [metadata, setMetadata] = useState({})
 
+  //19090
+  //19092
+  //19093
+
   // const getRandomInt = (min, max) => {
   //   min = Math.ceil(min);
   //   max = Math.floor(max);
@@ -69,11 +73,12 @@ const App = () => {
     <div>
       <div className="test"></div>
       <StyledButton>Testing styled components</StyledButton>
-      {/* <RatingStars ratings={metadata}/> */}
-      <MainReview currentProduct={currentProduct} />
-      {/* <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
+      <MainOverview currentProduct={currentProduct}/>
+      <RatingStars ratings={metadata}/>
+      <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
       <QuestionAndAnswer product={currentProduct} />
-      <MainOverview currentProduct={currentProduct}/> */}
+      <MainReview currentProduct={currentProduct} />
+
     </div>
   )
 

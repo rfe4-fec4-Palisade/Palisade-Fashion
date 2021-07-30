@@ -11,6 +11,22 @@ ex: 'see more answers' || 'collapse' . Additionally, based on the length of answ
 passed down by answerItem) and determins whether to render an anchor tag or not.
 
 */
+const style = {
+
+  color: '#EC7063 ',
+  fontFamily: 'Gill Sans, sans-serif',
+  fontSize: '12px',
+  textDecoration: 'none',
+  textTransform: 'uppercase',
+
+  '&:hover': {
+    textDecoration: 'underline',
+  },
+
+  '&:active': {
+    color: 'black'
+  }
+}
 
 
 function LoadMoreAns(props) {
@@ -29,7 +45,7 @@ function LoadMoreAns(props) {
   if (isLoaded) {
     return (
       <div className='LoadMoreButtonDiv'>
-      <a className='LoadMoreButton' type='submit' onClick={(event) => {props.loadMore.func(), handleIfLoaded()} }>Collpase answers</a>
+      <a className='LoadMoreButton' style={style} type='submit' onClick={(event) => {props.loadMore.func(), handleIfLoaded()} }>Collpase answers</a>
     </div>
     )
   }
@@ -37,7 +53,7 @@ function LoadMoreAns(props) {
 
   return(
     <div className='LoadMoreButtonDiv'>
-      <a className='LoadMoreButton' type='submit' onClick={(event) => {props.loadMore.func(), handleIfLoaded()} }>See more answers</a>
+      <a className='LoadMoreButton' style={style} type='submit' onClick={(event) => {props.loadMore.func(), handleIfLoaded()} }>See more answers</a>
     </div>
   )
 
