@@ -16,7 +16,7 @@ const Arrow = styled.div `
 `;
 
 const RelatedItems = (props) => {
-  var product = props.currentProduct;
+  console.log('current product',props.currentProduct)
   const [relatedProducts, updateRelatedProducts] = useState([])
   const [current, updateCurrentProduct] = useState({})
 
@@ -27,7 +27,7 @@ const RelatedItems = (props) => {
 
 
   const getRelatedItemsData = () => {
-    axios.get(`http://localhost:3000/products/${product}/related`)
+    axios.get(`http://localhost:3000/products/${props.currentProduct}/related`)
     .then((result) => {
       updateRelatedProducts(result.data);
     })
@@ -37,7 +37,7 @@ const RelatedItems = (props) => {
   }
 
   const getCurrentProduct = () => {
-    axios.get(`http://localhost:3000/products/${product}`)
+    axios.get(`http://localhost:3000/products/${props.currentProduct}`)
     .then((result) => {
       updateCurrentProduct(result.data);
     })
@@ -49,11 +49,11 @@ const RelatedItems = (props) => {
 
   useEffect(() => {
     getRelatedItemsData();
-  }, [])
+  }, [props.currentProduct])
 
   useEffect(() => {
     getCurrentProduct();
-  }, [])
+  }, [props.currentProduct])
 
   useEffect(() => {
     if (currentSlide < relatedProducts.length) {
@@ -65,8 +65,6 @@ const RelatedItems = (props) => {
 
 
   const listRelated = relatedProducts.map((item, index) => {
-
-
     return (
         <Card key={index} index={index} currentSlide={currentSlide} id={item} currentProduct={current} setProduct={props.setProduct} metadata={props.metadata}/>
     )
@@ -76,10 +74,11 @@ const RelatedItems = (props) => {
     <div>
       <div id='modalHere'></div>
       <Arrow><FaAngleRight size={70} onClick={handleClick}/></Arrow>
+      <h2>Related Products</h2>
       <Wrapper>
         {listRelated}
       </Wrapper>
-      <OutfitList/>
+      <OutfitList currentProduct={props.currentProduct}/>
     </div>
 
   )

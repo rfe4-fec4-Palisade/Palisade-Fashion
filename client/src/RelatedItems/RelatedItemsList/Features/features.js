@@ -1,22 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styled from 'styled-components';
+
+const Table = styled.table `
+  border-spacing: 4em .1em;
+`;
+
+const Row = styled.tr `
+
+`;
+
+
 
 const Features = ({currentProduct, card}) => {
+
   const currentCompare = currentProduct.features.map((item) => {
+    console.log('feature', item.feature);
+    let cardValue = (thing) => {
+      for (var i = 0; i < card.features.length; i++) {
+        if (card.features[i].feature === thing) {
+          return card.features[i].value;
+        }
+      }
+    }
     return (
-      <div key={item.value}>{item.feature}: {item.value}</div>
+      <Row key={item.feature}>
+        <td> {item.value}</td>
+        <td>{item.feature}</td>
+        <td>{cardValue(item.feature)}</td>
+      </Row>
     )
   })
-  const cardCompare = card.features.map((item) => {
-    return (
-      <div key={item.value}>{item.feature}: {item.value}</div>
-    )
-  })
+
+
   return (
-    <div>
-      <div>Current--- {currentCompare}</div>
-      <div>Related--- {cardCompare}</div>
-    </div>
+    <Table>
+      <tr>
+        <th>{currentProduct.name}</th>
+        <th>Features</th>
+        <th>{card.name}</th>
+      </tr>
+      {currentCompare}
+    </Table>
   )
 }
 

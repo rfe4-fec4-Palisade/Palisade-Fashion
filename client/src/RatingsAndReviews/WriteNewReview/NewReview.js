@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Form from './Form.js'
 
-
-
 const NewReview = (props) => {
   const [open, setOpen] = useState(false);
 

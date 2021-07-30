@@ -4,11 +4,57 @@ import Characteristics from './Characteristics.js';
 import Styled from 'styled-components'
 import axios from 'axios';
 import Photos from './Photos.js';
-import ReviewStar from './ReviewStar.js'
+import ReviewStar from './ReviewStar.js';
+import validateInfo from './validateInfo.js';
+
+
+const ModalWrapper = Styled.div `
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = Styled.div `
+  display: flex;
+  position: relative;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #FFF;
+`;
+
+const FormContent = Styled.form`
+justify-content: space-around;
+flex-direction: column;
+`
+
+const Header = Styled.header`
+ display: flex;
+ flex-direction: row;
+`
+
+const Text = Styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const paragraph = {
+  marginBottom: '0',
+  marginTop: '4px',
+  color: 'red',
+  fontSize: '14px',
+  width: '300px'
+ }
+
 
 const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
   const [rating, setRating] = useState(1)
-  const [recommend, setRecommend] = useState(false)
+  const [recommend, setRecommend] = useState(null)
   const [characteristics, setCharacteristics] = useState(
     [
       {
@@ -54,6 +100,16 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
   const [nickname, setName] = useState('')
   const [email, setEmail] = useState('')
   const [photos, setPhotos] = useState([])
+  const [errors, setErrors] = useState({})
+
+  let mandatoryValues = {
+    'rating': rating,
+    'recommend': recommend,
+    'characteristics': characteristics,
+    'email': email,
+    'nickname': nickname,
+    'body': body
+  }
 
   const handleRecChange = (value) => {
     if (JSON.parse(value) === true) {
@@ -101,6 +157,7 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErrors(validateInfo(mandatoryValues))
     var requestBody =
       {
         "product_id": id,
@@ -115,7 +172,7 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
       }
     axios.post('/reviews', requestBody)
       .then((response) => {
-        console.log('posted!')
+        onClose()
       })
       .catch((err) => {console.log(err)})
   };
@@ -127,27 +184,38 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
   if (!isOpen) return null;
 
   return ReactDom.createPortal (
-    <div className="modal">
-      <button className="close" onClick={onClose}>
-        X close
-      </button>
-      <form onSubmit={(event)=>{handleSubmit(event)}}>
-        <p>Overall Rating</p>
-        <ReviewStar rating={rating} changeRating={changeRating}/>
-        <p>Do you recommend this product?</p>
-        <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
-        <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
-        {characteristics.map((char) => <Characteristics char={char} metadata={metadata} handleCharChange={handleCharChange} key={char.field}/>)}
-        <input type="text" placeholder="Example: Best purchase ever!" name="Summary" onChange={(event)=>{handleTextChange(event)}}/>
-        <input type="text" placeholder="Why did you like the product or not?" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
-        <input type="text" placeholder="Example:Jackson11!" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
-        <div>For privacy reasons, do not use your full name or email address</div>
-        <input type="text" placeholder="Example: jackson11@email.com" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
-        <div>For authentication reasons, you will not be emailed</div>
-        <Photos uploadPhoto={uploadPhoto}/>
-        <input type="submit"/>
-      </form>
-    </div>,
+    <ModalWrapper>
+      <ModalContent>
+        <FormContent onSubmit={(event)=>{handleSubmit(event)}}>
+          <header>
+            <h1>Write a new Review</h1>
+            <button className="close" onClick={onClose}>
+              X close
+            </button>
+          </header>
+          <p>Overall Rating</p>
+          <ReviewStar rating={rating} changeRating={changeRating}/>
+          {errors.rating && <p style={paragraph} >{errors.rating}</p>}
+          <p>Do you recommend this product?</p>
+          <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
+          <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
+          {errors.recommend && <p style={paragraph} >{errors.recommend}</p>}
+          {characteristics.map((char) => <Characteristics char={char} metadata={metadata} handleCharChange={handleCharChange} key={char.field}/>)}
+          <Text>
+            <input type="text" placeholder="Example: Best purchase ever!" name="Summary" onChange={(event)=>{handleTextChange(event)}}/>
+            <input type="text" placeholder="Why did you like the product or not?" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
+            <input type="text" placeholder="Example:Jackson11!" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
+            <div>For privacy reasons, do not use your full name or email address</div>
+            {errors.name && <p style={paragraph} >{errors.name}</p>}
+            <input type="text" placeholder="Example: jackson11@email.com" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
+            {errors.email && <p style={paragraph} >{errors.email}</p>}
+            <div>For authentication reasons, you will not be emailed</div>
+          </Text>
+          <Photos uploadPhoto={uploadPhoto}/>
+          <input type="submit"/>
+        </FormContent>
+      </ModalContent>
+    </ModalWrapper>,
     document.getElementById('formModal')
   )
 

@@ -5,9 +5,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas);
 
-function Checkmark ({ styleID, currentStyle, defaultShown, initial, photo }) {
+function Checkmark ({ styleID, currentStyle, defaultShown, initial }) {
 
-  if (defaultShown && initial === 0 && photo !== null) {
+  if (defaultShown && initial === 0) {
     return (
       <FontAwesomeIcon icon={['fas', 'check-square']}/>
     )

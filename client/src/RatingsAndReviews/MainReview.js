@@ -4,6 +4,29 @@ import List from './ReviewList/List.js';
 import Breakdown from './RatingBreakdown/Breakdown.js';
 import NewReview from './WriteNewReview/NewReview.js';
 import axios from 'axios';
+import Styled from 'styled-components';
+
+const Main = Styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+const Ratings = Styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  margin: 10px;
+`
+
+const Review = Styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items:flex-end;
+  margin: 1px;
+  width: 65%;
+  margin: 10px;
+`
 
 const MainReview = (props) => {
   const [sort, setSort] = useState('Relevance');
@@ -71,13 +94,19 @@ const MainReview = (props) => {
   }
 
     return (
-        <div className="main-review">
-          <h1>This is the entire review component</h1>
-          <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
-          <Breakdown id={currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>
-          <List reviews={data} filter={filter} num={num}/>
-          {num+1 === count ? null : <div onClick={()=>{setNum(num+2)}}>MORE REVIEWS</div>}
-          <NewReview id={currentProduct} metadata={metadata}/>
+      <div>
+        <h3>Ratings&Reviews</h3>
+          <Main className="main-review" id="Reviews">
+            <Ratings>
+              <Breakdown id={currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>
+            </Ratings>
+            <Review>
+              <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
+              <List reviews={data} filter={filter} num={num}/>
+              {num+1 === count ? null : <div onClick={()=>{setNum(num+2)}}>MORE REVIEWS</div>}
+              <NewReview id={currentProduct} metadata={metadata}/>
+            </Review>
+          </Main>
       </div>
     )
 };

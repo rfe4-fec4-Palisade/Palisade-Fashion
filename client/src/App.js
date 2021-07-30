@@ -70,7 +70,7 @@ const App = () => {
   return (
     <div>
       <div className="test"></div>
-      <MainOverview currentProduct={currentProduct}/>
+      <MainOverview currentProduct={currentProduct} metadata={metadata}/>
       <RelatedItems currentProduct={currentProduct} setProduct={setProduct} metadata={metadata}/>
       <QuestionAndAnswer product={currentProduct} />
       <MainReview currentProduct={currentProduct} />

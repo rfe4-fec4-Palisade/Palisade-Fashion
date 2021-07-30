@@ -4,13 +4,14 @@ import Styled from 'styled-components';
 const Whole = Styled.div`
 background: gray;
 display: block;
-height: 10px;
-width: 15%;
+height: 8px;
+width: 100%;
 `
 const Portion = Styled.div`
+
 background: green;
 display: block;
-height: 10px;
+height: 8px;
 width: ${props => props.percentage}%;
 `
 const Percentage = ({percentage}) => {
