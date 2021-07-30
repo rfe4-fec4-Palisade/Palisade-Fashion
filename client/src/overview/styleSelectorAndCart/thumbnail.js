@@ -15,7 +15,7 @@ const ThumbnailStyle = styled.img `
 function Thumbnail ({ currentPhoto, currentIndex, changeMainImg }) {
   let allStyles = currentPhoto.photos;
 
-  console.log(currentIndex);
+  // console.log(currentIndex);
 
   return (
     <>
