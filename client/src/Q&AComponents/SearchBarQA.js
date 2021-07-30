@@ -4,57 +4,63 @@ import { FaSearch } from 'react-icons/fa';
 
 /*
 Quick Description:
-This is the search bar component for the Question and Answer section of the page.
-So far it has not functionality but will shortly.
+This is the search bar component for the Question and Answer section of the page. The component recieves a handleChange function from the Q&A container component. The handler is activated in the larger component as the text inserted into input field must be used to manipulate search function in QandAitem component. Therefore, the functionality of this actual component is limited.
 */
 
-const StyledIcon = styled.i `
-  position: realtive;
-  padding: 8px 9px
-   font-size: 0.73em;
-`;
 
 const StyledDiv = styled.div `
   position: realtive;
   display: flex;
 `;
 
-const style = {
-  color: '#A6ACAF',
-  top: '6px',
-  left: '8px',
-  height: '16px',
-  width: '16px',
-  padding: '12px'
+const StyledInput = styled.input `
+bar  {
+  border: 2px solid black;
+  height: 35px;
+  padding: 2px 23px 2px 30px;
+  width: 80%;
+  outline: 0;
+  background-color: #FBFCFC;
+  font-family: Noto Sans, sans-serif;
+  margin-left: 40px;
+  margin-bottom: 10px;
+},
+
+&:hover {
+  border-color: #EC7063;
+},
+
+'::placeholder' {
+  border-radius: 5px;
+  padding: 6px;
+  font-family: Noto Sans, sans-serif;
 }
 
-// const StyledInput = styled.input `
-// border: 1px solid grey;
-//     border-radius: 5px;
-//     height: 35px;
-//     padding: 2px 23px 2px 30px;
-//     width: 100%;
-//     outline: 0;
-//     background-color: #F4F6F7;
-//     font: Andale Mono, monospace;
 
-//     ::placeholder {
-//       border-radius: 5px;
-//       padding: 6px;
 
-//     }
-// `;
+`;
+
+const style = {
+  // position: 'absolute',
+  color: '#273746 ',
+  top: '6px',
+  float: 'left',
+  height: '16px',
+  width: '16px',
+  padding: '15px'
+}
 
 const inputStyle = {
   bar:  {
-    border: '1px solid grey',
-    borderRadius: '5px',
+    border: '2px solid black',
     height: '35px',
     padding: '2px 23px 2px 30px',
-    width: '100%',
+    width: '80%',
     outline: '0',
-    backgroundColor: '#F4F6F7',
-    fontFamily: 'Noto Sans, sans-serif'
+    backgroundColor: '#FBFCFC',
+    fontFamily: 'Noto Sans, sans-serif',
+    marginLeft: '40px',
+    marginBottom: '10px',
   },
 
 
@@ -73,8 +79,7 @@ function SearchBarQA(props) {
 
   return (
     <StyledDiv>
-      <input type='text' style={inputStyle.bar} placeholder='HAVE A QUESTION? SEARCH FOR AN ANSWER' onChange={props.handleChange}></input>
-      {/* <StyledInput type='text' placeholder='HAVE A QUESTION? SEARCH FOR AN ANSWER' onChange={props.handleChange} ></StyledInput> */}
+      <StyledInput type='text' style={inputStyle.bar} placeholder='HAVE A QUESTION? SEARCH FOR AN ANSWER' onChange={props.handleChange}></StyledInput>
       <FaSearch style={style} />
     </StyledDiv>
   )

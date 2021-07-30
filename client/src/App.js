@@ -9,8 +9,12 @@ import RatingStars from './sharedComponents/Stars/RatingStars.js';
 
 const App = () => {
   const [allProducts, setProducts] = useState([])
-  const [currentProduct, setProduct] = useState(19093)
+  const [currentProduct, setProduct] = useState(19090)
   const [metadata, setMetadata] = useState({})
+
+  //19090
+  //19092
+  //19093
 
   // const getRandomInt = (min, max) => {
   //   min = Math.ceil(min);

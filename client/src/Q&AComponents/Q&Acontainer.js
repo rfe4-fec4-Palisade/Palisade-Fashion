@@ -14,6 +14,13 @@ This component is currenlty using a hook to get the target value from search bar
 and pass it down to QandAitem to be rendered accordingly along with productID stored in props item.
 */
 
+const style = {
+  fontFamily: 'Arial, sans-serif',
+  display: 'block',
+  width: '100%',
+  margin: '20px'
+}
+
 
 function QuestionAndAnswer(props) {
   const [searchField, setSearchField] =useState('');
@@ -24,9 +31,11 @@ function QuestionAndAnswer(props) {
   }
 
   return(
-    <div>
+    <div style={style}>
+      <div style={style}>{'QUESTION & ANSWER'}</div>
       <SearchBarQA handleChange={(event) => {setSearchField(event.target.value)}}/>
       <QandAitem id={propsPackage}/>
+      <div style={style}></div>
     </div>
   )
 
