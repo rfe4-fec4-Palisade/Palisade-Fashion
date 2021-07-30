@@ -45,6 +45,10 @@ const Space = Styled.div`
 width: 10%;
 `
 
+const SpaceV = Styled.div`
+height: 10%;
+`
+
 const Buttons = Styled.div`
 display: flex;
 flex-direction: row;
@@ -125,6 +129,7 @@ const MainReview = (props) => {
             <Review>
               <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
               <List reviews={data} filter={filter} num={num}/>
+              <SpaceV></SpaceV>
               <Buttons>
                 {num+1 === count ? null : <More onClick={()=>{setNum(num+2)}}>MORE REVIEWS</More>}
                 <Space></Space>
