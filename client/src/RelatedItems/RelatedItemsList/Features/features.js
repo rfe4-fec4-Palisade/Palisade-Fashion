@@ -24,7 +24,7 @@ const Features = ({currentProduct, card}) => {
       }
     }
     return (
-      <Row>
+      <Row key={item.feature}>
         <td> {item.value}</td>
         <td>{item.feature}</td>
         <td>{cardValue(item.feature)}</td>
