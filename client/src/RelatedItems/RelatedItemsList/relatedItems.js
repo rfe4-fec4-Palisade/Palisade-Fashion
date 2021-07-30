@@ -17,6 +17,7 @@ const Arrow = styled.div `
 
 const RelatedItems = (props) => {
   var product = props.currentProduct;
+  console.log('current prodyct',product)
   const [relatedProducts, updateRelatedProducts] = useState([])
   const [current, updateCurrentProduct] = useState({})
 
@@ -49,11 +50,11 @@ const RelatedItems = (props) => {
 
   useEffect(() => {
     getRelatedItemsData();
-  }, [])
+  }, [product])
 
   useEffect(() => {
     getCurrentProduct();
-  }, [])
+  }, [product])
 
   useEffect(() => {
     if (currentSlide < relatedProducts.length) {
