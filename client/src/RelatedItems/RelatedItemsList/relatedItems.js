@@ -76,6 +76,7 @@ const RelatedItems = (props) => {
     <div>
       <div id='modalHere'></div>
       <Arrow><FaAngleRight size={70} onClick={handleClick}/></Arrow>
+      <h2>Related Products</h2>
       <Wrapper>
         {listRelated}
       </Wrapper>

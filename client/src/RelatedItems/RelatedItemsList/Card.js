@@ -12,12 +12,12 @@ const StyledCard = styled.div `
   padding: 1rem;
   border: solid;
   width: 220px;
-  height: 500px;
+  height: 300px;
 `;
 
 const StyledButton = styled.div `
   position: relative;
-  bottom: 550px;
+  bottom: 425px;
   left: 250px;
 `;
 
@@ -55,8 +55,7 @@ const Card = (props) => {
       <StyledCard className='card' onClick={() => props.setProduct(id)}>
         <h2>{id}: {card.name}</h2>
         <div>{card.slogan}</div>
-        <div>{card.description}</div>
-        <div>${card.default_price}</div>
+        <h5>${card.default_price}</h5>
         <div>{card.category}</div>
       </StyledCard>
         <div><RatingStars metadata={props.metadata}/></div>

@@ -12,16 +12,14 @@ const Background = styled.div `
   align-item: center;
 `;
 const ModalWrapper = styled.div `
-  width: 250px;
-  height: 500px;
+  width: 700px;
+  height: 300px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.8);
-  background-color: lightblue;
+  background-color: Aliceblue;
   position: relative;
-  top: 75px;
-  left: 550px;
+  top: 150px;
+  left: 450px;
   color: #000;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   z-index: 10;
   border-radius: 10px;
 `;
