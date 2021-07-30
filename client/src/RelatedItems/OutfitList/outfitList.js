@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 const OutfitList = (props) => {
   return (
     <div>
-      <div>Cool Outfit List Goes Here</div>
+      <div>Add to Outfit + </div>
     </div>
   )
 }
