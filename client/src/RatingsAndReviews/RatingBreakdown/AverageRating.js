@@ -3,6 +3,13 @@ import Styled from 'styled-components';
 import RatingStars from '../../sharedComponents/Stars/RatingStars.js';
 
 
+const Panel = Styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+`;
+
 const AverageRating = ({metadata}) => {
   const [average, setAverage] = useState(0)
 
@@ -22,12 +29,10 @@ const AverageRating = ({metadata}) => {
   }, [metadata.ratings])
 
   return (
-    <div>
-      <div>
-        <h1>{average}</h1>
-        <RatingStars metadata={metadata}/>
-      </div>
-    </div>
+    <Panel>
+      <h1>{average}</h1>
+      <RatingStars metadata={metadata}/>
+    </Panel>
   )
 }
 

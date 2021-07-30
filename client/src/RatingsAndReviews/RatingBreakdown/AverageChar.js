@@ -7,7 +7,7 @@ const Whole = Styled.div`
 background: gray;
 display: block;
 height: 10px;
-width: 25%;
+width: 100%;
 `
 const IconContainer = Styled.div`
 display: block;
