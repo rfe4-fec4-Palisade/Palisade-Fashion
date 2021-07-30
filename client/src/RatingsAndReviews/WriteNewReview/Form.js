@@ -6,6 +6,28 @@ import axios from 'axios';
 import Photos from './Photos.js';
 import ReviewStar from './ReviewStar.js'
 
+
+const ModalWrapper = Styled.div `
+  width: 50%;
+  height: 25%;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.8);
+  background-color: white;
+  position: relative;
+  color: #000;
+  display: flex;
+
+  z-index: 10;
+`;
+
+const ModalContent = Styled.div `
+  display: flex;
+
+`;
+
+const FormContent = Styled.form`
+justify-content: space-around;
+`
+
 const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
   const [rating, setRating] = useState(1)
   const [recommend, setRecommend] = useState(false)
@@ -127,27 +149,29 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
   if (!isOpen) return null;
 
   return ReactDom.createPortal (
-    <div className="modal">
-      <button className="close" onClick={onClose}>
-        X close
-      </button>
-      <form onSubmit={(event)=>{handleSubmit(event)}}>
-        <p>Overall Rating</p>
-        <ReviewStar rating={rating} changeRating={changeRating}/>
-        <p>Do you recommend this product?</p>
-        <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
-        <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
-        {characteristics.map((char) => <Characteristics char={char} metadata={metadata} handleCharChange={handleCharChange} key={char.field}/>)}
-        <input type="text" placeholder="Example: Best purchase ever!" name="Summary" onChange={(event)=>{handleTextChange(event)}}/>
-        <input type="text" placeholder="Why did you like the product or not?" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
-        <input type="text" placeholder="Example:Jackson11!" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
-        <div>For privacy reasons, do not use your full name or email address</div>
-        <input type="text" placeholder="Example: jackson11@email.com" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
-        <div>For authentication reasons, you will not be emailed</div>
-        <Photos uploadPhoto={uploadPhoto}/>
-        <input type="submit"/>
-      </form>
-    </div>,
+    <ModalWrapper>
+      <ModalContent>
+        <button className="close" onClick={onClose}>
+          X close
+        </button>
+        <FormContent onSubmit={(event)=>{handleSubmit(event)}}>
+          <p>Overall Rating</p>
+          <ReviewStar rating={rating} changeRating={changeRating}/>
+          <p>Do you recommend this product?</p>
+          <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
+          <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
+          {characteristics.map((char) => <Characteristics char={char} metadata={metadata} handleCharChange={handleCharChange} key={char.field}/>)}
+          <input type="text" placeholder="Example: Best purchase ever!" name="Summary" onChange={(event)=>{handleTextChange(event)}}/>
+          <input type="text" placeholder="Why did you like the product or not?" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
+          <input type="text" placeholder="Example:Jackson11!" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
+          <div>For privacy reasons, do not use your full name or email address</div>
+          <input type="text" placeholder="Example: jackson11@email.com" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
+          <div>For authentication reasons, you will not be emailed</div>
+          <Photos uploadPhoto={uploadPhoto}/>
+          <input type="submit"/>
+        </FormContent>
+      </ModalContent>
+    </ModalWrapper>,
     document.getElementById('formModal')
   )
 
