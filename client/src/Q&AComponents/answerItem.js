@@ -21,6 +21,47 @@ collapsing the additional questions not rendered on screen.
 
 */
 
+const style = {
+  display: 'flex',
+  padding: '3px'
+
+}
+
+const title = {
+  fontFamily: 'Arial, sans-serif',
+  float: 'left',
+  margin: '10px',
+  width: '40px'
+}
+
+const parrafo = {
+  fontFamily: 'Arial, sans-serif',
+  float: 'right',
+  margin: '10px',
+  width: '50%'
+}
+
+const smallBoi = {
+  fontFamily: 'Arial, sans-serif',
+  margin: '10px',
+  color: '#A6ACAF'
+}
+
+const smallBoi2 = {
+  fontFamily: 'Arial, sans-serif',
+  paddingTop: '30px',
+  margin: '4px',
+  color: '#A6ACAF'
+}
+
+const help = {
+  fontFamily: 'Arial, sans-serif',
+  margin: '10px',
+  color: '#273746',
+  fontSize: '12px'
+}
+
+
 
 class AnswerItem extends React.Component {
   constructor(props) {
@@ -88,15 +129,16 @@ class AnswerItem extends React.Component {
       <div>
         {twoAnswers.map(answerItem =>
         <div key={answerItem.answer_id}>
-         <div><h4>A:</h4> <p>{answerItem.body}</p></div>
-          <span> by {answerItem.answerer_name}</span>, <span>{dateParser(answerItem.date)}</span>
-         <Helpful helpfulness={answerItem.helpfulness}/>
+         <div style={style}><h4 style={title}>A:</h4> <p style={parrafo}>{answerItem.body}</p></div>
+         <div style={style}><small style={smallBoi}> by {answerItem.answerer_name}</small><small style={smallBoi}>{dateParser(answerItem.date)}</small><small style={smallBoi}> | </small>
+         <Helpful style={help} helpfulness={answerItem.helpfulness}/></div>
          </div>
         )}
 
         <LoadMoreAns loadMore={payLoad}/>
 
       </div>
+
     )
   }
 }

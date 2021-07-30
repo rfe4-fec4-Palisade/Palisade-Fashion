@@ -169,6 +169,29 @@ app.post('/qa/questions', (req,res) =>{
     .catch((err)=>{console.log('err:', err); res.status(400).send(err)})
 })
 
+app.post('/qa/questions/:id/answers', (req,res) =>{
+  //regular api request
+  let config = getData(req.url)
+  config.method = 'POST';
+  config.data = req.body;
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
+})
+
+app.put('/qa/questions/:question_id/helpful', (req,res) =>{
+  //regular api request
+  let config = getData(req.url)
+  config.method = 'PUT';
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(400).send(err)})
+})
+
 
 
 //cart

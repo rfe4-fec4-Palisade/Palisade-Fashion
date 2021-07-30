@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
 
 /*
 Quick Description:
@@ -15,6 +17,7 @@ const style = {
 
   color: '#EC7063 ',
   fontFamily: 'Gill Sans, sans-serif',
+  fontWeight: 'bold',
   fontSize: '12px',
   textDecoration: 'none',
   textTransform: 'uppercase',
@@ -27,6 +30,25 @@ const style = {
     color: 'black'
   }
 }
+
+const StyledA = styled.a `
+  color: #EC7063;
+  font-Weight: bold;
+  font-Family: Gill Sans, sans-serif;
+  font-Weight: bold;
+  font-Size: 12px;
+  text-Decoration: none;
+  text-Transform: uppercase;
+  margin: 3px;
+
+  &:hover {
+    text-Decoration: underline;
+    color: #273746;
+  }
+
+`;
+
+
 
 
 function LoadMoreAns(props) {
@@ -45,7 +67,7 @@ function LoadMoreAns(props) {
   if (isLoaded) {
     return (
       <div className='LoadMoreButtonDiv'>
-      <a className='LoadMoreButton' style={style} type='submit' onClick={(event) => {props.loadMore.func(), handleIfLoaded()} }>Collpase answers</a>
+      <StyledA className='LoadMoreButton' type='submit' onClick={(event) => {props.loadMore.func(), handleIfLoaded()} }>Collpase answers</StyledA>
     </div>
     )
   }
@@ -53,7 +75,7 @@ function LoadMoreAns(props) {
 
   return(
     <div className='LoadMoreButtonDiv'>
-      <a className='LoadMoreButton' style={style} type='submit' onClick={(event) => {props.loadMore.func(), handleIfLoaded()} }>See more answers</a>
+      <StyledA className='LoadMoreButton' type='submit' onClick={(event) => {props.loadMore.func(), handleIfLoaded()} }>See more answers</StyledA>
     </div>
   )
 

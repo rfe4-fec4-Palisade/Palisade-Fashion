@@ -5,6 +5,8 @@ import AnswerItem from '../Q&AComponents/answerItem.js';
 import { API_KEY } from '../../../config.js';
 import LoadMoreQs from '../Q&AComponents/LoadMoreQs.js'
 import AddaQuestion from '../Q&AComponents/AddaQuestion.js';
+import Helpful from '../sharedComponents/Helpful.js';
+import Helpful2 from '../Q&AComponents/Helpful2.0.js'
 
 /*
 Quick Description:
@@ -19,8 +21,48 @@ answer sections.
 */
 
 const StyledList = styled.li `
-  list-style-type: none
+  list-style-type: none;
+  display: flex;
+  height: 29px;
 `;
+
+
+const style = {
+  display: 'block',
+  padding: '3px',
+  width: '100%'
+}
+
+const title = {
+  fontFamily: 'Arial, sans-serif',
+  float: 'left',
+  margin: '10px',
+  width: '40px',
+  height: '25px'
+}
+
+const parrafo = {
+  fontFamily: 'Arial, sans-serif',
+  float: 'right',
+  margin: '10px',
+  width: '50%',
+  height: '25px'
+}
+
+
+const help = {
+  fontFamily: 'Arial, sans-serif',
+  margin: '10px',
+  color: '#273746',
+  fontSize: '12px'
+}
+
+const spain = {
+  borderBottom: '1px dashed #ABB2B9 ',
+  width: '80%'
+}
+
+
 
 class QandAitem extends React.Component {
   constructor(props) {
@@ -76,6 +118,10 @@ class QandAitem extends React.Component {
       leng: questionData.length
     }
 
+    // if (this.state.questionData.question_helpfulness === undefined) {
+    //   return null;
+    // }
+
     //conditional render if there is more than 1 question else render just one
     if (this.state.questionData.length > 1) {
       //if there is more than one question, render 2 first
@@ -99,12 +145,13 @@ class QandAitem extends React.Component {
         ))
       }
       return (
-        <div>
+        <div style={style}>
           {filteredSlicedSearch.map(question =>
               <ul key={question.question_id}>
-              <StyledList><h4>Q: {question.question_body}</h4></StyledList>
+              <StyledList><h4 style={title}>Q:</h4><h4 style={parrafo}>{question.question_body}</h4><Helpful2 style={help} helpfulness={question.question_id}/></StyledList>
 
                <AnswerItem answers={question.question_id}/>
+               <div style={spain}></div>
             </ul>
         )}
             <LoadMoreQs loadMore={payLoad}/>
@@ -112,11 +159,13 @@ class QandAitem extends React.Component {
     </div>
       )
     }
+
     return (
-      <div>
+      <div style={style}>
       <ul>
-        <StyledList><h4>Q: {this.state.questionData.question_body}</h4></StyledList>
+      <StyledList><h4 style={title}>Q:</h4><h4 style={parrafo}>{this.state.questionData.question_body}</h4> <Helpful2 style={help} helpfulness={this.state.questionData.question_id}/></StyledList>
          <AnswerItem answers={this.state.questionData.question_id}/>
+         <div style={spain}></div>
          <LoadMoreQs loadMore={payLoad}/>
          <AddaQuestion data={productID} />
       </ul>
