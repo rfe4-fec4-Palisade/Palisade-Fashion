@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import RatingStars from '../sharedComponents/Stars/RatingStars.js';
 
-function ProductInfo ({ currentProduct }) {
+function ProductInfo ({ currentProduct, metadata, totalReviews }) {
 
   return (
     <div>
 
-      <span>Star Component</span>
+      <RatingStars metadata={metadata}/>
       <br></br>
-      {/* // onclick send user to Reviews section href="#Id of Ratings HTML Tag" should also display the total # of reviews for product*/}
-      <a href="#Review">Read All Reviews</a>
+      <a href="#Reviews">Read All {totalReviews} Reviews</a>
       <br></br>
       <span>Category: {currentProduct.category}</span>
       <br></br>
-      <span>Product Name: {currentProduct.name}</span>
+      <span>Product: {currentProduct.name}</span>
 
     </div>
   )

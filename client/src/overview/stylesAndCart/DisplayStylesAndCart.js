@@ -37,14 +37,13 @@ function SelectedStyle (props) {
 
   return (
     <div>
-      {/* <Thumbnail imageSelected={oneStyle}/> */}
       <ImageGallery imageSelected={oneStyle}/>
       <div>--------------------------------</div>
       <Price styleSelected={oneStyle}/>
       <p>Current Style: {oneStyle.name}</p>
       {allStyles.map((item, index) => {
         return  <React.Fragment key={item.style_id}>
-          <Checkmark  key={item.style_id} styleID={item.style_id} currentStyle={currentStyle} defaultShown={defaultSelected} initial={index} photo={item.photos[0].url}/>
+          <Checkmark  key={item.style_id} styleID={item.style_id} currentStyle={currentStyle} defaultShown={defaultSelected} initial={index}/>
           <ShowAllStyles  eachStyle={item} styleClicked={userSelectedStyle}/>
         </React.Fragment>
       })}

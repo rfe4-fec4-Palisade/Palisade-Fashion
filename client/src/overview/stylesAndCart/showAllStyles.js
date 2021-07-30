@@ -9,14 +9,17 @@ const SmallImages = styled.img `
   border-radius: 50%;
   `;
 
-// need to add a checkmark on image for currently selected style
-
 function ShowAllStyles({ eachStyle, styleClicked }) {
   const firstImage = eachStyle.photos[0]; // display first thumbnail image for each style for User to click on
+  let url = firstImage.thumbnail_url;
+
+  if (url === null) {
+    url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'
+  }
 
     return (
       <>
-      <SmallImages src={firstImage.thumbnail_url} onClick={styleClicked.bind(null, eachStyle)}/>
+      <SmallImages src={url} onClick={styleClicked.bind(null, eachStyle)}/>
       </>
     )
 }
