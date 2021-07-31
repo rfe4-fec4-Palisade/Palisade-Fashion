@@ -17,14 +17,10 @@ const Helpful = (props) => {
   const [clickedH, setClickedH] = useState(false);
   const [clickedR, setClickedR] = useState(false);
 
-<<<<<<< HEAD
-  // console.log('props from helpful component', props);
-=======
   useEffect(()=>{
     setClickedH(false);
     setClickedR(false);
   }, [props.id])
->>>>>>> 165e42acd64c02807cdb23350694e0096e6eed44
 
   return (
     <div style={props.style}>
