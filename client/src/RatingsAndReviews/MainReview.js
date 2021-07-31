@@ -6,6 +6,10 @@ import NewReview from './WriteNewReview/NewReview.js';
 import axios from 'axios';
 import Styled from 'styled-components';
 
+const Container = Styled.div`
+display: block;
+`
+
 const Main = Styled.div`
   display: flex;
   flex-direction: row;
@@ -26,6 +30,28 @@ const Review = Styled.div`
   margin: 1px;
   width: 65%;
   margin: 10px;
+`
+const More = Styled.div`
+border: 2px solid black;
+width: 120px;
+text-align: center;
+vertical-align: middle;
+line-height: 30px;
+padding: 10px;
+font-family: Arial, sans-serif;
+font-size: 12px;
+`
+const Space = Styled.div`
+width: 10%;
+`
+
+const SpaceV = Styled.div`
+height: 10%;
+`
+
+const Buttons = Styled.div`
+display: flex;
+flex-direction: row;
 `
 
 const MainReview = (props) => {
@@ -94,7 +120,7 @@ const MainReview = (props) => {
   }
 
     return (
-      <div>
+      <Container>
         <h3>Ratings&Reviews</h3>
           <Main className="main-review" id="Reviews">
             <Ratings>
@@ -103,11 +129,15 @@ const MainReview = (props) => {
             <Review>
               <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
               <List reviews={data} filter={filter} num={num}/>
-              {num+1 === count ? null : <div onClick={()=>{setNum(num+2)}}>MORE REVIEWS</div>}
-              <NewReview id={currentProduct} metadata={metadata}/>
+              <SpaceV></SpaceV>
+              <Buttons>
+                {num+1 === count ? null : <More onClick={()=>{setNum(num+2)}}>MORE REVIEWS</More>}
+                <Space></Space>
+                <NewReview id={currentProduct} metadata={metadata}/>
+              </Buttons>
             </Review>
           </Main>
-      </div>
+      </Container>
     )
 };
 

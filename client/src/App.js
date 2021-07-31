@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import Styled from 'styled-components';
 import MainReview from './RatingsAndReviews/MainReview.js';
 import axios from 'axios';
 import RelatedItems from './RelatedItems/RelatedItemsList/relatedItems.js';
@@ -7,9 +7,14 @@ import MainOverview from './overview/mainOverview.js';
 import QuestionAndAnswer from './Q&AComponents/Q&Acontainer.js';
 import RatingStars from './sharedComponents/Stars/RatingStars.js';
 
+const Main = Styled.div`
+display: flex;
+flex-direction: column;
+`
+
 const App = () => {
   const [allProducts, setProducts] = useState([])
-  const [currentProduct, setProduct] = useState(19090)
+  const [currentProduct, setProduct] = useState(19092)
   const [metadata, setMetadata] = useState({})
 
   //19090
@@ -68,13 +73,13 @@ const App = () => {
 
 
   return (
-    <div>
+    <Main>
       <div className="test"></div>
       <MainOverview currentProduct={currentProduct} metadata={metadata}/>
       <RelatedItems currentProduct={currentProduct} setProduct={setProduct} metadata={metadata}/>
       <QuestionAndAnswer product={currentProduct} />
       <MainReview currentProduct={currentProduct} />
-    </div>
+    </Main>
   )
 
 

@@ -1,0 +1,16 @@
+Hey yall, making a file to add components for styling
+
+
+*****************************************************
+This is a white rectangular button with a black border. It's a div for me but should be able to change to a button with some playing around!
+*****************************************************
+const More = Styled.div`
+border: 2px solid black;
+width: 120px;
+text-align: center;
+vertical-align: middle;
+line-height: 30px;
+padding: 10px;
+font-family: Arial, sans-serif;
+font-size: 12px;
+`
