@@ -45,11 +45,16 @@ line-height: 30px;
 padding: 10px;
 font-family: Arial, sans-serif;
 font-size: 12px;
+&:hover {
+  cursor: pointer;
+}
 `
 const Space = Styled.div`
 width: 10%;
 `
-
+const SpaceR = Styled.div`
+width: 2%;
+`
 const SpaceV = Styled.div`
 height: 10%;
 `
@@ -114,7 +119,9 @@ const MainReview = (props) => {
   }
 
   const onFilter= (rating) => {
-    if (filter.indexOf(rating) === -1) {
+    if (rating === 0) {
+      setFilter([]);
+    } else if (filter.indexOf(rating) === -1) {
       let newState = [...filter, rating];
       setFilter(newState);
     } else {
@@ -131,6 +138,7 @@ const MainReview = (props) => {
             <Ratings>
               <Breakdown id={currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>
             </Ratings>
+            <SpaceR></SpaceR>
             <Review>
               <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
               <List reviews={data} filter={filter} num={num}/>

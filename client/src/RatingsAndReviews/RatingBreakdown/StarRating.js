@@ -29,6 +29,7 @@ const Filtered = Styled.div`
   font-family: Arial, sans-serif;
   font-size: 12px;
   &:hover {
+    cursor: pointer;
     color: grey
   }
 `
@@ -41,6 +42,7 @@ const NotFiltered = Styled.div`
   font-family: Arial, sans-serif;
   font-size: 12px;
   &:hover {
+    cursor: pointer;
     color: black
   }
 `
