@@ -2,7 +2,27 @@ import React, { useState, useEffect } from 'react';
 import SelectQuantity from './selectQuantity.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components';
 import AddToCart from './addToCart.js';
+
+const StyledSelect = styled.select`
+  font-family: Arial, sans-serif;
+  padding: 12px;
+  border: 2px solid black;
+  font-size: 14px;
+  width: 10%;
+  margin: 18px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const StyledDiv = styled.div`
+  position: relative;
+  left: 72%;
+  bottom: 400px;
+`;
 
 function SelectSize({ styleSelected }) {
   const [sizeSelected, setSize] = useState('');
@@ -11,7 +31,6 @@ function SelectSize({ styleSelected }) {
   const [skuOfStyle, setSku] = useState('');
 
   const skus = styleSelected.skus;
-  console.log(skus)
 
   const clickedSize = (e) => {
     const index = e.target.options.selectedIndex;
@@ -27,41 +46,40 @@ function SelectSize({ styleSelected }) {
   } else {
     if (skus[null]) { // no sizes available for selected style
       return (
-        <div>
-          <select value={sizeSelected} onChange={clickedSize} disabled>
+        <StyledDiv>
+          <StyledSelect value={sizeSelected} onChange={clickedSize} disabled>
             <option value="OUT OF STOCK" hidden="hidden"> OUT OF STOCK </option>
-          </select>
-          <br></br>
-          <select value={quantitySelected} onChange={clickedSize} disabled>
+          </StyledSelect>
+
+          <StyledSelect value={quantitySelected} onChange={clickedSize} disabled>
             <option value="-" hidden="hidden"> - </option>
-          </select>
-        </div>
+          </StyledSelect>
+        </StyledDiv>
       )
     } else {
       const keys = Object.keys(skus); // display all available sizes in SELECT SIZE dropdown
 
-        return (
-          <div>
-            <br></br>
-            <select value={sizeSelected} onChange={clickedSize}>
-              <option value="Select Size" hidden="hidden"> Select Size </option>
+      return (
+        <StyledDiv>
 
-              {keys.map((skuCode) => {
-                const size = skus[skuCode]['size'];
-                return (
-                  <option data-code={skuCode} key={skuCode} value={size}>{size}</option>
-                )
-              })}
+          <StyledSelect value={sizeSelected} onChange={clickedSize}>
+            <option value="Select Size" hidden="hidden"> Select Size </option>
 
-            </select>
-            <br></br>
-            <SelectQuantity sizeChosen={sizeSelected} qtyAvailable={qtyAvailable}/>
-            <br></br>
-            <AddToCart sizeChosen={sizeSelected} sku={skuOfStyle}/>
-            <br></br>
-            <FontAwesomeIcon icon={faStar} size="2x"/>
-          </div>
-        )
+            {keys.map((skuCode) => {
+              const size = skus[skuCode]['size'];
+              return (
+                <option data-code={skuCode} key={skuCode} value={size}>{size}</option>
+              )
+            })}
+
+          </StyledSelect>
+
+          <SelectQuantity sizeChosen={sizeSelected} qtyAvailable={qtyAvailable}/>
+          <br></br>
+          <AddToCart sizeChosen={sizeSelected} sku={skuOfStyle}/>
+          <FontAwesomeIcon icon={faStar} size="2x"/>
+        </StyledDiv>
+      )
     }
   }
 

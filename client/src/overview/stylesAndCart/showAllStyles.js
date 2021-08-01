@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 const SmallImages = styled.img `
   object-fit: cover;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
+  padding: 4px;
   `;
 
 function ShowAllStyles({ eachStyle, styleClicked }) {

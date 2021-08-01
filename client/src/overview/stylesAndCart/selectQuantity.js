@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
+const StyledQty = styled.select`
+  font-family: Arial, sans-serif;
+  padding: 12px;
+  border: 2px solid black;
+  font-size: 14px;
+  width: 6%;
+  margin: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 function SelectQuantity(props) {
   const [quantity, setQuantity] = useState('');
-
-  console.log(props.sizeChosen)
 
   const clickedQty = (e) => {
     setQuantity(e.target.value);
@@ -13,19 +25,19 @@ function SelectQuantity(props) {
     let quantities = [...Array(maxQty).keys()].map(x => ++x);
 
       return (
-          <select value={quantity} onChange={clickedQty}>
+          <StyledQty value={quantity} onChange={clickedQty}>
             {quantities.map((item) => {
               return <option key={item} value={item}>{item}</option>
             })}
-          </select>
+          </StyledQty>
       )
   }
 
   if (!props.sizeChosen) { // no size has been chosen yet - dropdown menu is disabled
     return (
-      <select value={quantity} onChange={clickedQty} disabled>
+      <StyledQty value={quantity} onChange={clickedQty} disabled>
         <option value="-" hidden="hidden"> - </option>
-      </select>
+      </StyledQty>
     )
   } else { // display quantities available for selected size
 

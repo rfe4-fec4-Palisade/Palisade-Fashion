@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons'
-library.add(fas);
+import { far } from '@fortawesome/free-regular-svg-icons'
+library.add(far);
 
 const ThumbnailStyle = styled.img `
     object-fit: cover;
@@ -11,7 +11,16 @@ const ThumbnailStyle = styled.img `
     height: 70px;
     overflow: hidden;
     padding: 2px;
-  `;
+`;
+
+const Positioning = styled.div `
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 80px;
+  top: 5%;
+  z-index: 3;
+`;
 
 function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
   const [current, setCurrent] = useState(0);
@@ -43,7 +52,7 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
 
   if (currentIndex === 0) {
     return (
-      <>
+      <Positioning>
         {allStyles.map((item, index) => {
           if (current == index) {
             return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
@@ -51,12 +60,12 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
             return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
           }
         })}
-        <FontAwesomeIcon icon={['fas', 'arrow-down']} onClick={downArrowClicked}/>
-      </>
+        <FontAwesomeIcon icon={['far', 'arrow-alt-circle-down']} size="2x" onClick={downArrowClicked}/>
+      </Positioning>
     )
   } else if (currentIndex === allStyles.length - 1) {
     return (
-      <>
+      <Positioning>
         {allStyles.map((item, index) => {
           if (current == index) {
             return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
@@ -64,12 +73,12 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
             return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
           }
         })}
-        <FontAwesomeIcon icon={['fas', 'arrow-up']} onClick={upArrowClicked}/>
-      </>
+        <FontAwesomeIcon icon={['far', 'arrow-alt-circle-up']} size="2x" onClick={upArrowClicked}/>
+      </Positioning>
     )
   } else {
     return (
-      <>
+      <Positioning>
         {allStyles.map((item, index) => {
           if (current == index) {
             return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
@@ -77,9 +86,9 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
             return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
           }
         })}
-        <FontAwesomeIcon icon={['fas', 'arrow-up']} onClick={upArrowClicked}/>
-        <FontAwesomeIcon icon={['fas', 'arrow-down']} onClick={downArrowClicked}/>
-      </>
+        <FontAwesomeIcon icon={['far', 'arrow-alt-circle-up']} size="2x" onClick={upArrowClicked}/>
+        <FontAwesomeIcon icon={['far', 'arrow-alt-circle-down']} size="2x" onClick={downArrowClicked}/>
+      </Positioning>
     )
   }
 }

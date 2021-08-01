@@ -4,6 +4,10 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 library.add(fab);
 
+const icons = {
+  padding: '4px'
+}
+
 function SocialMedia () {
 
   const clickedFB = () => {
@@ -18,9 +22,9 @@ function SocialMedia () {
 
   return (
     <div>
-      <FontAwesomeIcon icon={['fab', 'facebook']} size="2x" onClick={clickedFB}/>
-      <FontAwesomeIcon icon={['fab', 'twitter-square']} size="2x"onClick={clickedTwitter}/>
-      <FontAwesomeIcon icon={['fab', 'pinterest']} size="2x" onClick={clickedPinterest}/>
+      <FontAwesomeIcon style={icons} icon={['fab', 'facebook']} size="2x" onClick={clickedFB}/>
+      <FontAwesomeIcon style={icons} icon={['fab', 'twitter-square']} size="2x"onClick={clickedTwitter}/>
+      <FontAwesomeIcon style={icons} icon={['fab', 'pinterest']} size="2x" onClick={clickedPinterest}/>
     </div>
   )
 }
