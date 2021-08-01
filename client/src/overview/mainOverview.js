@@ -14,8 +14,7 @@ function MainOverview(props) {
       let productID = props.currentProduct; // will be passed down as props when user clicks on an item
       axios.get(`http://localhost:3000/products/${productID}`)
       .then((res) => {
-        console.log('this is my response: ', res.data) // res.data is an object with info of one product
-        setProduct(res.data);
+        setProduct(res.data); // res.data is an object with info of one product
       })
       .catch((err) => {
         console.log('there was an error!: ', err)
@@ -38,18 +37,25 @@ function MainOverview(props) {
     reviewsReq();
   }, [])
 
+  const info = {
+    position: 'relative',
+    fontFamily: 'Arial, sans-serif',
+    width: '50%',
+    left: '4%',
+    bottom: '400px'
+  }
 
-  return ( <div>
-    <h1>Topmost Level: Main Overview</h1>
-    <div>--------------------------------</div>
+  return (
+  <div>
+    <h1>Palisade Fashion</h1>
     <ProductInfo currentProduct={product} metadata={props.metadata} totalReviews={totalReviews}/>
-    <div>--------------------------------</div>
     <SelectedStyle id={props.currentProduct}/>
-    <div>--------------------------------</div>
-    <h3>{product.slogan}</h3>
-    <p>{product.description}</p>
-    <Features oneProduct={product}/>
-    <SocialMedia/>
+    <div style={info}>
+      <h2>{product.slogan}</h2>
+      <p>{product.description}</p>
+      <Features oneProduct={product}/>
+      <SocialMedia/>
+    </div>
   </div>
   )
 

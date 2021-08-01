@@ -8,6 +8,28 @@ import Price from './price.js';
 import styled from 'styled-components';
 import axios from 'axios';
 
+const price = {
+  position: 'relative',
+  textAlign: 'center',
+  fontFamily: 'Arial, sans-serif',
+  left: '70%',
+  bottom: '660px',
+  width: '25%'
+}
+
+const container = {
+  width: '450px',
+  display: 'flex',
+  flexWrap: 'wrap',
+  position: 'absolute',
+  right: '1%',
+  top: '50%'
+}
+
+const individualStyle = {
+  flexBasis: 'calc(25%)'
+}
+
 function SelectedStyle (props) {
   const [allStyles, setAllStyles] = useState([]);
   const [oneStyle, setStyle] = useState([]);
@@ -18,7 +40,6 @@ function SelectedStyle (props) {
     function getStyles() {
       axios.get(`http://localhost:3000/products/${props.id}/styles`)
       .then((response) => {
-        console.log('data from axios request: ', response.data.results[0])
         setAllStyles(response.data.results) // results is an array of objects
         setStyle(response.data.results[0])
       })
@@ -37,17 +58,30 @@ function SelectedStyle (props) {
 
   return (
     <div>
+      <div>
       <ImageGallery imageSelected={oneStyle}/>
-      <div>--------------------------------</div>
-      <Price styleSelected={oneStyle}/>
-      <p>Current Style: {oneStyle.name}</p>
-      {allStyles.map((item, index) => {
-        return  <React.Fragment key={item.style_id}>
-          <Checkmark  key={item.style_id} styleID={item.style_id} currentStyle={currentStyle} defaultShown={defaultSelected} initial={index}/>
-          <ShowAllStyles  eachStyle={item} styleClicked={userSelectedStyle}/>
-        </React.Fragment>
-      })}
-      <SelectSize styleSelected={oneStyle}/>
+      </div>
+
+      <div>
+        <div style={price}>
+        <Price styleSelected={oneStyle}/>
+        <h2>Style: {oneStyle.name}</h2>
+        </div>
+
+        <div style={container}>
+        {allStyles.map((item, index) => {
+          return  <div key={item.style_id} style={individualStyle}>
+            <Checkmark  key={item.style_id} styleID={item.style_id} currentStyle={currentStyle} defaultShown={defaultSelected} initial={index}/>
+            <ShowAllStyles  eachStyle={item} styleClicked={userSelectedStyle}/>
+          </div>
+        })}
+        </div>
+
+        <div>
+        <SelectSize styleSelected={oneStyle}/>
+        </div>
+      </div>
+
     </div>
   )
 }

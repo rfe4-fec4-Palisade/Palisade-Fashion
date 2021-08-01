@@ -6,10 +6,7 @@ function Features ({ oneProduct }) {
   } else {
      return oneProduct.features.map((item) => {
       return (
-        <ul key={item.feature}>
-          <li>Feature: {item.feature}</li>
-          <li>Value: {item.value} </li>
-        </ul>
+        <p key={item.feature}><b>{item.feature}</b> <em>{item.value}</em> </p>
       )
     })
   }

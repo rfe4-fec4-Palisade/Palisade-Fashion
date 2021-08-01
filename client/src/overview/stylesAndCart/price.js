@@ -18,14 +18,14 @@ function Price({ styleSelected }) {
   }
   if (salePrice === null) {// current style is not on sale
     return (
-      <div>{regularPrice}</div>
+      <h3>${regularPrice}</h3>
     )
   } else {
     return (
-      <div>
-        <StrikeThrough>{regularPrice}</StrikeThrough>
-        <OnSale>{salePrice}</OnSale>
-      </div>
+      <h3>
+        <StrikeThrough>${regularPrice}</StrikeThrough>
+        <OnSale>${salePrice}</OnSale>
+      </h3>
     )
   }
 }

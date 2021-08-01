@@ -7,16 +7,35 @@ function ProductInfo ({ currentProduct, metadata, totalReviews }) {
     cursor: 'pointer'
   }
 
+  const info = {
+    textAlign: 'center',
+    fontFamily: 'Arial, sans-serif',
+    position: 'relative',
+    left: '70%',
+    width: '25%'
+  }
+
+  // textAlign: 'center',
+  // position: 'absolute',
+  // right: '10%',
+
+  const category = {
+    marginTop: '8px',
+    marginBottom: '0px'
+  }
+
+  const productName = {
+    margin: '7px'
+  }
+
   return (
-    <div>
+    <div style={info}>
 
       <RatingStars metadata={metadata}/>
-      <br></br>
       <a href="#Reviews" style={cursor}>Read All {totalReviews} Reviews</a>
       <br></br>
-      <span>Category: {currentProduct.category}</span>
-      <br></br>
-      <span>Product: {currentProduct.name}</span>
+      <h3 style={category}>{currentProduct.category}</h3>
+      <h1 style={productName}>{currentProduct.name}</h1>
 
     </div>
   )

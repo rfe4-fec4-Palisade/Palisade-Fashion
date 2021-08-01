@@ -3,11 +3,38 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 const SizeNotSelected = styled.p `
-  color: red;`
-  ;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin: 18px;
+  color: red;
+`;
+
+const StyledBttn = styled.button `
+  border: 2px solid black;
+  width: 18%;
+  text-align: center;
+  line-height: 30px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  justify-Content: center;
+  background-color: #FBFCFC;
+  margin: 18px;
+
+  &:hover {
+    color: #EC7063;
+    cursor: pointer;
+  }
+`;
 
 function AddToCart(props) {
   const [displayMessage, setMessage] = useState('');
+
+  useEffect(() => {
+    if (props.sizeChosen !== '') {
+      setMessage('');
+    }
+  }, [props.sizeChosen])
 
   const addingToCart = () => {
     if (props.sizeChosen === '') { // if no size selected & button clicked - display a message above button: "Please Select Size"
@@ -23,21 +50,18 @@ function AddToCart(props) {
       "sku_id": skuCode
     })
     .then((response) => {
-      console.log(response)
+      alert('Added to Cart!')
     })
     .catch((err) => {
+      alert('Unable to add to cart, try again later')
       console.log('error posting to cart: ', err)
     })
-  }
-
-  const cursor = {
-    cursor: 'pointer'
   }
 
   return (
     <>
     <SizeNotSelected>{displayMessage}</SizeNotSelected>
-    <button onClick={addingToCart} style={cursor}>Add To Cart</button>
+    <StyledBttn onClick={addingToCart}>Add To Cart</StyledBttn>
     </>
   )
 }
