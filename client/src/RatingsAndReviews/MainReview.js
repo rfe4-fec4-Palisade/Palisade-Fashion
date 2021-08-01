@@ -10,26 +10,31 @@ const Container = Styled.div`
 display: block;
 `
 
+const Title = Styled.div`
+font-family: Arial, sans-serif;
+font-size: 18px;
+`
+
 const Main = Styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
 `
 
 const Ratings = Styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 35%;
-  margin: 10px;
+display: flex;
+flex-direction: column;
+width: 35%;
+margin: 10px;
 `
 
 const Review = Styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items:flex-end;
-  margin: 1px;
-  width: 65%;
-  margin: 10px;
+display: flex;
+flex-direction: column;
+align-items:flex-end;
+margin: 1px;
+width: 65%;
+margin: 10px;
 `
 const More = Styled.div`
 border: 2px solid black;
@@ -121,7 +126,7 @@ const MainReview = (props) => {
 
     return (
       <Container>
-        <h3>Ratings&Reviews</h3>
+        <Title>RATINGS & REVIEWS</Title>
           <Main className="main-review" id="Reviews">
             <Ratings>
               <Breakdown id={currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>

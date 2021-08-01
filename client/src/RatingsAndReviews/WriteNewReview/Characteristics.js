@@ -13,6 +13,7 @@ const Radios = Styled.div`
   flex-direction: row;
   justify-content: center;
   margin: 5px;
+  font-size: 12px;
 `
 
 const Characteristics = (props) => {
