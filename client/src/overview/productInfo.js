@@ -12,12 +12,9 @@ function ProductInfo ({ currentProduct, metadata, totalReviews }) {
     fontFamily: 'Arial, sans-serif',
     position: 'relative',
     left: '70%',
-    width: '25%'
+    width: '25%',
+    zIndex: '1'
   }
-
-  // textAlign: 'center',
-  // position: 'absolute',
-  // right: '10%',
 
   const category = {
     marginTop: '8px',
