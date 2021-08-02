@@ -20,9 +20,10 @@ cursor: pointer;
 `
 
 const Helpful = (props) => {
+
+  // console.log('helpful props', props)
   const [clickedH, setClickedH] = useState(false);
   const [clickedR, setClickedR] = useState(false);
-
 
   useEffect(()=>{
     setClickedH(false);

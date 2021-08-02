@@ -28,6 +28,7 @@ width: 600px;
 height: 400px;
 padding: 20px;
 background-color: #FFF;
+border-radius: 20px;
 overflow: auto;
 `;
 
@@ -35,7 +36,6 @@ const FormContent = Styled.form`
 justify-content: space-around;
 flex-direction: column;
 width: 100%
-
 `
 
 const Header = Styled.header`
@@ -56,7 +56,6 @@ align-items: center;
 const Rating = Styled.div`
 
 `
-
 
 const Text = Styled.div`
 display: flex;

@@ -71,6 +71,8 @@ class AnswerItem extends React.Component {
       clickedLoadMore: false,
     }
     this.handleLoadClick = this.handleLoadClick.bind(this);
+    this.sendHelpful = this.sendHelpful.bind(this);
+    this.sendReport = this.sendReport.bind(this);
   }
 
 
@@ -79,7 +81,6 @@ class AnswerItem extends React.Component {
       setTimeout(() => {
         axios(`/qa/questions/${this.props.answers}/answers`)
         .then((res) => {
-          // console.log('this is answers list', res)
           const data = res.data.results;
           this.setState({
             currentAnswers: data,
@@ -88,7 +89,7 @@ class AnswerItem extends React.Component {
         .catch((err) => {
           console.log('error retrieving answer list:', err);
         })
-      }, 400)
+      }, 300)
 
   }
 
@@ -101,10 +102,33 @@ class AnswerItem extends React.Component {
     }))
   }
 
+  sendHelpful(id) {
+    axios.put(`/qa/answers/${id}/helpful`,  {
+    })
+    .then((res) => {
+      console.log('successfully updated helpful count', res.data);
+    })
+    .catch((err) => {
+      console.log('error updating helpful count', err);
+    })
+  }
+
+  sendReport(id) {
+    axios.put(`/qa/answers/${id}/report`,  {
+    })
+    .then((res) => {
+      console.log('successfully updated helpful count', res.data);
+    })
+    .catch((err) => {
+      console.log('error updating helpful count', err);
+    })
+  }
+
+
 
   render() {
 
-    // console.log('this is question id', this.props.answers)
+    // console.log('this is answers', this.state.currentAnswers)
     const answer = this.state.currentAnswers;
     var twoAnswers = answer.slice(0, 1);
     const onLoadMore = this.state.clickedLoadMore;
@@ -114,8 +138,7 @@ class AnswerItem extends React.Component {
       leng: answer.length
     }
 
-
-    if (answer === '') {
+    if (answer === '' || answer === undefined) {
       return null;
     }
 
@@ -131,10 +154,10 @@ class AnswerItem extends React.Component {
         <div key={answerItem.answer_id}>
          <div style={style}><h4 style={title}>A:</h4> <p style={parrafo}>{answerItem.body}</p></div>
          <div style={style}><small style={smallBoi}> by {answerItem.answerer_name}</small><small style={smallBoi}>{dateParser(answerItem.date)}</small><small style={smallBoi}> | </small>
-         <Helpful style={help} helpfulness={answerItem.helpfulness}/></div>
+         <Helpful style={help} helpfulness={answerItem.helpfulness} id={answerItem.answer_id} sendHelpful={this.sendHelpful} sendReport={this.sendReport}/>
+         </div>
          </div>
         )}
-
         <LoadMoreAns loadMore={payLoad}/>
 
       </div>
@@ -144,3 +167,5 @@ class AnswerItem extends React.Component {
 }
 
 export default AnswerItem;
+
+//helpfulness={answerItem.helpfulness} props={this.sendHelpful}

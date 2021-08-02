@@ -25,19 +25,18 @@ const Helpful2 = (props) => {
 
   // console.log('props from helpful component', props);
 
-  const handleClicker = (event) => {
+  const handleClicker = () => {
+    props.submitAns(true)
     setClickedA(false)
   }
 
 
   const sendHelpful = (id) => {
-    axios.post(`/qa/questions/${id}/helpful`,  {
-
+    axios.put(`/qa/questions/${id}/helpful`,  {
     })
     .then((res) => {
       console.log('successfully updated helpful count', res.data);
-      //close button from
-
+      handleClicker();
     })
     .catch((err) => {
       console.log('error updating helpful count', err);
@@ -48,7 +47,7 @@ const Helpful2 = (props) => {
 
   if (clickedA) {
     return (
-      <AddaAnswer data={props} func={handleClicker}></AddaAnswer>
+      <AddaAnswer data={props} func={handleClicker} submit={props.submitAns}></AddaAnswer>
     )
   }
 

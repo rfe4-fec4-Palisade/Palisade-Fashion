@@ -4,6 +4,14 @@ import SelectedStyle from './stylesAndCart/DisplayStylesAndCart.js';
 import SocialMedia from './socialMedia.js';
 import Features from './features.js';
 import axios from 'axios';
+import Styled from 'styled-components';
+
+const Nav = Styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+`
+
 
 function MainOverview(props) {
   const [product, setProduct] = useState([]);
@@ -47,7 +55,10 @@ function MainOverview(props) {
 
   return (
   <div>
-    <h1>Palisade Fashion</h1>
+    <Nav>
+      <h1>Palisade Fashion</h1>
+      {/* <input type="text" placeholder="Product ID"></input> */}
+    </Nav>
     <ProductInfo currentProduct={product} metadata={props.metadata} totalReviews={totalReviews}/>
     <SelectedStyle id={props.currentProduct}/>
     <div style={info}>

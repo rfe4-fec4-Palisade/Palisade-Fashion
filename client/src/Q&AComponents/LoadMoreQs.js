@@ -38,6 +38,10 @@ function LoadMoreQs(props) {
     setLoaded(!isLoaded)
   }
 
+  if (props.loadMore.leng === undefined) {
+    return (<StyledBttn >THERE ARE NO MORE QUESTIONS</StyledBttn>)
+  }
+
   if (props.loadMore.leng < 3) {
     return (<StyledBttn >THERE ARE NO MORE QUESTIONS</StyledBttn>)
   }

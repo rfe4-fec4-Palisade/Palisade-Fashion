@@ -17,7 +17,7 @@ const StyledCard = styled.div `
 
 const StyledButton = styled.div `
   position: relative;
-  bottom: 425px;
+  bottom: 415px;
   left: 250px;
 `;
 

@@ -14,23 +14,17 @@ flex-direction: column;
 
 const App = () => {
   const [allProducts, setProducts] = useState([])
-  const [currentProduct, setProduct] = useState(19093)
+  const [currentProduct, setProduct] = useState(19091)
   const [metadata, setMetadata] = useState({})
 
   //19090
   //19092
   //19093
 
-  // const getRandomInt = (min, max) => {
-  //   min = Math.ceil(min);
-  //   max = Math.floor(max);
-  //   return Math.floor(Math.random() * (max - min + 1)) + min;
-  // }
 
   const fetchData = () => {
     axios.get('/products')
       .then((results) => {
-        console.log('results', results.data)
         results = results.data;
         setProducts(results);
       })
@@ -62,15 +56,6 @@ const App = () => {
       }
     }, [])
 
-    // useEffect(() => {
-    //   console.log('this is the all product', allProducts)
-    //   const random = getRandomInt(0, allProducts.length - 1);
-    //   const randomProduct = allProducts[random].id;
-    //   console.log('random', random)
-    //   console.log('random Product', randomProduct)
-    //   setProduct(randomProduct);
-    // }, [])
-
 
   return (
     <Main>
@@ -82,41 +67,7 @@ const App = () => {
     </Main>
   )
 
-
-
-
 }
 
 export default App;
 
-
-/*
-  const getRandomInt = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-var random = getRandomInt(0, allProducts.length)
-
-  var idHolder = {
-    item: 'Loading in case there is no data...'
-  }
-
-  if (allProducts.length) {
-    idHolder = allProducts[random]
-  }
-
-  if (!allProducts.length) {
-    return (
-      <div>
-        <h3>Loading data...</h3>
-      </div>
-    )
-  } else {
-    return (
-    <div>
-    </div>
-  )
-  }
-*/
