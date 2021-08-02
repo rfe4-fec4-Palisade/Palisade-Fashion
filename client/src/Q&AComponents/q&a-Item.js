@@ -130,6 +130,12 @@ class QandAitem extends React.Component {
     // })
 
     // }
+<<<<<<< HEAD
+=======
+    // if (bool == true) {
+    //   window.location.reload();
+    // }
+>>>>>>> 85ee5ff0630f3b88c4f7341164d6270af72331e3
 
   }
 
