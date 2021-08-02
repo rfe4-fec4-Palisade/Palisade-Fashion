@@ -16,7 +16,6 @@ const Arrow = styled.div `
 `;
 
 const RelatedItems = (props) => {
-  console.log('current product',props.currentProduct)
   const [relatedProducts, updateRelatedProducts] = useState([])
   const [current, updateCurrentProduct] = useState({})
 
