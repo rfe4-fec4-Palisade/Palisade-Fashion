@@ -225,7 +225,7 @@ function AddaAnswer(props) {
         {errors.name && <p style={paragraph} >{errors.name}</p>}
         <input type='email' style={style}  placeholder='Add Your Email' onChange={(event) => setEmail(event.target.value)} ></input>
         {errors.email && <p style={paragraph} >{errors.email}</p>}
-        <textarea maxLength='1000' style={style2}  type='text' placeholder='Add Your Question' onChange={(event) => setQuestionText(event.target.value)}></textarea>
+        <textarea maxLength='1000' style={style2}  type='text' placeholder='Add Your Answer' onChange={(event) => setQuestionText(event.target.value)}></textarea>
         {errors.body && <p style={paragraph} >{errors.body}</p>}
         <input type='file' placeholder='Upload Photos' onChange={(event) => setImage(event.target.files[0])}></input>
         <button  type='submit' style={submitStyle}  onClick={(event) => handleSubmit(event)}>Submit</button>
