@@ -51,6 +51,11 @@ const Text = Styled.div`
 width: 50px;
 `
 
+const End = Styled.div`
+height: 25px;
+width: 25px;
+`
+
 const AverageChar = ({char}) => {
   return (
     <Container>
@@ -69,6 +74,7 @@ const AverageChar = ({char}) => {
         </IconContainer>
         </Line>
       </Whole>
+      <End></End>
     </Container>
   )
 }

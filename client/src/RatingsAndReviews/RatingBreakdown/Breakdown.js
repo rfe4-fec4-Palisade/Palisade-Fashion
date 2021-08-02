@@ -22,6 +22,10 @@ text-align: center;
 }
 `
 
+const Space = Styled.div`
+height: 10px;
+`
+
 const Breakdown = (props) => {
   if( props.metadata.ratings === undefined ) {
     return null;
@@ -51,7 +55,9 @@ const Breakdown = (props) => {
         </div>
         }
         {props.filter.map((rating)=><CurrentFilters rating={rating}/>)}
-        {Object.entries(props.metadata.characteristics).map(([key, value])=> <AverageChar key={key} char={[key, value]}/>)}
+        <Space></Space>
+        {Object.entries(props.metadata.characteristics).map(([key, value])=>
+        <AverageChar key={key} char={[key, value]}/>)}
         </div>
       </Container>
     )
