@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 var getData = function(url) {
   var config = {
     'method': 'GET',
-    'url': `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe${url}`,
+    'url': `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp${url}`,
     'headers': {'Authorization': `${API_KEY}`},
     'data': ''
   };

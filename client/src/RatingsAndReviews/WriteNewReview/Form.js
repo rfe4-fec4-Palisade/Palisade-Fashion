@@ -6,7 +6,7 @@ import axios from 'axios';
 import Photos from './Photos.js';
 import ReviewStar from './ReviewStar.js';
 import validateInfo from './validateInfo.js';
-
+import Preview from './Preview.js';
 
 const ModalWrapper = Styled.div `
 display: flex;
@@ -54,7 +54,6 @@ flex-direction: column;
 align-items: center;
 `
 const Rating = Styled.div`
-
 `
 
 const Text = Styled.div`
@@ -183,9 +182,9 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
 
   const uploadPhoto = (link) => {
     if (photos.length < 5) {
-      var newState = photos;
-      newState.push(link);
+      var newState = [...photos, link];
       setPhotos(newState);
+      console.log(photos)
     } else {
       alert('maximum number of photos reached')
     }
@@ -240,7 +239,6 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
               <span>
               <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
               <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
-
               </span>
               {errors.recommend && <p style={paragraph} >{errors.recommend}</p>}
             </Recommend>
@@ -261,6 +259,7 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
           </Text>
           <SpaceV></SpaceV>
           <Photos uploadPhoto={uploadPhoto} placeholder="Upload a photo!"/>
+          {photos.map((photo)=><Preview photo={photo}/>)}
           <input type="submit"/>
         </FormContent>
       </ModalContent>

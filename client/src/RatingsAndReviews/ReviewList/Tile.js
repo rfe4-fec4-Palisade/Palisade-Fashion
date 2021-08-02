@@ -5,6 +5,7 @@ import Helpful from '../../sharedComponents/Helpful.js'
 import Response from './Response';
 import axios from 'axios';
 import IndReviewStars from './Stars/IndReviewStars.js'
+import Photos from './Photos.js'
 
 const Tile = styled.div`
 border-bottom: 1px dashed #E0E0E0;
@@ -79,6 +80,7 @@ const ReviewTile = (props) => {
         <Body>{props.review.body}</Body>
         {props.review.recommend ?
         <Body> ✓ I recommend this product </Body> : null}
+        {props.review.photos.map((photo) => <Photos id={photo.id} url={photo.url}/>)}
         <Response response={props.review.response}/>
         <Helpful helpfulness={props.review.helpfulness} sendHelpful={sendHelpful} sendReport={sendReport} id={props.review.review_id} />
       </Tile>
