@@ -14,7 +14,7 @@ flex-direction: column;
 
 const App = () => {
   const [allProducts, setProducts] = useState([])
-  const [currentProduct, setProduct] = useState(19092)
+  const [currentProduct, setProduct] = useState(19093)
   const [metadata, setMetadata] = useState({})
 
   //19090
