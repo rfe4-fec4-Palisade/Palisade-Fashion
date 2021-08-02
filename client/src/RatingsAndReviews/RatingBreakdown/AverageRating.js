@@ -4,7 +4,7 @@ import RatingStars from '../../sharedComponents/Stars/RatingStars.js';
 
 
 const Panel = Styled.div`
-  width: 100%;
+  width: 30%;
   display: flex;
   flex-direction: row;
   align-items: flex-end;

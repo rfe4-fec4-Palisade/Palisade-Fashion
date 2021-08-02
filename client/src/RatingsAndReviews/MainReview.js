@@ -10,26 +10,31 @@ const Container = Styled.div`
 display: block;
 `
 
+const Title = Styled.div`
+font-family: Arial, sans-serif;
+font-size: 18px;
+`
+
 const Main = Styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
 `
 
 const Ratings = Styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 35%;
-  margin: 10px;
+display: flex;
+flex-direction: column;
+width: 35%;
+margin: 10px;
 `
 
 const Review = Styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items:flex-end;
-  margin: 1px;
-  width: 65%;
-  margin: 10px;
+display: flex;
+flex-direction: column;
+align-items:flex-end;
+margin: 1px;
+width: 65%;
+margin: 10px;
 `
 const More = Styled.div`
 border: 2px solid black;
@@ -40,11 +45,16 @@ line-height: 30px;
 padding: 10px;
 font-family: Arial, sans-serif;
 font-size: 12px;
+&:hover {
+  cursor: pointer;
+}
 `
 const Space = Styled.div`
 width: 10%;
 `
-
+const SpaceR = Styled.div`
+width: 2%;
+`
 const SpaceV = Styled.div`
 height: 10%;
 `
@@ -109,7 +119,9 @@ const MainReview = (props) => {
   }
 
   const onFilter= (rating) => {
-    if (filter.indexOf(rating) === -1) {
+    if (rating === 0) {
+      setFilter([]);
+    } else if (filter.indexOf(rating) === -1) {
       let newState = [...filter, rating];
       setFilter(newState);
     } else {
@@ -121,11 +133,12 @@ const MainReview = (props) => {
 
     return (
       <Container>
-        <h3>Ratings&Reviews</h3>
+        <Title>RATINGS & REVIEWS</Title>
           <Main className="main-review" id="Reviews">
             <Ratings>
               <Breakdown id={currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>
             </Ratings>
+            <SpaceR></SpaceR>
             <Review>
               <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
               <List reviews={data} filter={filter} num={num}/>

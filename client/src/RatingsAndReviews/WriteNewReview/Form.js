@@ -9,38 +9,75 @@ import validateInfo from './validateInfo.js';
 
 
 const ModalWrapper = Styled.div `
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
-  justify-content: center;
-  align-items: center;
+display: flex;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100vh;
+background-color: rgba(0, 0, 0, 0.2);
+justify-content: center;
+align-items: center;
+font-family: Arial, sans-serifs;
 `;
 
 const ModalContent = Styled.div `
-  display: flex;
-  position: relative;
-  padding: 20px;
-  border-radius: 20px;
-  background-color: #FFF;
+display: flex;
+position: relative;
+width: 600px;
+height: 400px;
+padding: 20px;
+background-color: #FFF;
+overflow: auto;
 `;
 
 const FormContent = Styled.form`
 justify-content: space-around;
 flex-direction: column;
+width: 100%
+
 `
 
 const Header = Styled.header`
- display: flex;
- flex-direction: row;
+display: flex;
+flex-direction: row;
 `
 
+const SecondRow = Styled.span`
+display: flex;
+justify-content: space-between;
+`
+
+const Recommend = Styled.div`
+display:flex;
+flex-direction: column;
+align-items: center;
+`
+const Rating = Styled.div`
+
+`
+
+
 const Text = Styled.div`
-  display: flex;
-  flex-direction: column;
+display: flex;
+flex-direction: column;
+font-size: 12px;
+`
+const SmallBox = Styled.input`
+fontFamily: 'Arial, sans-serif';
+backgroundColor: '#E0E0E0';
+height: 25px;
+padding: 10px;
+`
+
+const Box = Styled.input`
+fontFamily: 'Arial, sans-serif';
+backgroundColor: '#E0E0E0';
+height: 75px;
+padding: 10px;
+`
+const SpaceV = Styled.div`
+height: 10px;
 `
 
 const paragraph = {
@@ -188,30 +225,43 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
       <ModalContent>
         <FormContent onSubmit={(event)=>{handleSubmit(event)}}>
           <header>
-            <h1>Write a new Review</h1>
+            <h1>Write a new review</h1>
             <button className="close" onClick={onClose}>
               X close
             </button>
           </header>
-          <p>Overall Rating</p>
-          <ReviewStar rating={rating} changeRating={changeRating}/>
-          {errors.rating && <p style={paragraph} >{errors.rating}</p>}
-          <p>Do you recommend this product?</p>
-          <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
-          <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
-          {errors.recommend && <p style={paragraph} >{errors.recommend}</p>}
+          <SecondRow>
+            <Rating>
+              <p>Overall Rating</p>
+              <ReviewStar rating={rating} changeRating={changeRating}/>
+              {errors.rating && <p style={paragraph} >{errors.rating}</p>}
+            </Rating>
+            <Recommend>
+              <p>Do you recommend this product?</p>
+              <span>
+              <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="true"/>Yes
+              <input type="radio" name="recommend" onChange={(event)=>{handleRecChange(event.target.value)}} value="false"/>No
+
+              </span>
+              {errors.recommend && <p style={paragraph} >{errors.recommend}</p>}
+            </Recommend>
+          </SecondRow>
           {characteristics.map((char) => <Characteristics char={char} metadata={metadata} handleCharChange={handleCharChange} key={char.field}/>)}
           <Text>
-            <input type="text" placeholder="Example: Best purchase ever!" name="Summary" onChange={(event)=>{handleTextChange(event)}}/>
-            <input type="text" placeholder="Why did you like the product or not?" name="Body" onChange={(event)=>{handleTextChange(event)}}/>
+            <SmallBox type="text" placeholder="Example: Best purchase ever!" name="Summary" onChange={(event)=>{handleTextChange(event)}}></SmallBox>
+            <SpaceV></SpaceV>
+            <Box type="text" placeholder="Why did you like the product or not?" name="Body" onChange={(event)=>{handleTextChange(event)}}></Box>
+            <SpaceV></SpaceV>
             <input type="text" placeholder="Example:Jackson11!" name="Name" onChange={(event)=>{handleTextChange(event)}}/>
             <div>For privacy reasons, do not use your full name or email address</div>
             {errors.name && <p style={paragraph} >{errors.name}</p>}
+            <SpaceV></SpaceV>
             <input type="text" placeholder="Example: jackson11@email.com" name="Email" onChange={(event)=>{handleTextChange(event)}}/>
             {errors.email && <p style={paragraph} >{errors.email}</p>}
             <div>For authentication reasons, you will not be emailed</div>
           </Text>
-          <Photos uploadPhoto={uploadPhoto}/>
+          <SpaceV></SpaceV>
+          <Photos uploadPhoto={uploadPhoto} placeholder="Upload a photo!"/>
           <input type="submit"/>
         </FormContent>
       </ModalContent>
