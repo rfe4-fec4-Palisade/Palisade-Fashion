@@ -54,7 +54,7 @@ const Breakdown = (props) => {
           <Remove onClick={()=>{props.onFilter(0)}}><ImCross fontSize="8px"/> Remove All</Remove>
         </div>
         }
-        {props.filter.map((rating)=><CurrentFilters rating={rating}/>)}
+        {props.filter.map((rating)=><CurrentFilters key={rating} rating={rating}/>)}
         <Space></Space>
         {Object.entries(props.metadata.characteristics).map(([key, value])=>
         <AverageChar key={key} char={[key, value]}/>)}

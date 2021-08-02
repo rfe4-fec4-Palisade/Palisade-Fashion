@@ -10,6 +10,11 @@ import RatingStars from './sharedComponents/Stars/RatingStars.js';
 const Main = Styled.div`
 display: flex;
 flex-direction: column;
+justify-content: space-between;
+`
+
+const Space = Styled.div`
+height: 20px;
 `
 
 const App = () => {
