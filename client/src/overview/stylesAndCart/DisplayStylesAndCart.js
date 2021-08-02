@@ -23,7 +23,7 @@ const container = {
   flexWrap: 'wrap',
   position: 'absolute',
   right: '1%',
-  top: '50%'
+  top: '52.5%'
 }
 
 const individualStyle = {

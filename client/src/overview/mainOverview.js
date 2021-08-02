@@ -53,8 +53,13 @@ function MainOverview(props) {
     bottom: '400px'
   }
 
+  const entireWidget = {
+    height: '1010px',
+    fontFamily: 'Arial, sans-serif'
+  }
+
   return (
-  <div>
+  <div style={entireWidget}>
     <Nav>
       <h1>Palisade Fashion</h1>
       {/* <input type="text" placeholder="Product ID"></input> */}
