@@ -54,7 +54,7 @@ const Card = (props) => {
         isOpen={openp}
       />
       <StyledCard className='card' onClick={() => props.setProduct(id)}>
-        <h2>{id}: {card.name}</h2>
+        <h2>{card.name}</h2>
         <div>{card.slogan}</div>
         <h5>${card.default_price}</h5>
         <div>{card.category}</div>
