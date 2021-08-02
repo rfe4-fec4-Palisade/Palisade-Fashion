@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import AnswerItem from '../Q&AComponents/answerItem.js';
+import AnswerItems from '../Q&AComponents/answerItem.js';
+// import AnswerItems from '../Q&AComponents/AnswerItems.js';
 import { API_KEY } from '../../../config.js';
 import LoadMoreQs from '../Q&AComponents/LoadMoreQs.js'
 import AddaQuestion from '../Q&AComponents/AddaQuestion.js';
@@ -28,9 +29,12 @@ const StyledList = styled.li `
 
 
 const style = {
+  height: '370px',
+  width: '90%',
+  overflow: 'auto',
+  backgroundColor: 'transparent',
   display: 'block',
   padding: '3px',
-  width: '100%'
 }
 
 const title = {
@@ -72,6 +76,7 @@ class QandAitem extends React.Component {
       loadMoreQs: false,
     }
     this.handleLoadClick = this.handleLoadClick.bind(this);
+    this.submitedAnswers = this.submitedAnswers.bind(this);
   }
 
 
@@ -85,8 +90,6 @@ class QandAitem extends React.Component {
       } else {
         result = res.data.results[0];
       }
-      console.log('this is result from api', res.data)
-
       this.setState({
         questionData: result
       })
@@ -107,6 +110,32 @@ class QandAitem extends React.Component {
 
   }
 
+  submitedAnswers(bool) {
+    // if (bool === true) {
+    //   axios(`/qa/questions?product_id=${this.props.id.parentProps.product}`)
+    // .then((res) => {
+    //   var result;
+    //   if (res.data.results.length > 1) {
+    //     result = res.data.results;
+    //   } else {
+    //     result = res.data.results[0];
+    //   }
+    //   this.setState({
+    //     questionData: result
+    //   })
+
+    // })
+    // .catch((err) => {
+    //   console.log('error retrieving answer list:', err);
+    // })
+
+    // }
+    if (bool == true) {
+      window.location.reload();
+    }
+
+  }
+
 
   render() {
     //questionData variable (ref to value in state) for further use
@@ -117,10 +146,6 @@ class QandAitem extends React.Component {
       func: this.handleLoadClick,
       leng: questionData.length
     }
-
-    // if (this.state.questionData.question_helpfulness === undefined) {
-    //   return null;
-    // }
 
     //conditional render if there is more than 1 question else render just one
     if (this.state.questionData.length > 1) {
@@ -145,15 +170,18 @@ class QandAitem extends React.Component {
         ))
       }
       return (
-        <div style={style}>
+        <div>
+          <div style={style}>
           {filteredSlicedSearch.map(question =>
               <ul key={question.question_id}>
-              <StyledList><h4 style={title}>Q:</h4><h4 style={parrafo}>{question.question_body}</h4><Helpful2 style={help} helpfulness={question.question_id}/></StyledList>
+              <StyledList><h4 style={title}>Q:</h4><h4 style={parrafo}>{question.question_body}</h4><Helpful2 style={help} helpfulness={question.question_id} submitAns={this.submitedAnswers} /></StyledList>
 
-               <AnswerItem answers={question.question_id}/>
+               <AnswerItems answers={question.question_id}/>
                <div style={spain}></div>
             </ul>
         )}
+          </div>
+
             <LoadMoreQs loadMore={payLoad}/>
             <AddaQuestion data={productID} />
     </div>
@@ -161,14 +189,16 @@ class QandAitem extends React.Component {
     }
 
     return (
-      <div style={style}>
-      <ul>
-      <StyledList><h4 style={title}>Q:</h4><h4 style={parrafo}>{this.state.questionData.question_body}</h4> <Helpful2 style={help} helpfulness={this.state.questionData.question_id}/></StyledList>
-         <AnswerItem answers={this.state.questionData.question_id}/>
+      <div>
+        <div style={style}>
+        <ul>
+      <StyledList><h4 style={title}>Q:</h4><h4 style={parrafo}>{this.state.questionData.question_body}</h4> <Helpful2 style={help} helpfulness={this.state.questionData.question_id} submitAns={this.submitedAnswers}/></StyledList>
+         <AnswerItems answers={this.state.questionData.question_id}/>
          <div style={spain}></div>
-         <LoadMoreQs loadMore={payLoad}/>
-         <AddaQuestion data={productID} />
       </ul>
+        </div>
+        <LoadMoreQs loadMore={payLoad}/>
+         <AddaQuestion data={productID} />
     </div>
     )
   }

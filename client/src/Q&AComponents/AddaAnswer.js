@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import validateInfo from './validateInfo.js';
 import { FaTimesCircle } from 'react-icons/fa';
+import { FaCheckSquare } from 'react-icons/fa';
 
 const Popup = styled.div `
   position: fixed;
@@ -20,8 +21,18 @@ const Popup = styled.div `
 const PopupInner = styled.div `
   position: relative;
   padding: 20px;
+  border-radius: 20px;
   width: 400px;
-  height: 270px;
+  height: 320px;
+  background-color: #FFF;
+`;
+
+const PopupInner2 = styled.div `
+  position: relative;
+  padding: 20px;
+  width: 500px;
+  border-radius: 20px;
+  height: 170px;
   background-color: #FFF;
 `;
 
@@ -91,6 +102,23 @@ const submitStyle2 = {
   outline: 'none',
 }
 
+const submitStyle3 = {
+  textAlign: 'center',
+  position: 'relative',
+  overflow: 'hidden',
+  width: '7rem',
+  color: '#797D7F ',
+  border: 'transparent',
+  backgroundColor: 'transparent',
+  cursor: 'pointer',
+  lineHeight: '2',
+  marginLeft: '185px',
+  padding: '0',
+  borderRadius: '1.5rem',
+  fontSize: '1.125rem',
+  outline: 'none',
+}
+
 const moreQuestions = {
   fontFamily: 'Arial, sans-serif',
 	alignItems: 'center',
@@ -111,6 +139,13 @@ const paragraph = {
   color: 'red',
   fontSize: '14px',
   width: '300px'
+}
+
+const title = {
+  fontFamily: 'Arial, sans-serif',
+  color: '#F1948A',
+  textAlign: 'center',
+  fontSize: '40px'
 }
 
 function AddaAnswer(props) {
@@ -147,8 +182,15 @@ function AddaAnswer(props) {
     })
     .then((res) => {
       console.log('successfully added answer', res.data);
-      //close button from
-      props.func();
+
+      setShowSubmit(!showSubmit);
+
+        setTimeout(() => {
+          setShowSubmit(false);
+        }, 600)
+
+
+      // props.func();
     })
     .catch((err) => {
       console.log('error adding answer', err);
@@ -158,6 +200,19 @@ function AddaAnswer(props) {
 
   const handleClick = (event) => {
     props.func();
+  }
+
+  if (showSubmit) {
+    return (
+      <Popup>
+        <PopupInner2>
+        <h3 style={title}>Answer Submitted!</h3>
+          <button type='submit' style={submitStyle3} onClick={event => handleClick2(event)}>
+          <FaCheckSquare fontSize="40px" />
+          </button>
+        </PopupInner2>
+      </Popup>
+    )
   }
 
 

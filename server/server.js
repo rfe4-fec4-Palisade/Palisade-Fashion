@@ -132,7 +132,7 @@ app.put('/reviews/:review_id/report', (req, res) => {
 //Example for Q&A  -> https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=19092
 app.get('/qa/questions/', (req,res) =>{
   let config = getData(req.url)
-  // console.log('Q&A this is req.url', req.url)
+  console.log('Q&A this is req.url', req.url)
   axios(config)
     .then((data)=>{
       res.status(201).send(data.data);
@@ -192,6 +192,27 @@ app.put('/qa/questions/:question_id/helpful', (req,res) =>{
     .catch((err)=>{console.log('err:', err); res.status(400).send(err)})
 })
 
+app.put('/qa/answers/:answer_id/helpful', (req,res) =>{
+  //regular api request
+  let config = getData(req.url)
+  config.method = 'PUT';
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(400).send(err)})
+})
+
+app.put('/qa/answers/:answer_id/report', (req,res) =>{
+  //regular api request
+  let config = getData(req.url)
+  config.method = 'PUT';
+  axios(config)
+    .then((data)=>{
+      res.status(201).send(data.data);
+    })
+    .catch((err)=>{console.log('err:', err); res.status(400).send(err)})
+})
 
 
 //cart
