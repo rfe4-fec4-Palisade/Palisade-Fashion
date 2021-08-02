@@ -61,7 +61,6 @@ function MainOverview(props) {
   return (
   <div style={entireWidget}>
     <Nav>
-      <h1>Palisade Fashion</h1>
       {/* <input type="text" placeholder="Product ID"></input> */}
     </Nav>
     <ProductInfo currentProduct={product} metadata={props.metadata} totalReviews={totalReviews}/>
