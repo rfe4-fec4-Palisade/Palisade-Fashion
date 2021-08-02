@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import validateInfo from './validateInfo.js';
 import { FaTimesCircle } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa';
+import { FaCheckSquare } from 'react-icons/fa';
 
 /*
 Quick Description:
@@ -28,9 +29,19 @@ const Popup = styled.div `
 const PopupInner = styled.div `
   position: relative;
   padding: 20px;
+  border-radius: 20px;
   width: 400px;
   height: 270px;
   // max-width: 640px;
+  background-color: #FFF;
+`;
+
+const PopupInner2 = styled.div `
+  position: relative;
+  padding: 20px;
+  width: 500px;
+  border-radius: 20px;
+  height: 170px;
   background-color: #FFF;
 `;
 
@@ -123,6 +134,23 @@ const submitStyle2 = {
   outline: 'none',
 }
 
+const submitStyle3 = {
+  textAlign: 'center',
+  position: 'relative',
+  overflow: 'hidden',
+  width: '7rem',
+  color: '#797D7F ',
+  border: 'transparent',
+  backgroundColor: 'transparent',
+  cursor: 'pointer',
+  lineHeight: '2',
+  marginLeft: '185px',
+  padding: '0',
+  borderRadius: '1.5rem',
+  fontSize: '1.125rem',
+  outline: 'none',
+}
+
 const moreQuestions = {
 
 	alignItems: 'center',
@@ -144,6 +172,13 @@ const paragraph = {
   color: 'red',
   fontSize: '14px',
   width: '300px'
+}
+
+const title = {
+  fontFamily: 'Arial, sans-serif',
+  color: '#F1948A',
+  textAlign: 'center',
+  fontSize: '40px'
 }
 /************************************************************************ */
 
@@ -172,8 +207,7 @@ function AddaQuestion(props) {
 
     // var errorObj = Object.keys(errors).length;
 
-    // if (!errors) {
-      console.log('this is errors', errors);
+      // console.log('this is errors', errors);
       axios.post('/qa/questions', {
         body: questionText,
         name: name,
@@ -184,15 +218,16 @@ function AddaQuestion(props) {
         console.log('successfully added question', res.data);
 
         setShowSubmit(!showSubmit);
-        //close button from
+
+        setTimeout(() => {
+          setShowSubmit(false);
+          setClick(false);
+        }, 500)
       })
       .catch((err) => {
         console.log('error adding question', err);
       })
-    // } else {
-    //   console.log('returning null')
-    //   return null;
-    // }
+
 
   }
 
@@ -200,19 +235,16 @@ function AddaQuestion(props) {
     // event.preventDefault();
     setClick(!isClicked)
   }
-  const handleClick2 = (event) => {
-    setClick(!!false)
-  }
 
   if (showSubmit) {
     return (
       <Popup>
-        <PopupInner>
-          <h3>Question Submitted!</h3>
-          <button type='submit' style={submitStyle2} onClick={event => handleClick2(event)}>
-          <FaTimesCircle fontSize="30px"/>
+        <PopupInner2>
+          <h3 style={title}>Question Submitted!</h3>
+          <button type='submit' style={submitStyle3} onClick={event => handleClick2(event)}>
+          <FaCheckSquare fontSize="40px" />
           </button>
-        </PopupInner>
+        </PopupInner2>
       </Popup>
     )
   }

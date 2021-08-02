@@ -16,6 +16,7 @@ and pass it down to QandAitem to be rendered accordingly along with productID st
 
 const style = {
   fontFamily: 'Arial, sans-serif',
+  backgroundColor: 'transparent',
   display: 'block',
   width: '100%',
   margin: '20px'
