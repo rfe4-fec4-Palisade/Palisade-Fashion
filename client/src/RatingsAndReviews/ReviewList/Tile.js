@@ -53,6 +53,8 @@ justify-content: space-between;
 const PhotoPanel = styled.div`
 background: #F0F0F0;
 padding: 5px;
+display: flex;
+flex-direction: row;
 `
 
 const sendHelpful = (id) => {

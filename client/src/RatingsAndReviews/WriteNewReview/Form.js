@@ -196,9 +196,18 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
     }
   }
 
+  const createPhotoArray = () => {
+    let output = []
+    photos.forEach((photo) => {
+      output.push('https://source.unsplash.com/random')
+    })
+    return output
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setErrors(validateInfo(mandatoryValues))
+    let photoArray = createPhotoArray();
     var requestBody =
       {
         "product_id": id,
@@ -208,7 +217,7 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
         "recommend": recommend,
         "name": nickname,
         "email": email,
-        "photos": photos,
+        "photos": photoArray,
         "characteristics": {}
       }
     axios.post('/reviews', requestBody)
