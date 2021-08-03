@@ -101,6 +101,30 @@ class QandAitem extends React.Component {
 
   }
 
+  componentDidUpdate(prevProps) {
+
+    if (this.props !== prevProps) {
+      axios(`/qa/questions?product_id=${this.props.id.parentProps.product}`)
+      .then((res) => {
+
+        var result;
+        if (res.data.results.length > 1) {
+          result = res.data.results;
+        } else {
+          result = res.data.results[0];
+        }
+        this.setState({
+          questionData: result
+        })
+
+      })
+      .catch((err) => {
+        console.log('error retrieving answer list:', err);
+      })
+    }
+
+  }
+
 
   handleLoadClick(event) {
 

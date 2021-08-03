@@ -8,6 +8,7 @@ import QuestionAndAnswer from './Q&AComponents/Q&Acontainer.js';
 import RatingStars from './sharedComponents/Stars/RatingStars.js';
 import MainHeader from './helperFunctions/header.js';
 import Promo from './helperFunctions/bannerPromo.js';
+import Footer from './helperFunctions/Footer.js';
 
 
 const Main = Styled.div`
@@ -80,6 +81,7 @@ const App = () => {
       <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
       <QuestionAndAnswer product={currentProduct} />
       <MainReview currentProduct={currentProduct} />
+      <Footer />
     </Main>
   )
 
