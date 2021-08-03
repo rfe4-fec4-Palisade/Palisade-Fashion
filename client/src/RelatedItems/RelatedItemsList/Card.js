@@ -20,7 +20,7 @@ const StyledButton = styled.div `
 `;
 
 const StyledPic = styled.img `
-  object-fit: fill;
+  object-fit: hover;
   align-items: center;
   display: block;
   height: 300px;
