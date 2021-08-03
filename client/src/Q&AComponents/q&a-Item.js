@@ -111,30 +111,26 @@ class QandAitem extends React.Component {
   }
 
   submitedAnswers(bool) {
-    // if (bool === true) {
-    //   axios(`/qa/questions?product_id=${this.props.id.parentProps.product}`)
-    // .then((res) => {
-    //   var result;
-    //   if (res.data.results.length > 1) {
-    //     result = res.data.results;
-    //   } else {
-    //     result = res.data.results[0];
-    //   }
-    //   this.setState({
-    //     questionData: result
-    //   })
+    if (bool === true) {
+      axios(`/qa/questions?product_id=${this.props.id.parentProps.product}`)
+    .then((res) => {
+      var result;
+      if (res.data.results.length > 1) {
+        result = res.data.results;
+      } else {
+        result = res.data.results[0];
+      }
+      this.setState({
+        questionData: result
+      })
 
-    // })
-    // .catch((err) => {
-    //   console.log('error retrieving answer list:', err);
-    // })
-
-    // }
-    // if (bool == true) {
-    //   window.location.reload();
-    // }
+    })
+    .catch((err) => {
+      console.log('error retrieving answer list:', err);
+    })
 
   }
+}
 
 
   render() {

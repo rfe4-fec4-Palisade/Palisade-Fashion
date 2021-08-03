@@ -6,16 +6,22 @@ import RelatedItems from './RelatedItems/RelatedItemsList/relatedItems.js';
 import MainOverview from './overview/mainOverview.js';
 import QuestionAndAnswer from './Q&AComponents/Q&Acontainer.js';
 import RatingStars from './sharedComponents/Stars/RatingStars.js';
+import MainHeader from './helperFunctions/header.js';
+import Promo from './helperFunctions/bannerPromo.js';
+
 
 const Main = Styled.div`
 display: flex;
 flex-direction: column;
 justify-content: space-between;
+border: none;
+margin: 0;
 `
 
 const Space = Styled.div`
 height: 20px;
 `
+
 
 const App = () => {
   const [allProducts, setProducts] = useState([])
@@ -28,8 +34,10 @@ const App = () => {
 
 
   const fetchData = () => {
+    //'/products'
     axios.get('/products')
       .then((results) => {
+        console.log(results)
         results = results.data;
         setProducts(results);
       })
@@ -37,7 +45,6 @@ const App = () => {
         console.log('Error', err);
       })
     }
-
 
 
     const getMetadata = (id) => {
@@ -64,6 +71,8 @@ const App = () => {
 
   return (
     <Main>
+      <Promo />
+      <MainHeader />
       <div className="test"></div>
       <MainOverview currentProduct={currentProduct} metadata={metadata}/>
       <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
