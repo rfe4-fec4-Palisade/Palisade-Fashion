@@ -189,8 +189,6 @@ function AddaAnswer(props) {
           setShowSubmit(false);
         }, 600)
 
-
-      // props.func();
     })
     .catch((err) => {
       console.log('error adding answer', err);

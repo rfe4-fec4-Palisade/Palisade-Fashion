@@ -6,43 +6,26 @@ import RelatedItems from './RelatedItems/RelatedItemsList/relatedItems.js';
 import MainOverview from './overview/mainOverview.js';
 import QuestionAndAnswer from './Q&AComponents/Q&Acontainer.js';
 import RatingStars from './sharedComponents/Stars/RatingStars.js';
+import MainHeader from './helperFunctions/header.js';
+import Promo from './helperFunctions/bannerPromo.js';
+
 
 const Main = Styled.div`
 display: flex;
 flex-direction: column;
 justify-content: space-between;
+border: none;
+margin: 0;
 `
 
 const Space = Styled.div`
 height: 20px;
 `
 
-const Header = Styled.div`
-  position: absolute;
-  margin-left: 20px;
-  margin-top: 10px;
-  display: flex;
-  font-weight: bold;
-  font-family: Noto Sans, sans-serif;
-  font-size: 60px;
-  color: #E9F7EF;
-
-`
-
-const HeaderBar = Styled.div`
-  position: relative;
-  width: 100%;
-  height: 20%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  // background-image: linear-gradient(213deg, #F4D03F 0%, #16A085 67%);
-`
-
 
 const App = () => {
   const [allProducts, setProducts] = useState([])
-  const [currentProduct, setProduct] = useState(19091)
+  const [currentProduct, setProduct] = useState(17067)
   const [metadata, setMetadata] = useState({})
 
   //19090
@@ -51,8 +34,10 @@ const App = () => {
 
 
   const fetchData = () => {
+    //'/products'
     axios.get('/products')
       .then((results) => {
+        console.log(results)
         results = results.data;
         setProducts(results);
       })
@@ -60,7 +45,6 @@ const App = () => {
         console.log('Error', err);
       })
     }
-
 
 
     const getMetadata = (id) => {
@@ -87,10 +71,8 @@ const App = () => {
 
   return (
     <Main>
-      <HeaderBar>
-        <Header>Palisade Fashion</Header>
-        <img src='/Users/franciscoveranicola/HackReactorSEI/ecommerce-front-end-capstone-2/images/michael-benz--IZ2sgQKIhM-unsplash.jpg'></img>
-      </HeaderBar>
+      <Promo />
+      <MainHeader />
       <div className="test"></div>
       <MainOverview currentProduct={currentProduct} metadata={metadata}/>
       <RelatedItems currentProduct={currentProduct} setProduct={setProduct} metadata={metadata}/>
