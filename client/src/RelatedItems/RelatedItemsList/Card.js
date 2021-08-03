@@ -7,18 +7,28 @@ import {FaRegStar} from 'react-icons/fa';
 
 const StyledCard = styled.div `
   align-items: center;
-  background-color: beige;
-  margin: 1rem;
   padding: 1rem;
-  border: solid;
   width: 220px;
-  height: 300px;
+  height: 75px;
 `;
 
 const StyledButton = styled.div `
   position: relative;
-  bottom: 415px;
+  bottom: 205px;
   left: 250px;
+`;
+
+const StyledPic = styled.img `
+  object-fit: fill;
+  align-items: center;
+  display: block;
+  height: 300px;
+  width: 260px;
+`;
+
+const Wrapper = styled.div `
+  margin: 1rem;
+  border: solid;
 `;
 
 
@@ -28,7 +38,8 @@ const Card = (props) => {
 
   const [card, updateCard] = useState({})
   const [openp, setOpenP] = useState(false);
-
+  const [pic, changePic] = useState('');
+  const [metadata, setMetadata] = useState({});
 
 
   const getProduct = (id) => {
@@ -36,13 +47,47 @@ const Card = (props) => {
     .then(result => updateCard(result.data));
   }
 
+  const getPic = (id) => {
+    axios.get(`http://localhost:3000/products/${id}/styles`)
+    .then(result => changePic(result.data.results[0].photos[0].thumbnail_url));
+  }
+
+  const getMetadata = (id) => {
+    axios.get(`/reviews/meta?product_id=${id}`)
+    .then((response) => {
+      let newMeta = response.data
+      setMetadata(newMeta)
+    })
+    .catch((err) => {console.log(err)})
+  }
+
+
+
   useEffect(() => {
     getProduct(id)
   }, [id])
 
+  useEffect(() => {
+    getPic(id)
+  }, [id])
+
+  useEffect(() => {
+    getMetadata(id)
+    return () => {
+      setMetadata({});
+    }
+  }, [])
+
   if (props.index < props.currentSlide ||  props.index > (props.currentSlide + 3)) {
     return null;
   }
+
+  if (typeof(pic) === 'string') {
+    var image = pic;
+  } else {
+    var image = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+  }
+
 
   return (
     <div>
@@ -53,13 +98,15 @@ const Card = (props) => {
         setOpenP={setOpenP}
         isOpen={openp}
       />
-      <StyledCard className='card' onClick={() => props.setProduct(id)}>
-        <h2>{card.name}</h2>
-        <div>{card.slogan}</div>
-        <h5>${card.default_price}</h5>
-        <div>{card.category}</div>
-      </StyledCard>
-        <div><RatingStars metadata={props.metadata}/></div>
+      <Wrapper onClick={() => props.setProduct(id)}>
+        <StyledPic src={image}></StyledPic>
+        <StyledCard className='card'>
+          <div>{card.name}</div>
+          <span>${card.default_price}</span>
+          <div>{card.category}</div>
+        </StyledCard>
+      </Wrapper>
+        <div><RatingStars metadata={metadata}/></div>
       <StyledButton>
         <FaRegStar onClick={() => setOpenP(!openp)}/>
       </StyledButton>

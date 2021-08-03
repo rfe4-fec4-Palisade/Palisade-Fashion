@@ -75,7 +75,7 @@ const App = () => {
       <MainHeader />
       <div className="test"></div>
       <MainOverview currentProduct={currentProduct} metadata={metadata}/>
-      <RelatedItems currentProduct={currentProduct} setProduct={setProduct} metadata={metadata}/>
+      <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
       <QuestionAndAnswer product={currentProduct} />
       <MainReview currentProduct={currentProduct} />
     </Main>
