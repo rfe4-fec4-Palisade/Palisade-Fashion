@@ -26,6 +26,7 @@ height: 20px;
 const App = () => {
   const [allProducts, setProducts] = useState([])
   const [currentProduct, setProduct] = useState(17067)
+
   const [metadata, setMetadata] = useState({})
 
   //19090
@@ -69,6 +70,7 @@ const App = () => {
     }, [])
 
 
+  console.log(currentProduct)
   return (
     <Main>
       <Promo />

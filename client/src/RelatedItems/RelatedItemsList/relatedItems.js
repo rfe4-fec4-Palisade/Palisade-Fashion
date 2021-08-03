@@ -9,6 +9,10 @@ const Wrapper = styled.div `
   display: flex;
 `;
 
+const Font = styled.h2 `
+  font-family: Arial, sans-serif;
+`;
+
 const Arrow = styled.div `
   position: relative;
   left: 1250px;
@@ -73,7 +77,7 @@ const RelatedItems = (props) => {
     <div>
       <div id='modalHere'></div>
       <Arrow><FaAngleRight size={70} onClick={handleClick}/></Arrow>
-      <h2>Related Products</h2>
+      <Font>Related Products</Font>
       <Wrapper>
         {listRelated}
       </Wrapper>
