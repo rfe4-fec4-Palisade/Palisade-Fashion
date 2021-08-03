@@ -9,7 +9,7 @@ const StyledCard = styled.div `
   align-items: center;
   padding: 1rem;
   width: 220px;
-  height: 75px;
+  height: 55px;
   font-family: Arial, sans-serif;
 `;
 
@@ -30,6 +30,8 @@ const StyledPic = styled.img `
 const Wrapper = styled.div `
   margin: 1rem;
   border: solid;
+  border-wdith: thin;
+  border-color: gray;
 `;
 
 
@@ -106,8 +108,8 @@ const Card = (props) => {
           <span>${card.default_price}</span>
           <div>{card.category}</div>
         </StyledCard>
-      </Wrapper>
         <div><RatingStars metadata={metadata}/></div>
+      </Wrapper>
       <StyledButton>
         <FaRegStar onClick={() => setOpenP(!openp)}/>
       </StyledButton>

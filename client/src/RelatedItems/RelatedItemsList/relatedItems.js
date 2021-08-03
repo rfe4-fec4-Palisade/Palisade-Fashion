@@ -13,6 +13,10 @@ const Font = styled.h2 `
   font-family: Arial, sans-serif;
 `;
 
+const Margin = styled.div `
+  margin: 20px;
+`;
+
 const Arrow = styled.div `
   position: relative;
   left: 1250px;
@@ -74,7 +78,7 @@ const RelatedItems = (props) => {
   })
 
   return (
-    <div>
+    <Margin>
       <div id='modalHere'></div>
       <Arrow><FaAngleRight size={70} onClick={handleClick}/></Arrow>
       <Font>Related Products</Font>
@@ -82,7 +86,7 @@ const RelatedItems = (props) => {
         {listRelated}
       </Wrapper>
       <OutfitList currentProduct={props.currentProduct}/>
-    </div>
+    </Margin>
 
   )
 }
