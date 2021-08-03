@@ -80,6 +80,8 @@ height: 10px;
 const PhotoPanel = Styled.div`
 background: #F0F0F0;
 padding: 5px;
+display: flex;
+flex-direction: row;
 `
 
 const paragraph = {
@@ -263,10 +265,12 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
           </Text>
           <SpaceV></SpaceV>
           <Photos uploadPhoto={uploadPhoto} placeholder="Upload a photo!"/>
+          <SpaceV></SpaceV>
           {photos.length >= 1 ?
           <PhotoPanel>
             {photos.map((photo)=><Preview photo={photo}/>)}
           </PhotoPanel> : null }
+          <SpaceV></SpaceV>
           <input type="submit"/>
         </FormContent>
       </ModalContent>
