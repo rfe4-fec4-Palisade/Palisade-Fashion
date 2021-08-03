@@ -12,14 +12,18 @@ const SpaceV = Styled.div`
 width: 5px;
 `
 
+const Panel = Styled. div`
+display: flex;
+flex-direction: row;
+`
 
 
 const Photos = ( {id, url} ) => {
   return (
-    <div>
+    <Panel>
       <Img src={url} alt={id}/>
       <SpaceV></SpaceV>
-    </div>
+    </Panel>
   )
 }
 
