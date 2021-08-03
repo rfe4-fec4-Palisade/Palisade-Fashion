@@ -5,6 +5,7 @@ import Helpful from '../../sharedComponents/Helpful.js'
 import Response from './Response';
 import axios from 'axios';
 import IndReviewStars from './Stars/IndReviewStars.js'
+import Photos from './Photos.js'
 
 const Tile = styled.div`
 border-bottom: 1px dashed #E0E0E0;
@@ -49,6 +50,11 @@ flex-direction: row;
 justify-content: space-between;
 `
 
+const PhotoPanel = styled.div`
+background: #F0F0F0;
+padding: 5px;
+`
+
 const sendHelpful = (id) => {
   axios.put(`/reviews/${id}/helpful`, {review_id: id})
     .then((response) => {console.log("You marked this review as helpful")})
@@ -79,6 +85,11 @@ const ReviewTile = (props) => {
         <Body>{props.review.body}</Body>
         {props.review.recommend ?
         <Body> ✓ I recommend this product </Body> : null}
+        {props.review.photos.length >= 1 ?
+          <PhotoPanel>
+            {props.review.photos.map((photo) => <Photos id={photo.id} url={photo.url}/>)}
+          </PhotoPanel> : null
+        }
         <Response response={props.review.response}/>
         <Helpful helpfulness={props.review.helpfulness} sendHelpful={sendHelpful} sendReport={sendReport} id={props.review.review_id} />
       </Tile>
