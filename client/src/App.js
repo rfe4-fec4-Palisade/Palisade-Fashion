@@ -62,8 +62,6 @@ const App = () => {
       }
     }, [])
 
-
-  console.log(currentProduct)
   return (
     <Main>
       <div className="test"></div>
