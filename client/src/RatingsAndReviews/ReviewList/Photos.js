@@ -10,7 +10,10 @@ const Img = Styled.img`
   width: 50px;
 `
 
+
+
 const Photos = ( {id, url} ) => {
+
   return (
     <Panel>
       <Img src={url} alt={id}/>
