@@ -65,7 +65,7 @@ const RelatedItems = (props) => {
 
   const listRelated = relatedProducts.map((item, index) => {
     return (
-        <Card key={index} index={index} currentSlide={currentSlide} id={item} currentProduct={current} setProduct={props.setProduct} metadata={props.metadata}/>
+        <Card key={index} index={index} currentSlide={currentSlide} id={item} currentProduct={current} setProduct={props.setProduct} getMetadata={props.getMetadata}/>
     )
   })
 

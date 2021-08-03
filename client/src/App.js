@@ -19,7 +19,7 @@ height: 20px;
 
 const App = () => {
   const [allProducts, setProducts] = useState([])
-  const [currentProduct, setProduct] = useState(19091)
+  const [currentProduct, setProduct] = useState(17067)
   const [metadata, setMetadata] = useState({})
 
   //19090
@@ -66,7 +66,7 @@ const App = () => {
     <Main>
       <div className="test"></div>
       <MainOverview currentProduct={currentProduct} metadata={metadata}/>
-      <RelatedItems currentProduct={currentProduct} setProduct={setProduct} metadata={metadata}/>
+      <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
       <QuestionAndAnswer product={currentProduct} />
       <MainReview currentProduct={currentProduct} />
     </Main>
