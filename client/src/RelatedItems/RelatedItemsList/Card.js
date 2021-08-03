@@ -10,11 +10,12 @@ const StyledCard = styled.div `
   padding: 1rem;
   width: 220px;
   height: 75px;
+  font-family: Arial, sans-serif;
 `;
 
 const StyledButton = styled.div `
   position: relative;
-  bottom: 205px;
+  bottom: 185px;
   left: 250px;
 `;
 
