@@ -9,7 +9,6 @@ const Container = Styled.div`
 `
 
 const List = ({sortOption, reviews, filter, num}) => {
-
   return (
     <Container>
       {reviews.map((review, index) => {

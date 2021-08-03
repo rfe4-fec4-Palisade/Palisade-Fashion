@@ -70,8 +70,6 @@ const App = () => {
       }
     }, [])
 
-
-  console.log(currentProduct)
   return (
     <Main>
       <Promo />
