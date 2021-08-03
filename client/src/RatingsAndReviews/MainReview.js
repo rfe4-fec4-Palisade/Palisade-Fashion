@@ -65,6 +65,10 @@ display: flex;
 flex-direction: row;
 `
 
+const SpaceBigV = Styled.div`
+height: 65px;
+`
+
 const MainReview = (props) => {
   const [sort, setSort] = useState('Relevance');
   const [currentProduct, setProduct] = useState(props.currentProduct)
@@ -141,7 +145,9 @@ const MainReview = (props) => {
             </Ratings>
             <SpaceR></SpaceR>
             <Review>
+              <SpaceBigV></SpaceBigV>
               <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
+              <SpaceV></SpaceV>
               <List reviews={data} filter={filter} num={num}/>
               <SpaceV></SpaceV>
               <Buttons>
