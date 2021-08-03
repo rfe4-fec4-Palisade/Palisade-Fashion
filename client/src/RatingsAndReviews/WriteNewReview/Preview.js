@@ -2,19 +2,25 @@ import React from 'react';
 import Styled from 'styled-components';
 
 const Img = Styled.img`
-
+height: auto;
+width: 75px;
+border: 1px solid gray;
+`
+const SpaceV = Styled.div`
+width: 5px;
 `
 
-const extractURL = (blob) => {
-  Reader = new FileReader()
-  return Reader.readAsDataURL(blob)
-}
+const Panel = Styled. div`
+display:flex;
+flex-direction: row;
+`
+
 const Preview = ( {photo} ) => {
-  if (photo.indexOf('blob')) {
-    photo = extractURL(photo)
-  }
   return (
-    <Img src={photo} alt="hello"/>
+    <Panel>
+      <Img src={photo} alt="hello"/>
+      <SpaceV></SpaceV>
+    </Panel>
   )
 }
 

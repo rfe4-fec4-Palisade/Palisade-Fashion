@@ -1,25 +1,26 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-const Panel = Styled.div`
-
-`
 
 const Img = Styled.img`
-  height: 50px;
-  width: 50px;
+  height: auto;
+  width: 75px;
+  border: 1px solid gray;
+`
+
+const SpaceV = Styled.div`
+width: 5px;
 `
 
 
 
 const Photos = ( {id, url} ) => {
-
   return (
-    <Panel>
+    <div>
       <Img src={url} alt={id}/>
-    </Panel>
+      <SpaceV></SpaceV>
+    </div>
   )
-
 }
 
 export default Photos;
