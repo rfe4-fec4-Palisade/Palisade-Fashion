@@ -85,7 +85,7 @@ const RelatedItems = (props) => {
       <Wrapper>
         {listRelated}
       </Wrapper>
-      <OutfitList currentProduct={props.currentProduct}/>
+      <OutfitList current={current} />
     </Margin>
 
   )
