@@ -8,6 +8,7 @@ import Styled from 'styled-components';
 
 const Container = Styled.div`
 display: block;
+padding: 40px;
 `
 
 const Title = Styled.div`
@@ -94,18 +95,18 @@ const MainReview = (props) => {
   }
 
   useEffect(()=>{
-    getReviews(currentProduct)
+    getReviews(props.currentProduct)
     return () => {
-      setData({});
+      setData([]);
     }
-  }, [])
+  }, [props.currentProduct])
 
   useEffect(()=>{
-    getMetadata(currentProduct)
+    getMetadata(props.currentProduct)
     return () => {
       setMetadata({});
     }
-  }, [])
+  }, [props.currentProduct])
 
   const changeSortOption = (option) => {
     var searchQuery;
@@ -115,7 +116,7 @@ const MainReview = (props) => {
       searchQuery = option.toLowerCase();
     }
     setSort(option)
-    getReviews(currentProduct, searchQuery)
+    getReviews(props.currentProduct, searchQuery)
   }
 
   const onFilter= (rating) => {
@@ -136,7 +137,7 @@ const MainReview = (props) => {
         <Title>RATINGS & REVIEWS</Title>
           <Main className="main-review" id="Reviews">
             <Ratings>
-              <Breakdown id={currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>
+              <Breakdown id={props.currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>
             </Ratings>
             <SpaceR></SpaceR>
             <Review>
@@ -146,7 +147,7 @@ const MainReview = (props) => {
               <Buttons>
                 {num+1 === count ? null : <More onClick={()=>{setNum(num+2)}}>MORE REVIEWS</More>}
                 <Space></Space>
-                <NewReview id={currentProduct} metadata={metadata}/>
+                <NewReview id={props.currentProduct} metadata={metadata}/>
               </Buttons>
             </Review>
           </Main>
