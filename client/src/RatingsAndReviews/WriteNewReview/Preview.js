@@ -11,7 +11,7 @@ width: 5px;
 `
 
 const Panel = Styled. div`
-display:flex;
+display: flex;
 flex-direction: row;
 `
 
