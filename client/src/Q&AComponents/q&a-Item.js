@@ -62,14 +62,21 @@ const parrafo2 = {
 
 const help = {
   fontFamily: 'Arial, sans-serif',
-  margin: '10px',
+  marginLeft: '220px',
+  marginTop: '10px',
+  marginBottom: '10px',
+  marginRight: '10px',
   color: '#273746',
   fontSize: '12px'
 }
 
 const spain = {
   borderBottom: '1px dashed #ABB2B9 ',
-  width: '80%'
+  width: '90%'
+}
+
+const ul = {
+  width: '95%'
 }
 
 
@@ -216,7 +223,7 @@ class QandAitem extends React.Component {
         <div>
           <div style={style}>
           {filteredSlicedSearch.map(question =>
-              <ul key={question.question_id}>
+              <ul style={ul} key={question.question_id}>
               <StyledList><h4 style={title}>Q:</h4><h4 style={parrafo}>{question.question_body}</h4><Helpful2 style={help} helpfulness={question.question_id} submitAns={this.submitedAnswers} /></StyledList>
 
                <AnswerItems answers={question.question_id}/>
@@ -234,7 +241,7 @@ class QandAitem extends React.Component {
     return (
       <div>
         <div style={style}>
-        <ul>
+        <ul style={ul} >
       <StyledList><h4 style={title}>Q:</h4><h4 style={parrafo}>{this.state.questionData.question_body}</h4> <Helpful2 style={help} helpfulness={this.state.questionData.question_id} submitAns={this.submitedAnswers}/></StyledList>
          <AnswerItems answers={this.state.questionData.question_id}/>
          <div style={spain}></div>

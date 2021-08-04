@@ -32,6 +32,13 @@ const App = () => {
   const [currentProduct, setProduct] = useState(17067)
   const [metadata, setMetadata] = useState({})
   const [theme, setTheme] = useState('light')
+<<<<<<< HEAD
+=======
+
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
+>>>>>>> ab8d021af61adccef36a85bd472df80e673790e2
 
   //19090
   //19092
@@ -75,6 +82,7 @@ const App = () => {
   }
 
   return (
+<<<<<<< HEAD
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
       <Main theme={theme === 'light' ? lightTheme : darkTheme}>
@@ -88,6 +96,18 @@ const App = () => {
         <Footer />
       </Main>
     </ThemeProvider>
+=======
+    <Main>
+      <Promo />
+      <MainHeader />
+      <div className="test"></div>
+      <MainOverview currentProduct={currentProduct} metadata={metadata}/>
+      <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
+      <QuestionAndAnswer product={currentProduct} />
+      <MainReview currentProduct={currentProduct} />
+      <Footer />
+    </Main>
+>>>>>>> ab8d021af61adccef36a85bd472df80e673790e2
   )
 
 }

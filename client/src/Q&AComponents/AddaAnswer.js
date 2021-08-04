@@ -175,11 +175,13 @@ function AddaAnswer(props) {
     'name': name,
     'email': email,
   }
+
   const createPhotoArray = () => {
     let output = []
     image.forEach((photo) => {
       output.push('https://source.unsplash.com/random')
     })
+    // console.log('output', output);
     return output
   }
 
@@ -196,7 +198,7 @@ function AddaAnswer(props) {
       body: questionText,
       name: name,
       email: email,
-      image: photoArray,
+      photos: photoArray,
       product_id: props.data
     })
     .then((res) => {

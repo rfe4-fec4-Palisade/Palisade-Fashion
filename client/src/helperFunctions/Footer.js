@@ -16,7 +16,7 @@ const Footy = Styled.div `
   height: auto;
   padding: 50px 50px 70px 100px;
   background-color: #1B2631  ;
-  width: 95%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -80,8 +80,31 @@ const list = {
 const aboutUs = {
   marginRight: '30px',
   width: '30%',
-  color: '#FBFCFC '
+  color: '#FBFCFC ',
 }
+
+const aboutQ = {
+  display: 'flex',
+  flexDirection: 'column',
+  marginRight: '30px',
+  width: '30%',
+  color: '#FBFCFC ',
+  paddingLeft: '20px',
+  margin: '15px',
+  alignItems: 'center',
+  justifyContent: 'spaceBetween'
+}
+
+const aboutC = {
+  display: 'flex',
+  flexDirection: 'column',
+  width: '30%',
+  color: '#FBFCFC ',
+  margin: '15px',
+  alignItems: 'center',
+  justifyContent: 'spaceBetween'
+}
+
 
 const h2 = {
   position: 'relative',
@@ -108,7 +131,8 @@ const anchors = {
 
 const quickLinks = {
   position: 'relative',
-  width: '25%'
+  width: '25%',
+  alignItems: 'center'
 }
 
 const quickLinksItems = {
@@ -134,7 +158,7 @@ function Footer() {
         <div style={container}>
           <div style={aboutUs}>
         <h2 style={h2}>About Us</h2>
-        <p >"We are team Palisade! Our team is made up of Kaite, Liam, Sandra, and Francisco. Katie is an aspiring software engineer from Queens, NY. She currently attends hack reactor and implemented the ratings and reviews feature on this webpage. Liam is a junior software engineer from Austin, TX. He was responsible for implementing the Related Products and Outfit features. Sandra is a full stack engineer from West New York, NJ. She is finishing up her studies at Hack Reactor and implemented the overview features of this site. Francisco is a software engineer responsible for the Q&A section, he is from Central Falls RI, and is hoping to make some really cool apps in the future if he ever survives CSS."
+        <p >"We are team Palisade! Our team is made up of Katie, Liam, Sandra, and Francisco. <br></br> <br></br> Katie is a software engineer from Queens, NY. She currently attends hack reactor and implemented the ratings and reviews feature on this webpage. <br></br> <br></br>Liam is a software engineer from Austin, TX. He was responsible for implementing the Related Products and Outfit features. <br></br> <br></br> Sandra is a full stack engineer from West New York, NJ. She is finishing up her studies at Hack Reactor and implemented the overview features of this site.<br></br> <br></br>Francisco is a software engineer responsible for the Q&A section, he is from Central Falls RI, and is hoping to make some really cool apps in the future if he ever survives CSS."
         </p>
         <ul style={list}>
         <li style={listItems} ><a href="https://www.facebook.com/" style={anchors}><FaFacebookSquare size='30px'/></a></li>
@@ -142,7 +166,7 @@ function Footer() {
         <li style={listItems} ><a href="https://www.pinterest.com/" style={anchors}><FaPinterestSquare size='30px'/></a></li>
       </ul>
         </div>
-        <div style={aboutUs}>
+        <div style={aboutQ}>
           <h2 style={h2}>Quick Links</h2>
           <ul style={quickLinks}>
           <li style={quickLinksItems}> <QuickLinksAnchors1 href="#overview">Top of Page</QuickLinksAnchors1> </li>
@@ -152,7 +176,7 @@ function Footer() {
             <li style={quickLinksItems}> <QuickLinksAnchors>Terms + Conditions</QuickLinksAnchors> </li>
           </ul>
         </div>
-        <div style={aboutUs}>
+        <div style={aboutC}>
           <h2>Contact Info</h2>
           <ul>
             <span style={contactItems}>  <FaMapMarkerAlt  size="20px"/> Address: 3285 Horizon Circle, Auburn Washington, WA, 98001</span>

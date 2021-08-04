@@ -9,8 +9,9 @@ const Wrapper = styled.div `
   display: flex;
 `;
 
-const Font = styled.h2 `
+const Font = styled.div `
   font-family: Arial, sans-serif;
+  font-size: 18px;
 `;
 
 const Margin = styled.div `
@@ -81,7 +82,7 @@ const RelatedItems = (props) => {
     <Margin>
       <div id='modalHere'></div>
       <Arrow><FaAngleRight size={70} onClick={handleClick}/></Arrow>
-      <Font>Related Products</Font>
+      <Font>RELATED PRODUCTS</Font>
       <Wrapper>
         {listRelated}
       </Wrapper>

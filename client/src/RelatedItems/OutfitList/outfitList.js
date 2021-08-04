@@ -10,8 +10,9 @@ const OutfitBox = styled.div `
   margin: 1rem;
   padding: 1rem;
 `;
-const Font = styled.h2 `
+const Font = styled.div `
   font-family: Arial, sans-serif;
+  font-size: 18px;
 `;
 
 const Plus = styled.div `
@@ -46,7 +47,7 @@ const OutfitList = (props) => {
 
   return (
     <div>
-      <Font>Add to Outfit</Font>
+      <Font>ADD TO OUTFIT</Font>
       <Wrapper>
         <OutfitBox>
           <Plus>

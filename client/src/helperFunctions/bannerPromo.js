@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Banner = styled.div`
   width: 100%;
   height: 50px;
-  background-color: #48C9B0 ;
+  background-color: #34495E  ;
 `;
 
 const text = {
@@ -22,7 +22,7 @@ function Promo (props) {
 
   return (
     <Banner>
-      <h4 style={text} >Buy One Get One Free On Select Items</h4>
+      <h4 style={text} > * Buy One Get One Free On Select Items *</h4>
     </Banner>
   )
 }

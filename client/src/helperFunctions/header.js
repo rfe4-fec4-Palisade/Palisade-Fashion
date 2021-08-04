@@ -31,6 +31,9 @@ const StyledInput = Styled.input `
   width: 200px;
   background-color: #FBFCFC;
   font-family: Noto Sans, sans-serif;
+  border-style: solid;
+  border-color: #808B96 ;
+  outline: none;
 `;
 
 const div = {
@@ -68,15 +71,15 @@ const Anchors = Styled.a  `
 
   &:hover {
     text-Decoration: underline;
-    color: #58D68D;
+    color: #2471A3 ;
   }
 
 `;
 
 const forSearch = {
   display: 'flex',
-  width: '200px',
-  height: '30px'
+  width: '250px',
+  height: '30px',
 }
 
 const icon = {
@@ -89,7 +92,7 @@ const icon = {
 
 const spany = {
   fontSize: '20px',
-  color: '#48C9B0'
+  color: '#34495E '
 }
 
 
