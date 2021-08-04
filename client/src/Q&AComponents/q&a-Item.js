@@ -53,6 +53,12 @@ const parrafo = {
   height: '25px'
 }
 
+const parrafo2 = {
+  fontFamily: 'Arial, sans-serif',
+  margin: '10px',
+  width: '50%',
+  height: '25px'
+}
 
 const help = {
   fontFamily: 'Arial, sans-serif',
@@ -81,7 +87,7 @@ class QandAitem extends React.Component {
 
 
   componentDidMount() {
-    axios(`/qa/questions?product_id=${this.props.id.parentProps.product}`)
+    axios(`/qa/questions?product_id=${this.props.id.parentProps.product}&count=200`)
     .then((res) => {
 
       var result;
@@ -101,6 +107,31 @@ class QandAitem extends React.Component {
 
   }
 
+  componentDidUpdate(prevProps) {
+
+    if (this.props !== prevProps) {
+      axios(`/qa/questions?product_id=${this.props.id.parentProps.product}&count=200`)
+      .then((res) => {
+
+        var result;
+        if (res.data.results.length > 1) {
+          result = res.data.results;
+        } else {
+          result = res.data.results[0];
+        }
+        this.setState({
+          questionData: result
+        })
+
+      })
+      .catch((err) => {
+        console.log('error retrieving answer list:', err);
+      })
+    }
+
+
+  }
+
 
   handleLoadClick(event) {
 
@@ -112,7 +143,7 @@ class QandAitem extends React.Component {
 
   submitedAnswers(bool) {
     if (bool === true) {
-      axios(`/qa/questions?product_id=${this.props.id.parentProps.product}`)
+      axios(`/qa/questions?product_id=${this.props.id.parentProps.product}&count=200`)
     .then((res) => {
       var result;
       if (res.data.results.length > 1) {
@@ -137,7 +168,23 @@ class QandAitem extends React.Component {
     //questionData variable (ref to value in state) for further use
     //payLoad is passed down to loadMoreQuestions button component
     const questionData = this.state.questionData;
+    // console.log('questionData', questionData)
     const productID = this.props.id.parentProps.product
+
+
+    if (questionData === undefined) {
+      return (
+        // <div style={style}>
+        //    <div><p style={parrafo2}>No Questions or Answers!</p></div>
+
+
+        //     <AddaQuestion data={productID} />
+        // </div>
+        null
+
+      )
+    }
+
     let payLoad = {
       func: this.handleLoadClick,
       leng: questionData.length
