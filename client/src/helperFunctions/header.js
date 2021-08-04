@@ -68,7 +68,7 @@ const Anchors = Styled.a  `
 
   &:hover {
     text-Decoration: underline;
-    color: #58D68D;
+    color: #D5D8DC ;
   }
 
 `;
@@ -89,7 +89,7 @@ const icon = {
 
 const spany = {
   fontSize: '20px',
-  color: '#48C9B0'
+  color: '#34495E '
 }
 
 
