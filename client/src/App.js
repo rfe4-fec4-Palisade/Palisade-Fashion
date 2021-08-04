@@ -27,8 +27,12 @@ height: 20px;
 const App = () => {
   const [allProducts, setProducts] = useState([])
   const [currentProduct, setProduct] = useState(17067)
-
   const [metadata, setMetadata] = useState({})
+  const [theme, setTheme] = useState('light')
+
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
 
   //19090
   //19092
@@ -76,7 +80,7 @@ const App = () => {
       <div className="test"></div>
       <MainOverview currentProduct={currentProduct} metadata={metadata}/>
       <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
-      {/* <QuestionAndAnswer product={currentProduct} /> */}
+      <QuestionAndAnswer product={currentProduct} />
       <MainReview currentProduct={currentProduct} />
       <Footer />
     </Main>

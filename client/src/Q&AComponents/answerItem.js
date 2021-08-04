@@ -25,7 +25,8 @@ collapsing the additional questions not rendered on screen.
 
 const style = {
   display: 'flex',
-  padding: '3px'
+  padding: '3px',
+  width: '90%'
 
 }
 
