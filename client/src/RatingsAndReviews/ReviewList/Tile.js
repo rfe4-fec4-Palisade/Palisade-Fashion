@@ -89,7 +89,7 @@ const ReviewTile = (props) => {
         <Body> ✓ I recommend this product </Body> : null}
         {props.review.photos.length >= 1 ?
           <PhotoPanel>
-            {props.review.photos.map((photo) => <Photos id={photo.id} url={photo.url}/>)}
+            {props.review.photos.map((photo) => <Photos key={photo.id} id={photo.id} url={photo.url}/>)}
           </PhotoPanel> : null
         }
         <Response response={props.review.response}/>
