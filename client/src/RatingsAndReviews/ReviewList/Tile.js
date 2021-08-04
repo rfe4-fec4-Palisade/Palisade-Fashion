@@ -20,7 +20,6 @@ padding: 10px;
 `;
 
 const Summary = styled.div`
-color: black;
 font-size: 15px;
 // font-weight: bold;
 padding: 5px;
@@ -32,7 +31,6 @@ font-size: 12px;
 `;
 
 const Star = styled.div`
-color: black;
 padding: 5px;
 `
 const Space = styled.div`

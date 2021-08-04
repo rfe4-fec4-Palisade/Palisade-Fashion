@@ -22,3 +22,8 @@ it('should render main review with child elements', () => {
   // expect(wrapper.find('#title').length).toEqual(0);
 });
 
+it('should properly pass props down to child components', () => {
+  const wrapper = shallow(<MainReview />);
+
+})
+
