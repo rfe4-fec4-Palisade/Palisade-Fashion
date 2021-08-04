@@ -31,6 +31,24 @@ display: flex;
 justify-content: center;
 align-items: center;
 margin-right: 10px;
+text-decoration: none;
+
+&:hover {
+  text-decoration: underline;
+  color: #58D68D  ;
+}
+`;
+
+const QuickLinksAnchors1 = Styled.a `
+display: inline-block;
+with: 40px;
+height: 40px;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-right: 10px;
+text-decoration: none;
+color: inherit;
 
 &:hover {
   text-decoration: underline;
@@ -116,7 +134,7 @@ function Footer() {
         <div style={container}>
           <div style={aboutUs}>
         <h2 style={h2}>About Us</h2>
-        <p >"We are team Palisade! Our team is made up of Kaite, Liam, Sandra, and Francisco. Katie is an aspiring software engineer from Queens, NY. She currently attends hack reactor and implemented the ratings and reviews feature on this webpage. Liam is a junior software engineer from Austin, TX. He was responsible for implementing the Related Products and Outfit features. Sandra is...Francisco is a software engineer responsible for the Q&A section, he is from Central Falls RI, and is hoping to make some really cool apps in the future if he ever survives CSS."
+        <p >"We are team Palisade! Our team is made up of Kaite, Liam, Sandra, and Francisco. Katie is an aspiring software engineer from Queens, NY. She currently attends hack reactor and implemented the ratings and reviews feature on this webpage. Liam is a junior software engineer from Austin, TX. He was responsible for implementing the Related Products and Outfit features. Sandra is a full stack engineer from West New York, NJ. She is finishing up her studies at Hack Reactor and implemented the overview features of this site. Francisco is a software engineer responsible for the Q&A section, he is from Central Falls RI, and is hoping to make some really cool apps in the future if he ever survives CSS."
         </p>
         <ul style={list}>
         <li style={listItems} ><a href="https://www.facebook.com/" style={anchors}><FaFacebookSquare size='30px'/></a></li>
@@ -127,7 +145,7 @@ function Footer() {
         <div style={aboutUs}>
           <h2 style={h2}>Quick Links</h2>
           <ul style={quickLinks}>
-          <li style={quickLinksItems}> <QuickLinksAnchors href="#overview">Top of Page</QuickLinksAnchors> </li>
+          <li style={quickLinksItems}> <QuickLinksAnchors1 href="#overview">Top of Page</QuickLinksAnchors1> </li>
             <li style={quickLinksItems}> <QuickLinksAnchors>FAQ</QuickLinksAnchors> </li>
             <li style={quickLinksItems}> <QuickLinksAnchors>Privacy</QuickLinksAnchors> </li>
             <li style={quickLinksItems}> <QuickLinksAnchors>Help</QuickLinksAnchors> </li>

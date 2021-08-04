@@ -9,15 +9,17 @@ const Header = Styled.div`
   font-family: Noto Sans, sans-serif;
   font-weight: bold;
   font-size: 30px;
-  background: -webkit-linear-gradient( #16A085 , #48C9B0 );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  // background: -webkit-linear-gradient( #16A085 , #48C9B0 );
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
 `
 
 const HeaderBar = Styled.div`
   padding: 10px 40px 10px 70px;
   border-left: none;
   border-right: none;
+  box-shadow: 0 10px 10px -5px;
+  color: #CCD1D1;
 `
 
 const StyledInput = Styled.input `
@@ -47,7 +49,8 @@ const ul = {
 
 const logo = {
   flex: '1',
-  marginBottom: '35px'
+  marginBottom: '35px',
+  color: '#17202A '
 }
 
 const items = {
@@ -73,7 +76,7 @@ const Anchors = Styled.a  `
 const forSearch = {
   display: 'flex',
   width: '200px',
-  height: '20px'
+  height: '30px'
 }
 
 const icon = {
@@ -81,6 +84,11 @@ const icon = {
   height: '14px',
   right: '10%',
   marginTop: '5px',
+  color: '#212F3C'
+}
+
+const spany = {
+  fontSize: '20px',
   color: '#48C9B0'
 }
 
@@ -92,9 +100,9 @@ function MainHeader () {
       <ul style={ul}>
         <li style={logo}> <Header>Palisade Fashion</Header></li>
         <div>
-          <li style={items}><Anchors >Home</Anchors></li>
-          <li style={items}><Anchors >About</Anchors></li>
-          <li style={items}><Anchors >Services</Anchors></li>
+          <li style={items}><Anchors >Home</Anchors></li><span style={spany}> | </span>
+          <li style={items}><Anchors >About</Anchors></li><span style={spany}> | </span>
+          <li style={items}><Anchors >Services</Anchors></li><span style={spany}> | </span>
           <li style={items}><Anchors >Contact</Anchors></li>
         </div>
         <li style={forSearch}><StyledInput type='text' placeholder='Search...'></StyledInput><FaSearch style={icon} /></li>
