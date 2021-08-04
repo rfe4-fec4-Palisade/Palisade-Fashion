@@ -18,8 +18,7 @@ const HeaderBar = Styled.div`
   padding: 10px 40px 10px 70px;
   border-left: none;
   border-right: none;
-  box-shadow: 0 10px 10px -5px;
-  color: #CCD1D1;
+  box-shadow: 0 10px 10px -5px #CCD1D1;
 `
 
 const StyledInput = Styled.input `
@@ -52,8 +51,7 @@ const ul = {
 
 const logo = {
   flex: '1',
-  marginBottom: '35px',
-  color: '#17202A '
+  marginBottom: '35px'
 }
 
 const items = {
@@ -96,8 +94,8 @@ const spany = {
 }
 
 
-function MainHeader () {
-
+function MainHeader (props) {
+  console.log('props.theme', props.theme)
   return (
     <HeaderBar>
       <ul style={ul}>
@@ -106,7 +104,8 @@ function MainHeader () {
           <li style={items}><Anchors >Home</Anchors></li><span style={spany}> | </span>
           <li style={items}><Anchors >About</Anchors></li><span style={spany}> | </span>
           <li style={items}><Anchors >Services</Anchors></li><span style={spany}> | </span>
-          <li style={items}><Anchors >Contact</Anchors></li>
+          <li style={items}><Anchors >Contact</Anchors></li> <span style={spany}> | </span>
+          <li style={items}><Button onClick={(event)=>{props.themeToggler(event)}}>{props.theme === 'light' ? 'Dark Mode' : 'Light Mode'}</Button></li>
         </div>
         <li style={forSearch}><StyledInput type='text' placeholder='Search...'></StyledInput><FaSearch style={icon} /></li>
       </ul>

@@ -153,7 +153,7 @@ const MainReview = (props) => {
               <Buttons className="buttons">
                 {num+1 === count ? null : <More onClick={()=>{setNum(num+2)}}>MORE REVIEWS</More>}
                 <Space></Space>
-                <NewReview id={props.currentProduct} metadata={metadata}/>
+                <NewReview id={props.currentProduct} metadata={metadata} className="new review form"/>
               </Buttons>
             </Review>
           </Main>

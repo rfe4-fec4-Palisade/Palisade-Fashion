@@ -67,7 +67,6 @@ app.get('/products/:path/related', (req,res) =>{
   // console.log('this is req.url',req.url)
   axios(config)
     .then((data)=>{
-      console.log('The data:', data.data)
       res.status(201).send(data.data);
     })
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})

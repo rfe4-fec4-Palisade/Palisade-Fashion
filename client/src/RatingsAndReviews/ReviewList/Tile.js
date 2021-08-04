@@ -20,7 +20,6 @@ padding: 10px;
 `;
 
 const Summary = styled.div`
-color: black;
 font-size: 15px;
 // font-weight: bold;
 padding: 5px;
@@ -32,7 +31,6 @@ font-size: 12px;
 `;
 
 const Star = styled.div`
-color: black;
 padding: 5px;
 `
 const Space = styled.div`
@@ -89,7 +87,7 @@ const ReviewTile = (props) => {
         <Body> ✓ I recommend this product </Body> : null}
         {props.review.photos.length >= 1 ?
           <PhotoPanel>
-            {props.review.photos.map((photo) => <Photos id={photo.id} url={photo.url}/>)}
+            {props.review.photos.map((photo) => <Photos key={photo.id} id={photo.id} url={photo.url}/>)}
           </PhotoPanel> : null
         }
         <Response response={props.review.response}/>

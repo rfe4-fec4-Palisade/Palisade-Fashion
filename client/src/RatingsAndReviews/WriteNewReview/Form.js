@@ -130,18 +130,19 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
       },
       {
         lowest: 'Runs tight',
-        highest: 'Runs long',
+        highest: 'Runs loose',
         field: 'Fit',
         value: 0
       },
     ])
 
-  const [summary, setSummary] = useState('')
-  const [body, setBody] = useState('')
-  const [nickname, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [photos, setPhotos] = useState([])
-  const [errors, setErrors] = useState({})
+  const [summary, setSummary] = useState('');
+  const [body, setBody] = useState('');
+  const [nickname, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [photos, setPhotos] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [inputChar, setInputChar] = useState({});
 
   let mandatoryValues = {
     'rating': rating,
@@ -161,13 +162,10 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
  }
 
  const handleCharChange = (field, value) => {
-   let newState = characteristics;
-   newState.forEach((char) => {
-     if (char.field === field) {
-       char.value = value*1;
-      }
-    })
-    setCharacteristics(newState);
+   let id = metadata.characteristics[field].id;
+   let newState = inputChar
+   newState[id] = +value;
+   setInputChar(newState)
   }
 
   const handleTextChange = (event) => {
@@ -218,7 +216,7 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
         "name": nickname,
         "email": email,
         "photos": photoArray,
-        "characteristics": {}
+        "characteristics": inputChar
       }
     axios.post('/reviews', requestBody)
       .then((response) => {
