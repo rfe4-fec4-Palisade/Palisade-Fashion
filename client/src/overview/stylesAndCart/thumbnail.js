@@ -20,6 +20,9 @@ const Positioning = styled.div `
   width: 80px;
   top: 5%;
   z-index: 3;
+  left: 0.5%;
+  height: 480px;
+  overflow: hidden;
 `;
 
 function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
@@ -29,8 +32,6 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
   useEffect(() => {
     setCurrent(currentIndex)
   }, [currentIndex])
-
-  const style = { border: '3px solid red' };
 
   const upArrowClicked = () => {
     let highlightedIndex = current;
@@ -50,8 +51,25 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
     }
   }
 
+  const style = {
+    border: '3px solid red'
+  };
+
+  const upArrow = {
+    position: 'relative',
+    top: '520px',
+    left: '0.8%'
+  }
+
+  const downArrow = {
+    position: 'relative',
+    top: '520px',
+    left: '1.4%'
+  }
+
   if (currentIndex === 0) {
     return (
+      <>
       <Positioning>
         {allStyles.map((item, index) => {
           if (current == index) {
@@ -60,11 +78,13 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
             return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
           }
         })}
-        <FontAwesomeIcon icon={['far', 'arrow-alt-circle-down']} size="2x" onClick={downArrowClicked}/>
       </Positioning>
+      <FontAwesomeIcon style={downArrow}icon={['far', 'arrow-alt-circle-down']} size="2x" onClick={downArrowClicked}/>
+      </>
     )
   } else if (currentIndex === allStyles.length - 1) {
     return (
+      <>
       <Positioning>
         {allStyles.map((item, index) => {
           if (current == index) {
@@ -73,11 +93,13 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
             return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
           }
         })}
-        <FontAwesomeIcon icon={['far', 'arrow-alt-circle-up']} size="2x" onClick={upArrowClicked}/>
       </Positioning>
+      <FontAwesomeIcon style={upArrow} icon={['far', 'arrow-alt-circle-up']} size="2x" onClick={upArrowClicked}/>
+      </>
     )
   } else {
     return (
+      <>
       <Positioning>
         {allStyles.map((item, index) => {
           if (current == index) {
@@ -86,9 +108,10 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
             return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
           }
         })}
-        <FontAwesomeIcon icon={['far', 'arrow-alt-circle-up']} size="2x" onClick={upArrowClicked}/>
-        <FontAwesomeIcon icon={['far', 'arrow-alt-circle-down']} size="2x" onClick={downArrowClicked}/>
-      </Positioning>
+        </Positioning>
+        <FontAwesomeIcon style={upArrow} icon={['far', 'arrow-alt-circle-up']} size="2x" onClick={upArrowClicked}/>
+        <FontAwesomeIcon style={downArrow} icon={['far', 'arrow-alt-circle-down']} size="2x" onClick={downArrowClicked}/>
+      </>
     )
   }
 }
