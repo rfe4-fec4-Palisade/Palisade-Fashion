@@ -14,9 +14,9 @@ const Footy = Styled.div `
   font-family: Noto Sans, sans-serif;
   position: relative;
   height: auto;
-  padding: 50px 100px;
+  padding: 50px 50px 70px 100px;
   background-color: #1B2631  ;
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -116,7 +116,7 @@ function Footer() {
         <div style={container}>
           <div style={aboutUs}>
         <h2 style={h2}>About Us</h2>
-        <p >"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        <p >"We are team Palisade! Our team is made up of Kaite, Liam, Sandra, and Francisco. Katie is an aspiring software engineer from Queens, NY. She currently attends hack reactor and implemented the ratings and reviews feature on this webpage. Liam is a junior software engineer from Austin, TX. He was responsible for implementing the Related Products and Outfit features. Sandra is...Francisco is a software engineer responsible for the Q&A section, he is from Central Falls RI, and is hoping to make some really cool apps in the future if he ever survives CSS."
         </p>
         <ul style={list}>
         <li style={listItems} ><a href="https://www.facebook.com/" style={anchors}><FaFacebookSquare size='30px'/></a></li>

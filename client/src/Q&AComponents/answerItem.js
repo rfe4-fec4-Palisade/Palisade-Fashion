@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import QandAitem from '../Q&AComponents/q&a-Item.js';
+import Styled from 'styled-components';
 import { API_KEY } from '../../../config.js'
 import Helpful from '../sharedComponents/Helpful.js';
 import dateParser from '../helperFunctions/dateParser.js';
 import LoadMoreAns from '../Q&AComponents/LoadMoreAns.js';
 import AddaQuestion from '../Q&AComponents/AddaQuestion.js';
+import Photos from '../RatingsAndReviews/ReviewList/Photos.js';
 
 /*
 Quick Description:
@@ -61,6 +63,13 @@ const help = {
   fontSize: '12px'
 }
 
+const PhotoPanel = Styled.div`
+background: #F0F0F0;
+padding: 5px;
+display: flex;
+flex-direction: row;
+`
+
 
 
 class AnswerItem extends React.Component {
@@ -82,6 +91,7 @@ class AnswerItem extends React.Component {
         axios(`/qa/questions/${this.props.answers}/answers`)
         .then((res) => {
           const data = res.data.results;
+          // console.log('data', data)
           this.setState({
             currentAnswers: data,
           })
@@ -130,6 +140,7 @@ class AnswerItem extends React.Component {
 
     // console.log('this is answers', this.state.currentAnswers)
     const answer = this.state.currentAnswers;
+    // console.log('answers', answer);
     var twoAnswers = answer.slice(0, 1);
     const onLoadMore = this.state.clickedLoadMore;
 
@@ -153,6 +164,10 @@ class AnswerItem extends React.Component {
         {twoAnswers.map(answerItem =>
         <div key={answerItem.answer_id}>
          <div style={style}><h4 style={title}>A:</h4> <p style={parrafo}>{answerItem.body}</p></div>
+         {answerItem.photos.length >= 1 ?
+         <PhotoPanel>
+           {answerItem.photos.map((photo) => <Photos id={photo.id} url={photo.url}/>) }
+         </PhotoPanel> : null }
          <div style={style}><small style={smallBoi}> by {answerItem.answerer_name}</small><small style={smallBoi}>{dateParser(answerItem.date)}</small><small style={smallBoi}> | </small>
          <Helpful style={help} helpfulness={answerItem.helpfulness} id={answerItem.answer_id} sendHelpful={this.sendHelpful} sendReport={this.sendReport}/>
          </div>

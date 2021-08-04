@@ -26,7 +26,6 @@ const Helpful2 = (props) => {
   // console.log('props from helpful component', props);
 
   const handleClicker = () => {
-    props.submitAns(true)
     setClickedA(false)
   }
 

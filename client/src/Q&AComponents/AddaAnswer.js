@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import validateInfo from './validateInfo.js';
+import PhotoPrev from './PhotoPrev.js';
 import { FaTimesCircle } from 'react-icons/fa';
 import { FaCheckSquare } from 'react-icons/fa';
 
@@ -35,6 +36,13 @@ const PopupInner2 = styled.div `
   height: 170px;
   background-color: #FFF;
 `;
+
+const PhotoPanel = styled.div`
+background: #F0F0F0;
+padding: 5px;
+display: flex;
+flex-direction: row;
+`
 
 const style = {
   backgroundColor: '#CACFD2',
@@ -154,7 +162,7 @@ function AddaAnswer(props) {
   const [questionText, setQuestionText] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState([]);
   const [isClicked, setClick] = useState(false);
   const [errors, setErrors] = useState({});
   const [showSubmit, setShowSubmit] = useState(false);
@@ -167,17 +175,28 @@ function AddaAnswer(props) {
     'name': name,
     'email': email,
   }
+  const createPhotoArray = () => {
+    let output = []
+    image.forEach((photo) => {
+      output.push('https://source.unsplash.com/random')
+    })
+    return output
+  }
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    setErrors(validateInfo(allValues))
+    setErrors(validateInfo(allValues));
+    let photoArray = createPhotoArray();
+    console.log('photoArray', photoArray)
 
     axios.post(`/qa/questions/${productID}/answers`,  {
       body: questionText,
       name: name,
       email: email,
-      image: image,
+      image: photoArray,
       product_id: props.data
     })
     .then((res) => {
@@ -200,6 +219,25 @@ function AddaAnswer(props) {
     props.func();
   }
 
+  const handleUpload = (event) => {
+    if (image.length === 5) {
+      event.preventDefault();
+      alert('Cannot upload more than 5 images');
+      return;
+    }
+
+    if (image.length >= 1) {
+      var newImages =  [...image, URL.createObjectURL(event.target.files[0])];
+      setImage(newImages);
+    } else {
+      var newimage = [URL.createObjectURL(event.target.files[0])];
+      setImage(newimage)
+    }
+  }
+
+
+
+
   if (showSubmit) {
     return (
       <Popup>
@@ -213,8 +251,7 @@ function AddaAnswer(props) {
     )
   }
 
-
-
+  // console.log('image', image);
  return (
    <Popup>
      <PopupInner>
@@ -225,11 +262,15 @@ function AddaAnswer(props) {
         {errors.email && <p style={paragraph} >{errors.email}</p>}
         <textarea maxLength='1000' style={style2}  type='text' placeholder='Add Your Answer' onChange={(event) => setQuestionText(event.target.value)}></textarea>
         {errors.body && <p style={paragraph} >{errors.body}</p>}
-        <input type='file' placeholder='Upload Photos' onChange={(event) => setImage(event.target.files[0])}></input>
+        <input type='file' placeholder='Upload Photos' accept='image/*' onChange={(event) => {handleUpload(event)}}></input>
         <button  type='submit' style={submitStyle}  onClick={(event) => handleSubmit(event)}>Submit</button>
         <button type='submit' style={submitStyle2} onClick={event => {handleClick(event)}}>
           <FaTimesCircle fontSize="30px"/>
         </button>
+        {image.length >= 1 ?
+        <PhotoPanel>
+            {image.map((photo) => <PhotoPrev photo={photo} />)}
+        </PhotoPanel> : null}
         </form>
           { props.children }
      </PopupInner>
@@ -239,3 +280,14 @@ function AddaAnswer(props) {
 };
 
 export default AddaAnswer;
+
+
+//{image.length >= 1 ?
+{/* <span>
+{image.map((photo) => <PhotoPrev photo={photo} />)}
+</span> : null} */}
+
+
+{/* <PhotoPanel>
+<PhotoPrev photo={image}></PhotoPrev>
+</PhotoPanel> */}

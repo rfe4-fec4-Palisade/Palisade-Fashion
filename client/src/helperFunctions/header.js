@@ -9,7 +9,7 @@ const Header = Styled.div`
   font-family: Noto Sans, sans-serif;
   font-weight: bold;
   font-size: 30px;
-  background: -webkit-linear-gradient( #AEB6BF , #85929E, #616A6B  );
+  background: -webkit-linear-gradient( #16A085 , #48C9B0 );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
