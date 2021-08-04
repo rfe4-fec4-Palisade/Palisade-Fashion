@@ -11,7 +11,7 @@ import Thumbnail from './thumbnail.js';
 const LargeImage = styled.img `
   object-fit: cover;
   overflow: hidden;
-  width: ${props => props.expandedView ? '96%' : '60%'};
+  width: ${props => props.expandedView ? '96%' : '62%'};
   height: ${props => props.expandedView ? '650px' : '600px'};
   cursor: ${props => props.expandedView ? 'cell' : 'zoom-in'};
   position: ${props => props.expandedView ? 'relative' : 'none'};
@@ -109,7 +109,7 @@ function ImageGallery ({ imageSelected }) {
 
   const expandIcon = {
     position: 'relative',
-    left: '57%',
+    left: '59%',
     bottom: '590px',
     cursor: 'zoom-in'
   };
@@ -155,7 +155,9 @@ function ImageGallery ({ imageSelected }) {
       if (mainImageIndex === 0) {
         return (
           <StyledOuterDiv>
-            <Thumbnail currentPhoto={imageSelected} currentIndex={mainImageIndex} changeMainImg={changeMainImg} upDown={upDownArrowsClicked}/>
+
+              <Thumbnail currentPhoto={imageSelected} currentIndex={mainImageIndex} changeMainImg={changeMainImg} upDown={upDownArrowsClicked}/>
+
             <br></br>
             <LargeImage src={photos[mainImageIndex].url} onClick={expandImage} expandedView={expandedView}/>
             <FontAwesomeIcon icon={['fas', 'chevron-circle-right']} size="2x" onClick={rightArrowClicked} style={rightArrow}/>
