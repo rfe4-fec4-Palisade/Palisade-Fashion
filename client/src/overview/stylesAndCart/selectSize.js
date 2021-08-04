@@ -10,8 +10,11 @@ const StyledSelect = styled.select`
   padding: 12px;
   border: 2px solid black;
   font-size: 14px;
-  width: 10%;
+  width: 12%;
   margin: 18px;
+  margin-bottom: 4px;
+  margin-left: 10px;
+  margin-right: 6px;
 
   &:hover {
     cursor: pointer;
@@ -20,8 +23,8 @@ const StyledSelect = styled.select`
 
 const StyledDiv = styled.div`
   position: relative;
-  left: 72%;
-  bottom: 400px;
+  left: 70%;
+  bottom: 600px;
 `;
 
 function SelectSize({ styleSelected }) {

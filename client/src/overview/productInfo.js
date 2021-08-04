@@ -11,19 +11,23 @@ function ProductInfo ({ currentProduct, metadata, totalReviews }) {
     textAlign: 'center',
     fontFamily: 'Arial, sans-serif',
     position: 'relative',
-    left: '70%',
+    left: '67%',
     width: '25%',
     zIndex: '1'
   }
 
   const category = {
-    marginTop: '8px',
-    marginBottom: '0px'
+    marginTop: '12px',
+    marginBottom: '0px',
+    fontSize: '1.19em'
   }
+  // font-size: 1.17em;
 
   const productName = {
-    margin: '7px'
+    margin: '7px',
+    fontSize: '2.2em'
   }
+  // font-size: 2em;
 
   return (
     <div style={info}>
@@ -31,8 +35,8 @@ function ProductInfo ({ currentProduct, metadata, totalReviews }) {
       <RatingStars metadata={metadata}/>
       <a href="#Reviews" style={cursor}>Read All {totalReviews} Reviews</a>
       <br></br>
-      <h3 style={category}>{currentProduct.category}</h3>
-      <h1 style={productName}>{currentProduct.name}</h1>
+      <div style={category}>{currentProduct.category}</div>
+      <div style={productName}>{currentProduct.name}</div>
 
     </div>
   )

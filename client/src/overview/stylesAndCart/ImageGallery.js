@@ -11,7 +11,7 @@ import Thumbnail from './thumbnail.js';
 const LargeImage = styled.img `
   object-fit: cover;
   overflow: hidden;
-  width: ${props => props.expandedView ? '96%' : '53%'};
+  width: ${props => props.expandedView ? '96%' : '60%'};
   height: ${props => props.expandedView ? '650px' : '600px'};
   cursor: ${props => props.expandedView ? 'cell' : 'zoom-in'};
   position: ${props => props.expandedView ? 'relative' : 'none'};
@@ -20,7 +20,6 @@ const LargeImage = styled.img `
 
 const StyledOuterDiv = styled.div`
   position: relative;
-  left: 1.5%;
   bottom: 150px;
 `;
 
@@ -110,7 +109,7 @@ function ImageGallery ({ imageSelected }) {
 
   const expandIcon = {
     position: 'relative',
-    left: '50%',
+    left: '57%',
     bottom: '590px',
     cursor: 'zoom-in'
   };

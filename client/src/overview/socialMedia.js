@@ -20,8 +20,14 @@ function SocialMedia () {
     window.open('https://www.pinterest.com')
   }
 
+  const shareIt = {
+    marginBottom: '10px',
+    marginTop: '28px'
+  }
+
   return (
     <div>
+      <h4 style={shareIt}>Like it? Share it!</h4>
       <FontAwesomeIcon style={icons} icon={['fab', 'facebook']} size="2x" onClick={clickedFB}/>
       <FontAwesomeIcon style={icons} icon={['fab', 'twitter-square']} size="2x"onClick={clickedTwitter}/>
       <FontAwesomeIcon style={icons} icon={['fab', 'pinterest']} size="2x" onClick={clickedPinterest}/>
