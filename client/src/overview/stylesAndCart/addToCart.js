@@ -5,13 +5,14 @@ import axios from 'axios';
 const SizeNotSelected = styled.p `
   font-family: Arial, sans-serif;
   font-size: 14px;
-  margin: 18px;
+  margin: 8px;
   color: red;
+  margin-top: 12px;
 `;
 
 const StyledBttn = styled.button `
   border: 2px solid black;
-  width: 18%;
+  width: 19%;
   text-align: center;
   line-height: 30px;
   padding: 10px;
@@ -19,7 +20,7 @@ const StyledBttn = styled.button `
   font-size: 14px;
   justify-Content: center;
   background-color: #FBFCFC;
-  margin: 18px;
+  margin: 12px;
 
   &:hover {
     color: #EC7063;

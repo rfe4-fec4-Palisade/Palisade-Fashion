@@ -3,8 +3,9 @@ import Styled from 'styled-components';
 
 
 const Img = Styled.img`
-  height: auto;
-  width: 75px;
+  height: 65px;
+  width: 65px;
+  object-fit: cover;
   border: 1px solid gray;
 `
 

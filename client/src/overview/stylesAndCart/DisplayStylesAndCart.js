@@ -12,19 +12,27 @@ const price = {
   position: 'relative',
   textAlign: 'center',
   fontFamily: 'Arial, sans-serif',
-  left: '70%',
+  left: '67%',
   bottom: '660px',
   width: '25%'
 }
 
+const wrapsRightSide = {
+  display: 'flex',
+  flexDirection: 'column'
+}
+
 const container = {
-  width: '450px',
+  width: '29%',
   display: 'flex',
   flexWrap: 'wrap',
-  position: 'absolute',
-  right: '1%',
-  top: '52.5%'
+  position: 'relative',
+  left: '67%',
+  bottom: '625px'
 }
+// position: 'absolute',
+// right: '5%',
+// top: '52.5%'
 
 const individualStyle = {
   flexBasis: 'calc(25%)'
@@ -38,7 +46,8 @@ function SelectedStyle (props) {
 
   useEffect(() => {
     function getStyles() {
-      axios.get(`http://localhost:3000/products/${props.id}/styles`)
+      console.log(props.currentProduct) // --> 17067
+      axios.get(`http://localhost:3000/products/${props.currentProduct.id}/styles`)
       .then((response) => {
         setAllStyles(response.data.results) // results is an array of objects
         setStyle(response.data.results[0])
@@ -48,7 +57,7 @@ function SelectedStyle (props) {
       })
     }
     getStyles();
-  }, [])
+  }, [props.currentProduct])
 
   const userSelectedStyle = (clickedItem, e) => { // item will be entire object of style clicked by user
     setStyle(clickedItem);
@@ -56,29 +65,33 @@ function SelectedStyle (props) {
     setDefault(false);
   }
 
+  const styleName = {
+    fontSize: '1.7em'
+  }
+
   return (
     <div>
       <div>
-      <ImageGallery imageSelected={oneStyle}/>
+        <ImageGallery imageSelected={oneStyle}/>
       </div>
 
-      <div>
+      <div className="wrapsRightSide" style={wrapsRightSide}>
         <div style={price}>
-        <Price styleSelected={oneStyle}/>
-        <h2>Style: {oneStyle.name}</h2>
+          <Price styleSelected={oneStyle}/>
+          <div style={styleName}>Style: {oneStyle.name}</div>
         </div>
 
         <div style={container}>
-        {allStyles.map((item, index) => {
-          return  <div key={item.style_id} style={individualStyle}>
-            <Checkmark  key={item.style_id} styleID={item.style_id} currentStyle={currentStyle} defaultShown={defaultSelected} initial={index}/>
-            <ShowAllStyles  eachStyle={item} styleClicked={userSelectedStyle}/>
-          </div>
-        })}
+          {allStyles.map((item, index) => {
+            return  <div key={item.style_id} style={individualStyle}>
+              <Checkmark  key={item.style_id} styleID={item.style_id} currentStyle={currentStyle} defaultShown={defaultSelected} initial={index}/>
+              <ShowAllStyles  eachStyle={item} styleClicked={userSelectedStyle}/>
+            </div>
+          })}
         </div>
 
         <div>
-        <SelectSize styleSelected={oneStyle}/>
+          <SelectSize styleSelected={oneStyle}/>
         </div>
       </div>
 
