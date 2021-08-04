@@ -26,11 +26,11 @@ const Characteristics = (props) => {
     <Panel onChange={(event)=>{props.handleCharChange(props.char.field, event.target.value)}}>
       <div>{props.char.field}</div>
       <Radios>
-        {props.char.lowest} <input type="radio" name={props.field} value="1"/>
-        <input type="radio" name={props.field} value="2"/>
-        <input type="radio" name={props.field} value="3"/>
-        <input type="radio" name={props.field} value="4"/>
-        <input type="radio" name={props.field} value="5"/> {props.char.highest}
+        {props.char.lowest} <input type="radio" name={props.char.field} value="1"/>
+        <input type="radio" name={props.char.field} value="2"/>
+        <input type="radio" name={props.char.field} value="3"/>
+        <input type="radio" name={props.char.field} value="4"/>
+        <input type="radio" name={props.char.field} value="5"/> {props.char.highest}
       </Radios>
     </Panel>
   )
