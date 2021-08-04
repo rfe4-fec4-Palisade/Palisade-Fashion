@@ -215,7 +215,7 @@ function AddaQuestion(props) {
         product_id: props.data
       })
       .then((res) => {
-        console.log('successfully added question', res.data);
+        console.log('successfully added question', res);
 
         setShowSubmit(!showSubmit);
 

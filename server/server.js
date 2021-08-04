@@ -23,9 +23,11 @@ var getData = function(url) {
 app.get('/products', (req,res) =>{
   // console.log('req.params', req.params)
   let config = getData(req.url)
+  // console.log('PRODUCTS this is req.url',req.url)
   // console.log('hello testing from app.get')
   axios(config)
     .then((data)=>{
+      // console.log('axios get request is working')
       res.status(200).send(data.data);
     })
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
@@ -33,9 +35,13 @@ app.get('/products', (req,res) =>{
 
 // Req needed for Overview - ID
 app.get('/products/:id', (req,res) =>{
+  // console.log('req.params', req.params)
   let config = getData(req.url)
+  // console.log('this is req.url',req.url)
+  // console.log('hello testing from app.get')
   axios(config)
     .then((data)=>{
+      // console.log('axios get request is working')
       res.status(200).send(data.data);
     })
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
@@ -43,9 +49,13 @@ app.get('/products/:id', (req,res) =>{
 
 // Req needed for Overview: Styles
 app.get('/products/:id/styles', (req,res) =>{
+  // console.log('req.params', req.params)
   let config = getData(req.url)
+  // console.log('this is req.url',req.url)
+  // console.log('hello testing from app.get')
   axios(config)
     .then((data)=>{
+      // console.log('axios get request is working')
       res.status(200).send(data.data);
     })
     .catch((err)=>{console.log('err:', err); res.status(404).send(err)})
@@ -54,6 +64,7 @@ app.get('/products/:id/styles', (req,res) =>{
 //products/related
 app.get('/products/:path/related', (req,res) =>{
   let config = getData(req.url)
+  // console.log('this is req.url',req.url)
   axios(config)
     .then((data)=>{
       res.status(201).send(data.data);
@@ -120,6 +131,7 @@ app.put('/reviews/:review_id/report', (req, res) => {
 //Example for Q&A  -> https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions?product_id=19092
 app.get('/qa/questions/', (req,res) =>{
   let config = getData(req.url)
+  // console.log('Q&A this is req.url', req.url)
   axios(config)
     .then((data)=>{
       res.status(201).send(data.data);
@@ -144,6 +156,7 @@ app.get('/qa/questions/:id/answers', (req,res) =>{
 
 //post Question
 app.post('/qa/questions', (req,res) =>{
+  // console.log('Posting Question for QA!')
   let config = getData(req.url)
   config.method = 'POST';
   config.data = req.body;
