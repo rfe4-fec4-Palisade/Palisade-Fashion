@@ -138,19 +138,19 @@ const MainReview = (props) => {
 
     return (
       <Container>
-        <Title>RATINGS & REVIEWS</Title>
+        <Title className="title">RATINGS & REVIEWS</Title>
           <Main className="main-review" id="Reviews">
-            <Ratings>
+            <Ratings className="ratings">
               <Breakdown id={props.currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>
             </Ratings>
             <SpaceR></SpaceR>
-            <Review>
+            <Review className="reviews">
               <SpaceBigV></SpaceBigV>
               <Sort sortOption={sort} reviews={data} count={count} changeSortOption={changeSortOption}/>
               <SpaceV></SpaceV>
               <List reviews={data} filter={filter} num={num}/>
               <SpaceV></SpaceV>
-              <Buttons>
+              <Buttons className="buttons">
                 {num+1 === count ? null : <More onClick={()=>{setNum(num+2)}}>MORE REVIEWS</More>}
                 <Space></Space>
                 <NewReview id={props.currentProduct} metadata={metadata}/>
