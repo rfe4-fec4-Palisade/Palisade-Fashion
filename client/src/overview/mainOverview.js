@@ -14,7 +14,7 @@ justify-content: space-between;
 
 
 function MainOverview(props) {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState(`${props.currentProduct}`);
   const [totalReviews, setReviews] = useState(0);
 
   useEffect(() => { // useEffect is called after page is rendered
@@ -29,7 +29,7 @@ function MainOverview(props) {
       })
     }
     atelierReq();
-  }, [])
+  }, [props.currentProduct])
 
   useEffect(() => {
     function reviewsReq() {
@@ -43,32 +43,49 @@ function MainOverview(props) {
       })
     }
     reviewsReq();
-  }, [])
+  }, [props.currentProduct])
 
   const info = {
-    position: 'relative',
     fontFamily: 'Arial, sans-serif',
-    width: '50%',
-    left: '4%',
-    bottom: '400px'
+    position: 'absolute',
+    top: '810px',
+    width: '55%',
+    left: '3%'
   }
+  // if position relative - changes depending on add to cart position
+  // position: 'relative',
+  // bottom: '550px'
 
   const entireWidget = {
-    height: '1010px',
-    fontFamily: 'Arial, sans-serif'
+    height: '1020px',
+    fontFamily: 'Arial, sans-serif',
+    margin: '20px'
+  }
+
+  const slogan = {
+    fontSize: '2.1em',
+    marginTop: '25px'
+  }
+
+  const description = {
+    fontSize: '1.1em',
+    marginBottom: '22px'
   }
 
   return (
-  <div style={entireWidget}>
+  <div style={entireWidget} id="overview">
     <Nav>
       <h1>Palisade Fashion</h1>
       {/* <input type="text" placeholder="Product ID"></input> */}
     </Nav>
-    <ProductInfo currentProduct={product} metadata={props.metadata} totalReviews={totalReviews}/>
-    <SelectedStyle id={props.currentProduct}/>
+    <div className="productInfoAndStyles">
+      <ProductInfo currentProduct={product} metadata={props.metadata} totalReviews={totalReviews}/>
+      <SelectedStyle currentProduct={product}/>
+    </div>
+
     <div style={info}>
-      <h2>{product.slogan}</h2>
-      <p>{product.description}</p>
+      <div style={slogan}>{product.slogan}</div>
+      <p style={description}>{product.description}</p>
       <Features oneProduct={product}/>
       <SocialMedia/>
     </div>
