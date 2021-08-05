@@ -8,7 +8,8 @@ const Header = Styled.div`
   position: relative;
   font-family: Courier, monospace;
   // font-weight: bold;
-  font-size: 25px;
+  font-size: 28px;
+  letter-spacing: 2.3px;
   // background: -webkit-linear-gradient( #16A085 , #48C9B0 );
   // -webkit-background-clip: text;
   // -webkit-text-fill-color: transparent;

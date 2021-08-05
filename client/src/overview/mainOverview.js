@@ -48,7 +48,7 @@ function MainOverview(props) {
   const info = {
     fontFamily: 'Arial, sans-serif',
     position: 'absolute',
-    top: '850px',
+    top: '915px',
     width: '55%',
     left: '3%'
   }
@@ -57,7 +57,7 @@ function MainOverview(props) {
   // bottom: '550px'
 
   const entireWidget = {
-    height: '1000px',
+    height: '990px',
     fontFamily: 'Arial, sans-serif',
     margin: '20px'
   }

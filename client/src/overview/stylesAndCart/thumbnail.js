@@ -27,10 +27,24 @@ const Positioning = styled.div `
 
 function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
   const [current, setCurrent] = useState(0);
+  const [allPhotos, setAllPhotos] = useState([]);
+  const [sixImages, setSixImages] = useState([]);
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(6);
+
   let allStyles = currentPhoto.photos;
 
   useEffect(() => {
-    setCurrent(currentIndex)
+    setAllPhotos(currentPhoto.photos);
+  }, [currentPhoto])
+
+  useEffect(() => {
+    let smallArray = allPhotos.slice(startIndex, endIndex)
+    setSixImages(smallArray);
+  }, [allPhotos])
+
+  useEffect(() => {
+    setCurrent(currentIndex);
   }, [currentIndex])
 
   const upArrowClicked = () => {
@@ -57,52 +71,23 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
 
   const upArrow = {
     position: 'relative',
-    top: '520px',
+    top: '515px',
     left: '0.8%'
   }
 
   const downArrow = {
     position: 'relative',
-    top: '520px',
-    left: '1.4%'
+    top: '515px',
+    left: '1.05%'
   }
 
-  if (currentIndex === 0) {
     return (
       <>
       <Positioning>
-        {allStyles.map((item, index) => {
+        {sixImages.map((item, index) => {
+            console.log('current & index in render return', current, index)
           if (current == index) {
-            return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
-          } else {
-            return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
-          }
-        })}
-      </Positioning>
-      <FontAwesomeIcon style={downArrow}icon={['far', 'arrow-alt-circle-down']} size="2x" onClick={downArrowClicked}/>
-      </>
-    )
-  } else if (currentIndex === allStyles.length - 1) {
-    return (
-      <>
-      <Positioning>
-        {allStyles.map((item, index) => {
-          if (current == index) {
-            return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
-          } else {
-            return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
-          }
-        })}
-      </Positioning>
-      <FontAwesomeIcon style={upArrow} icon={['far', 'arrow-alt-circle-up']} size="2x" onClick={upArrowClicked}/>
-      </>
-    )
-  } else {
-    return (
-      <>
-      <Positioning>
-        {allStyles.map((item, index) => {
-          if (current == index) {
+            console.log('current & index in render return', current, index)
             return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
           } else {
             return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
@@ -113,7 +98,6 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
         <FontAwesomeIcon style={downArrow} icon={['far', 'arrow-alt-circle-down']} size="2x" onClick={downArrowClicked}/>
       </>
     )
-  }
 }
 
 export default Thumbnail;

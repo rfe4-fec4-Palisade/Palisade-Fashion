@@ -51,6 +51,7 @@ function ImageGallery ({ imageSelected }) {
   const [mouseY, setMouseY] = useState(50);
 
   let photos = imageSelected.photos;
+  console.log('imageSelected', imageSelected)
 
   useEffect(() => {
     setPhotos(photos)
@@ -155,9 +156,7 @@ function ImageGallery ({ imageSelected }) {
       if (mainImageIndex === 0) {
         return (
           <StyledOuterDiv>
-
               <Thumbnail currentPhoto={imageSelected} currentIndex={mainImageIndex} changeMainImg={changeMainImg} upDown={upDownArrowsClicked}/>
-
             <br></br>
             <LargeImage src={photos[mainImageIndex].url} onClick={expandImage} expandedView={expandedView}/>
             <FontAwesomeIcon icon={['fas', 'chevron-circle-right']} size="2x" onClick={rightArrowClicked} style={rightArrow}/>

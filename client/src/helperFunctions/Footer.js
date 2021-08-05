@@ -183,7 +183,7 @@ function Footer() {
             <span></span>
             <span style={contactItems}>   <FaPhoneAlt size="20px"/> Telephone: 512-555-0155</span>
             <span></span>
-            <span style={contactItems}>   <FaEnvelope size="20px"/> Email: palisade@hotmail.com</span>
+            <span style={contactItems}>   <FaEnvelope size="20px"/> Email: palisade@teampalisade.com</span>
           </ul>
         </div>
 

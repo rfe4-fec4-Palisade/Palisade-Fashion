@@ -9,7 +9,7 @@ const Cursor = styled.a `
   display: inline-block;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.07);
     text-decoration: underline;
   }
 `;
