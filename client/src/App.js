@@ -32,14 +32,50 @@ const App = () => {
   const [currentProduct, setProduct] = useState(17067)
   const [metadata, setMetadata] = useState({})
   const [theme, setTheme] = useState('light')
+  const [search, setSearch] = useState('')
 
   const themeToggler = (event) => {
-console.log('we are in themeToggler')
+  // console.log('we are in themeToggler')
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
   //19090
   //19092
   //19093
+
+  // console.log('all products', allProducts)
+
+  const handleSearch = (event) => {
+    // console.log(event.target.value)
+    setSearch(event.target.value);
+
+    filterTopSearch(search);
+  }
+
+  const filterTopSearch = (word) => {
+    var searchedTerm = allProducts.filter(product => (
+      product.name.toLowerCase().includes(word.toLowerCase())
+    ))
+
+    // console.log('searched term', searchedTerm[0].name);
+    if (searchedTerm[0].name === undefined) {
+      setProduct(17067)
+    } else {
+      for (var i = 0; i < allProducts.length; i++) {
+        if (allProducts[i].name === searchedTerm[0].name) {
+          // console.log('allProducts name',allProducts[i].name)
+          var id = allProducts[i].id;
+          console.log('id', id);
+          setProduct(id);
+        }
+      }
+
+    }
+
+
+
+  }
+
+
   const fetchData = () => {
     //'/products'
     axios.get('/products')
@@ -74,12 +110,13 @@ console.log('we are in themeToggler')
       }
     }, [])
 
+
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
-      <Main theme={theme === 'light' ? lightTheme : darkTheme}>
+      <Main theme={theme === 'light' ? lightTheme : darkTheme} >
         <Promo />
-        <MainHeader themeToggler={themeToggler} theme={theme} />
+        <MainHeader themeToggler={themeToggler} theme={theme} handleSearch={handleSearch}/>
         <div className="test"></div>
         <MainOverview currentProduct={currentProduct} metadata={metadata}/>
         <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
