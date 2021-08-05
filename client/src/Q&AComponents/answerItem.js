@@ -167,7 +167,7 @@ class AnswerItem extends React.Component {
          <div style={style}><h4 style={title}>A:</h4> <p style={parrafo}>{answerItem.body}</p></div>
          {answerItem.photos.length >= 1 ?
          <PhotoPanel>
-           {answerItem.photos.map((photo) => <Photos id={photo.id} url={photo.url}/>) }
+           {answerItem.photos.map((photo) => <Photos key={photo.id} id={photo.id} url={photo.url}/>) }
          </PhotoPanel> : null }
          <div style={style}><small style={smallBoi}> by {answerItem.answerer_name}</small><small style={smallBoi}>{dateParser(answerItem.date)}</small><small style={smallBoi}> | </small>
          <Helpful style={help} helpfulness={answerItem.helpfulness} id={answerItem.answer_id} sendHelpful={this.sendHelpful} sendReport={this.sendReport}/>

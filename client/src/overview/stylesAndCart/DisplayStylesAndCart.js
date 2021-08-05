@@ -46,7 +46,6 @@ function SelectedStyle (props) {
 
   useEffect(() => {
     function getStyles() {
-      console.log(props.currentProduct) // --> 17067
       axios.get(`http://localhost:3000/products/${props.currentProduct.id}/styles`)
       .then((response) => {
         setAllStyles(response.data.results) // results is an array of objects
@@ -56,7 +55,9 @@ function SelectedStyle (props) {
         console.log('Error getting styles: ', err)
       })
     }
-    getStyles();
+    if (props.currentProduct.id !== undefined) {
+      getStyles();
+    }
   }, [props.currentProduct])
 
   const userSelectedStyle = (clickedItem, e) => { // item will be entire object of style clicked by user

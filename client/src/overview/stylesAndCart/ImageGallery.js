@@ -51,7 +51,6 @@ function ImageGallery ({ imageSelected }) {
   const [mouseY, setMouseY] = useState(50);
 
   let photos = imageSelected.photos;
-  console.log('imageSelected', imageSelected)
 
   useEffect(() => {
     setPhotos(photos)
