@@ -230,6 +230,19 @@ app.post('/cart', (req, res) => {
 })
 
 //Interactions
+app.post('/interactions', (req, res) => {
+  let config = getData(req.url);
+  config.method = 'POST';
+  config.data = req.body;
+  axios(config)
+  .then((success) => {
+    res.status(201).send('interaction recorded');
+  })
+  .catch((err) => {
+    console.log('err: ', err);
+    res.status(404).send(err);
+  })
+})
 
 
 app.listen(port, () => {
