@@ -10,6 +10,14 @@ export const darkTheme = {
   fontColor: '#fff'
 }
 
+//ratings and reviews specific
+export const lightBorder = {
+  borderStyle: '1px solid black'
+}
+
+export const darkBorder = {
+  borderStyle: '1px solid gray'
+}
 export const GlobalStyles = createGlobalStyle `
   body {
     background-color: ${props => props.theme.body};
