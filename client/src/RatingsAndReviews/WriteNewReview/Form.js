@@ -35,7 +35,8 @@ overflow: auto;
 const FormContent = Styled.form`
 justify-content: space-around;
 flex-direction: column;
-width: 100%
+width: 100%;
+color: black;
 `
 
 const Header = Styled.header`
