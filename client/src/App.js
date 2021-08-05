@@ -121,7 +121,7 @@ const App = () => {
         <MainOverview currentProduct={currentProduct} metadata={metadata}/>
         <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>
         <QuestionAndAnswer product={currentProduct} />
-        <MainReview currentProduct={currentProduct} />
+        <MainReview currentProduct={currentProduct} theme={theme} />
         <Footer />
       </Main>
     </ThemeProvider>

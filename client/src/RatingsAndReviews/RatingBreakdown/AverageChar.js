@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import { FaCircle } from 'react-icons/fa';
 import { IconContext } from "react-icons";
-
+import { lightBorder, darkBorder, GlobalStyles }  from '../../helperFunctions/theme.js';
 
 const Whole = Styled.div`
 display: block;
 height: 10px;
-border-right: 1px solid black;
-border-left: 1px solid black;
+border-right: ${props => props.theme.borderStyle};
+border-left: ${props => props.theme.borderStyle};
 width: 100%;
 `
 const Line = Styled.div`
 display:block;
 height: 50%;
-border-bottom:  1px solid black;
+border-bottom:  ${props => props.theme.borderStyle};
 `
 const IconContainer = Styled.div`
 margin-top: -11.6px;
@@ -24,7 +24,7 @@ height: 10px;
 width: ${props => props.percentage}%;
 `
 const Halfway = Styled.div`
-border-right: 1px solid black;
+border-right: ${props => props.theme.borderStyle};
 height: 10px;
 width: 50%;
 `
@@ -84,7 +84,7 @@ height: 25px;
 width: 25px;
 `
 
-const AverageChar = ({char}) => {
+const AverageChar = ({char, theme}) => {
 const [description, setDescription] = useState({
   Size: {
       lowest: 'A size too small',
@@ -130,12 +130,12 @@ const [description, setDescription] = useState({
         <Text>{char[0]}</Text>
         <Space></Space>
         <Wrapper>
-        <Whole>
-          <Line>
-            <Halfway>
+        <Whole theme={theme === 'light' ? lightBorder : darkBorder}>
+          <Line theme={theme === 'light' ? lightBorder : darkBorder}>
+            <Halfway theme={theme === 'light' ? lightBorder : darkBorder}>
             </Halfway>
           <IconContainer percentage={+char[1].value /5 * 100}>
-            <IconContext.Provider value={{ color: "black", size: "8px"}}>
+            <IconContext.Provider value={{ color: "gray", size: "8px"}}>
               <Icon>
               <FaCircle/>
               </Icon>

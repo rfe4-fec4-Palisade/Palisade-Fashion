@@ -46,6 +46,8 @@ line-height: 30px;
 padding: 10px;
 font-family: Arial, sans-serif;
 font-size: 12px;
+background-color: #FBFCFC;
+color: black;
 &:hover {
   cursor: pointer;
 }
@@ -141,7 +143,7 @@ const MainReview = (props) => {
         <Title className="title">RATINGS & REVIEWS</Title>
           <Main className="main-review" id="Reviews">
             <Ratings className="ratings">
-              <Breakdown id={props.currentProduct} metadata={metadata} onFilter={onFilter} filter={filter}/>
+              <Breakdown id={props.currentProduct} metadata={metadata} onFilter={onFilter} filter={filter} theme={props.theme}/>
             </Ratings>
             <SpaceR></SpaceR>
             <Review className="reviews">
