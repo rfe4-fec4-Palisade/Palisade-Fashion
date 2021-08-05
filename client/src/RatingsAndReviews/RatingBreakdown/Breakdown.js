@@ -41,7 +41,6 @@ const Breakdown = (props) => {
     }
     setTotal(num)
   }, [])
-
     return (
       <Container>
         <AverageRating metadata={props.metadata}/>
@@ -57,7 +56,7 @@ const Breakdown = (props) => {
         {props.filter.map((rating)=><CurrentFilters key={rating} rating={rating}/>)}
         <Space></Space>
         {Object.entries(props.metadata.characteristics).map(([key, value])=>
-        <AverageChar key={key} char={[key, value]}/>)}
+        <AverageChar key={key} char={[key, value]} theme={props.theme}/>)}
         </div>
       </Container>
     )

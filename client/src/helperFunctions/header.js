@@ -9,7 +9,8 @@ const Header = Styled.div`
   position: relative;
   font-family: Courier, monospace;
   // font-weight: bold;
-  font-size: 25px;
+  font-size: 28px;
+  letter-spacing: 2.3px;
   // background: -webkit-linear-gradient( #16A085 , #48C9B0 );
   // -webkit-background-clip: text;
   // -webkit-text-fill-color: transparent;
@@ -115,7 +116,7 @@ function MainHeader (props) {
           <li style={items}><Anchors >Home</Anchors></li><span style={spany}> | </span>
           <li style={items}><Anchors >About</Anchors></li><span style={spany}> | </span>
           <li style={items}><Anchors >Contact</Anchors></li> <span style={spany}> | </span>
-          <li style={items}><Button onClick={(event)=>{props.themeToggler(event)}}>{props.theme === 'light' ? 'Dark Mode' : 'Light Mode'}</Button></li>
+          <li style={items}><button onClick={(event)=>{props.themeToggler(event)}}>{props.theme === 'light' ? 'Dark Mode' : 'Light Mode'}</button></li>
         </div>
         <li style={forSearch}><TopSearchBar handleSearch={props.handleSearch} products={props.products} search={props.search} /></li>
       </ul>

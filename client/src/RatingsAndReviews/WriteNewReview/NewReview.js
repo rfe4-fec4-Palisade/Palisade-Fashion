@@ -11,6 +11,8 @@ line-height: 30px;
 padding: 10px;
 font-family: Arial, sans-serif;
 font-size: 12px;
+background-color: #FBFCFC;
+color: black;
 &:hover {
   cursor: pointer;
 }

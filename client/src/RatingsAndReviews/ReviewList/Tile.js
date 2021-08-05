@@ -11,7 +11,6 @@ const Tile = styled.div`
 border-bottom: 1px dashed #E0E0E0;
 font-family: Arial, sans-serif;
 font-size: 12px;
-color: grey;
 display:flex;
 flex-direction: column;
 width: 100%
@@ -28,6 +27,7 @@ padding: 5px;
 const Body = styled.div`
 padding: 5px;
 font-size: 12px;
+color: grey;
 `;
 
 const Star = styled.div`
@@ -40,6 +40,7 @@ width: 7px;
 const NameDate = styled.div`
 display: flex;
 flex-direction: row;
+color: grey;
 `
 
 const TileTop = styled.div`

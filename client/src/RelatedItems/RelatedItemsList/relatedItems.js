@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import OutfitList from '../OutfitList/outfitList.js';
 import Card from './Card.js';
+import ClickTracker from '../../sharedComponents/ClickTracker.js';
 import {FaAngleRight} from 'react-icons/fa';
 
 const Wrapper = styled.div `
@@ -79,7 +80,7 @@ const RelatedItems = (props) => {
   })
 
   return (
-    <Margin>
+    <Margin className='relatedProducts'>
       <div id='modalHere'></div>
       <Arrow><FaAngleRight size={70} onClick={handleClick}/></Arrow>
       <Font>RELATED PRODUCTS</Font>
@@ -92,4 +93,4 @@ const RelatedItems = (props) => {
   )
 }
 
-export default RelatedItems;
+export default ClickTracker(RelatedItems);
