@@ -24,6 +24,25 @@ const Wrapper = styled.div `
   display: flex;
 `;
 
+const OutfitButton = styled.button `
+float: left;
+margin-left: 50px;
+border: 2px solid black;
+width: 200px;
+text-align: center;
+line-height: 30px;
+padding: 10px;
+font-family: Arial, sans-serif;
+font-size: 12px;
+justify-Content: center;
+background-color: #FBFCFC;
+
+&:hover {
+ color: #EC7063
+}
+
+`;
+
 const OutfitList = (props) => {
 
   const [OutfitSize, changeOutfitSize] = useState(Object.keys(localStorage).length);
@@ -59,10 +78,10 @@ const OutfitList = (props) => {
         </OutfitBox>
       {outfitCards}
       </Wrapper>
-      <button onClick={()=> {
+      <OutfitButton onClick={()=> {
         localStorage.clear();
         changeOutfitSize(0);
-        }}>Clear Outfit</button>
+        }}>CLEAR OUTFIT</OutfitButton>
     </div>
   )
 
