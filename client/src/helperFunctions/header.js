@@ -105,7 +105,7 @@ function MainHeader (props) {
           <li style={items}><Anchors >About</Anchors></li><span style={spany}> | </span>
           <li style={items}><Anchors >Services</Anchors></li><span style={spany}> | </span>
           <li style={items}><Anchors >Contact</Anchors></li> <span style={spany}> | </span>
-          <li style={items}><Button onClick={(event)=>{props.themeToggler(event)}}>{props.theme === 'light' ? 'Dark Mode' : 'Light Mode'}</Button></li>
+          <li style={items}><button onClick={(event)=>{props.themeToggler(event)}}>{props.theme === 'light' ? 'Dark Mode' : 'Light Mode'}</button></li>
         </div>
         <li style={forSearch}><StyledInput type='text' placeholder='Search...'></StyledInput><FaSearch style={icon} /></li>
       </ul>
