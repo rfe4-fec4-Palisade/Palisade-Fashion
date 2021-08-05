@@ -13,7 +13,7 @@ it('should render correctly', () => {
 });
 
 it('should render main review with child elements', () => {
-  const wrapper = shallow(<MainReview />);
+  const wrapper = shallow(<MainReview />).first().shallow();
   expect(wrapper.find('.title').length).toEqual(1);
   expect(wrapper.containsMatchingElement(<Breakdown/>)).toEqual(true);
   expect(wrapper.containsMatchingElement(<List/>)).toEqual(true);
@@ -22,8 +22,9 @@ it('should render main review with child elements', () => {
   // expect(wrapper.find('#title').length).toEqual(0);
 });
 
-it('should properly pass props down to child components', () => {
-  const wrapper = shallow(<MainReview />);
+// it('should properly pass props down to child components', () => {
+//   const wrapper = shallow(<MainReview />);
+//   expect(wrapper.props()).toEqual(17076)
 
-})
+// })
 
