@@ -5,6 +5,7 @@ import Breakdown from './RatingBreakdown/Breakdown.js';
 import NewReview from './WriteNewReview/NewReview.js';
 import axios from 'axios';
 import Styled from 'styled-components';
+import ClickTracker from '../sharedComponents/ClickTracker.js';
 
 const Container = Styled.div`
 display: block;
@@ -139,9 +140,9 @@ const MainReview = (props) => {
   }
 
     return (
-      <Container>
+      <Container onClick={(event)=>{props.logClick(event)}} className="reviews">
         <Title className="title">RATINGS & REVIEWS</Title>
-          <Main className="main-review" id="Reviews">
+          <Main className="main-review" id="reviews">
             <Ratings className="ratings">
               <Breakdown id={props.currentProduct} metadata={metadata} onFilter={onFilter} filter={filter} theme={props.theme}/>
             </Ratings>
@@ -163,5 +164,6 @@ const MainReview = (props) => {
     )
 };
 
-export default MainReview;
+
+export default ClickTracker(MainReview);
 
