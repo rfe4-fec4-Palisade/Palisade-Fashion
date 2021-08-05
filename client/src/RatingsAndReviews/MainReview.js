@@ -51,6 +51,7 @@ background-color: #FBFCFC;
 color: black;
 &:hover {
   cursor: pointer;
+  color: #EC7063;
 }
 `
 const Space = Styled.div`

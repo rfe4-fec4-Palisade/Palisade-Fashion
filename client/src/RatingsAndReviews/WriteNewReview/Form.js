@@ -85,6 +85,23 @@ display: flex;
 flex-direction: row;
 `
 
+const Submit = Styled.input`
+border: 2px solid black;
+width: 80px;
+text-align: center;
+vertical-align: middle;
+line-height: 10px;
+padding: 10px;
+font-family: Arial, sans-serif;
+font-size: 12px;
+background-color: #FBFCFC;
+color: black;
+&:hover {
+  cursor: pointer;
+  color: #EC7063;
+}
+`
+
 const paragraph = {
   marginBottom: '0',
   marginTop: '4px',
@@ -279,7 +296,8 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
             {photos.map((photo)=><Preview photo={photo}/>)}
           </PhotoPanel> : null }
           <SpaceV></SpaceV>
-          <input type="submit"/>
+          <Submit type="submit"/>
+          <SpaceV></SpaceV>
         </FormContent>
       </ModalContent>
     </ModalWrapper>,

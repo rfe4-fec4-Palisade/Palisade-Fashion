@@ -15,6 +15,7 @@ background-color: #FBFCFC;
 color: black;
 &:hover {
   cursor: pointer;
+  color: #EC7063;
 }
 `
 
