@@ -42,8 +42,6 @@ const App = () => {
   //19092
   //19093
 
-  // console.log('all products', allProducts)
-
   const handleSearch = (event) => {
     // console.log(event.target.value)
     setSearch(event.target.value);
@@ -116,7 +114,7 @@ const App = () => {
       <GlobalStyles />
       <Main theme={theme === 'light' ? lightTheme : darkTheme} >
         <Promo />
-        <MainHeader themeToggler={themeToggler} theme={theme} handleSearch={handleSearch}/>
+        <MainHeader themeToggler={themeToggler} theme={theme} handleSearch={handleSearch} products={allProducts} search={search}/>
         <div className="test"></div>
         <MainOverview currentProduct={currentProduct} metadata={metadata}/>
         <RelatedItems currentProduct={currentProduct} setProduct={setProduct}/>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import Promo from './bannerPromo.js';
 import { FaSearch } from 'react-icons/fa';
+import TopSearchBar from './topSearchBar.js';
 
 
 const Header = Styled.div`
@@ -87,6 +88,7 @@ const forSearch = {
   display: 'flex',
   width: '250px',
   height: '30px',
+  marginBottom: '20px'
 }
 
 const icon = {
@@ -115,7 +117,7 @@ function MainHeader (props) {
           <li style={items}><Anchors >Contact</Anchors></li> <span style={spany}> | </span>
           <li style={items}><Button onClick={(event)=>{props.themeToggler(event)}}>{props.theme === 'light' ? 'Dark Mode' : 'Light Mode'}</Button></li>
         </div>
-        <li style={forSearch}><StyledInput type='text' placeholder='Search Products...' onChange={(event) => props.handleSearch(event)} ></StyledInput><FaSearch style={icon} /></li>
+        <li style={forSearch}><TopSearchBar handleSearch={props.handleSearch} products={props.products} search={props.search} /></li>
       </ul>
     </HeaderBar>
   )
@@ -123,3 +125,4 @@ function MainHeader (props) {
 
 export default MainHeader;
 
+//<StyledInput type='text' placeholder='Search Products...' onChange={(event) => props.handleSearch(event)} ></StyledInput><FaSearch style={icon} />
