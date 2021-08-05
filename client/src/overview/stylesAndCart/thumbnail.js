@@ -85,9 +85,7 @@ function Thumbnail ({ currentPhoto, currentIndex, changeMainImg, upDown }) {
       <>
       <Positioning>
         {sixImages.map((item, index) => {
-            console.log('current & index in render return', current, index)
           if (current == index) {
-            console.log('current & index in render return', current, index)
             return <ThumbnailStyle style={style} key={index} src={item.url} data-index={index} onClick={changeMainImg}/>
           } else {
             return <ThumbnailStyle key={index} src={item.url} data-index={index} onClick={changeMainImg}/>

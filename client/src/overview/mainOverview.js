@@ -3,14 +3,9 @@ import ProductInfo from './productInfo.js';
 import SelectedStyle from './stylesAndCart/DisplayStylesAndCart.js';
 import SocialMedia from './socialMedia.js';
 import Features from './features.js';
+import ClickTracker from '../sharedComponents/ClickTracker.js';
 import axios from 'axios';
 import Styled from 'styled-components';
-
-const Nav = Styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-`
 
 
 function MainOverview(props) {
@@ -52,9 +47,6 @@ function MainOverview(props) {
     width: '55%',
     left: '3%'
   }
-  // if position relative - changes depending on add to cart position
-  // position: 'relative',
-  // bottom: '550px'
 
   const entireWidget = {
     height: '990px',
@@ -73,10 +65,8 @@ function MainOverview(props) {
   }
 
   return (
-  <div style={entireWidget} id="overview">
-    <Nav>
-      {/* <input type="text" placeholder="Product ID"></input> */}
-    </Nav>
+  <div style={entireWidget} id="overview" className="overview">
+
     <div className="productInfoAndStyles">
       <ProductInfo currentProduct={product} metadata={props.metadata} totalReviews={totalReviews}/>
       <SelectedStyle currentProduct={product}/>
@@ -88,9 +78,9 @@ function MainOverview(props) {
       <Features oneProduct={product}/>
       <SocialMedia/>
     </div>
+
   </div>
   )
-
 }
 
-export default MainOverview;
+export default ClickTracker(MainOverview);
