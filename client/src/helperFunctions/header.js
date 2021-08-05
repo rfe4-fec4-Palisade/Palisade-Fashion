@@ -5,10 +5,10 @@ import { FaSearch } from 'react-icons/fa';
 
 
 const Header = Styled.div`
-  position: absolute;
-  font-family: Noto Sans, sans-serif;
-  font-weight: bold;
-  font-size: 30px;
+  position: relative;
+  font-family: Courier, monospace;
+  // font-weight: bold;
+  font-size: 25px;
   // background: -webkit-linear-gradient( #16A085 , #48C9B0 );
   // -webkit-background-clip: text;
   // -webkit-text-fill-color: transparent;
@@ -35,6 +35,13 @@ const StyledInput = Styled.input `
   outline: none;
 `;
 
+const Button = Styled.button`
+  border: none;
+  font-family: Noto Sans, sans-serif;
+  background-color: inherit;
+  color: inherit;
+`;
+
 const div = {
   margin: '0',
   padding: '0',
@@ -46,12 +53,15 @@ const ul = {
   listStyle: 'none',
   flexWrap: 'wrap',
   alignItems: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  paddingLeft: '20px'
 }
 
 const logo = {
   flex: '1',
-  marginBottom: '35px'
+  marginTop: '17px',
+  marginBottom: '35px',
+  width: '150px'
 }
 
 const items = {
@@ -61,7 +71,6 @@ const items = {
 }
 
 const Anchors = Styled.a  `
-  color: black;
   font-family: Arial, sans-serif;
   text-decoration: none;
   font-size: 14px;
@@ -95,7 +104,7 @@ const spany = {
 
 
 function MainHeader (props) {
-  console.log('props.theme', props.theme)
+  // console.log('props', props)
   return (
     <HeaderBar>
       <ul style={ul}>
@@ -103,14 +112,14 @@ function MainHeader (props) {
         <div>
           <li style={items}><Anchors >Home</Anchors></li><span style={spany}> | </span>
           <li style={items}><Anchors >About</Anchors></li><span style={spany}> | </span>
-          <li style={items}><Anchors >Services</Anchors></li><span style={spany}> | </span>
           <li style={items}><Anchors >Contact</Anchors></li> <span style={spany}> | </span>
           <li style={items}><Button onClick={(event)=>{props.themeToggler(event)}}>{props.theme === 'light' ? 'Dark Mode' : 'Light Mode'}</Button></li>
         </div>
-        <li style={forSearch}><StyledInput type='text' placeholder='Search...'></StyledInput><FaSearch style={icon} /></li>
+        <li style={forSearch}><StyledInput type='text' placeholder='Search Products...' onChange={(event) => props.handleSearch(event)} ></StyledInput><FaSearch style={icon} /></li>
       </ul>
     </HeaderBar>
   )
 }
 
 export default MainHeader;
+
