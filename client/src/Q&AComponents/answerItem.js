@@ -60,7 +60,7 @@ const smallBoi2 = {
 const help = {
   fontFamily: 'Arial, sans-serif',
   margin: '10px',
-  color: '#273746',
+  color: 'inherit',
   fontSize: '12px'
 }
 

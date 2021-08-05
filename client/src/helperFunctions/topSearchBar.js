@@ -73,10 +73,16 @@ function TopSearchBar (props) {
   var items = props.products;
   var searchTerm = props.search;
 
+
+
   const handleFilter = (event) => {
 
+    setTimeout(() => {
+      props.handleSearch(event);
+
+    }, 300)
+
     const searchWord = event.target.value;
-    // console.log('items', items)
     const newFilter = items.filter(product => {
       return product.name.toLowerCase().includes(searchWord.toLowerCase());
     })
@@ -95,7 +101,7 @@ function TopSearchBar (props) {
 
   return (
     <div>
-       <StyledInput type='text' placeholder='Search Products...' onChange={(event) => props.handleSearch(event)} onChange={handleFilter}></StyledInput><FaSearch style={icon} />
+       <StyledInput type='text' placeholder='Search Products...'  onChange={handleFilter}></StyledInput><FaSearch style={icon} />
        {filterData.length !== 0 && (
          <Ulist>
            {filterData.map((item, index) =>
@@ -108,3 +114,5 @@ function TopSearchBar (props) {
 }
 
 export default TopSearchBar;
+
+//onChange={(event) => props.handleSearch(event)}

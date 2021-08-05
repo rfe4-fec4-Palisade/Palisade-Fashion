@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBarQA from '../Q&AComponents/SearchBarQA.js';
 import QandAitem from '../Q&AComponents/q&a-Item.js';
+import ClickTracker from '../sharedComponents/ClickTracker.js'
 
 /*
 Quick Description:
@@ -32,7 +33,7 @@ function QuestionAndAnswer(props) {
   }
 
   return(
-    <div style={style}>
+    <div style={style} onClick={(event)=>{props.logClick(event)}} className="reviews">
       <div style={style}>{'QUESTION & ANSWER'}</div>
       <SearchBarQA handleChange={(event) => {setSearchField(event.target.value)}}/>
       <QandAitem id={propsPackage}/>
@@ -43,4 +44,4 @@ function QuestionAndAnswer(props) {
 };
 
 
-export default QuestionAndAnswer;
+export default ClickTracker(QuestionAndAnswer);
