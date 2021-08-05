@@ -7,6 +7,7 @@ import Photos from './Photos.js';
 import ReviewStar from './ReviewStar.js';
 import validateInfo from './validateInfo.js';
 import Preview from './Preview.js';
+import {AiFillCloseCircle} from 'react-icons/ai';
 
 const ModalWrapper = Styled.div `
 display: flex;
@@ -42,6 +43,7 @@ color: black;
 const Header = Styled.header`
 display: flex;
 flex-direction: row;
+justify-content: space-between;
 `
 
 const SecondRow = Styled.span`
@@ -86,7 +88,6 @@ flex-direction: row;
 `
 
 const Submit = Styled.input`
-border: 2px solid black;
 width: 80px;
 text-align: center;
 vertical-align: middle;
@@ -101,6 +102,7 @@ color: black;
   color: #EC7063;
 }
 `
+
 
 const paragraph = {
   marginBottom: '0',
@@ -253,12 +255,10 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
     <ModalWrapper>
       <ModalContent>
         <FormContent onSubmit={(event)=>{handleSubmit(event)}}>
-          <header>
+          <Header>
             <h1>Write a new review</h1>
-            <button className="close" onClick={onClose}>
-              X close
-            </button>
-          </header>
+            <AiFillCloseCircle className="close" onClick={onClose} size={28}/>
+          </Header>
           <SecondRow>
             <Rating>
               <p>Overall Rating</p>
