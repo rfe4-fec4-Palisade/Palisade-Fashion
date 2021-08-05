@@ -66,7 +66,7 @@ const help = {
   marginTop: '10px',
   marginBottom: '10px',
   marginRight: '10px',
-  color: '#273746',
+  color: 'inherit',
   fontSize: '12px'
 }
 
