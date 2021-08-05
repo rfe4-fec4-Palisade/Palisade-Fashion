@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import RatingStars from '../sharedComponents/Stars/RatingStars.js';
 
-function ProductInfo ({ currentProduct, metadata, totalReviews }) {
+const Cursor = styled.a `
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
 
-  const cursor = {
-    cursor: 'pointer'
+  &:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
   }
+`;
+
+function ProductInfo ({ currentProduct, metadata, totalReviews }) {
 
   const info = {
     textAlign: 'center',
@@ -33,7 +42,7 @@ function ProductInfo ({ currentProduct, metadata, totalReviews }) {
     <div style={info}>
 
       <RatingStars metadata={metadata}/>
-      <a href="#Reviews" style={cursor}>Read All {totalReviews} Reviews</a>
+      <Cursor href="#Reviews">Read All {totalReviews} Reviews</Cursor>
       <br></br>
       <div style={category}>{currentProduct.category}</div>
       <div style={productName}>{currentProduct.name}</div>
