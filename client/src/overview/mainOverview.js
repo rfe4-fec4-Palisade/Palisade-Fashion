@@ -65,7 +65,7 @@ function MainOverview(props) {
   }
 
   return (
-  <div style={entireWidget} id="overview" className="overview">
+  <div style={entireWidget} id="overview" onClick={(event)=>{props.logClick(event)}} className="overview">
 
     <div className="productInfoAndStyles">
       <ProductInfo currentProduct={product} metadata={props.metadata} totalReviews={totalReviews}/>

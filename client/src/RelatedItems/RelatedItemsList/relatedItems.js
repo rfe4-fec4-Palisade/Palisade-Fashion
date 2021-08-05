@@ -80,7 +80,7 @@ const RelatedItems = (props) => {
   })
 
   return (
-    <Margin className='relatedProducts'>
+    <Margin onClick={(event)=>{props.logClick(event)}} className='relatedProducts'>
       <div id='modalHere'></div>
       <Arrow><FaAngleRight size={70} onClick={handleClick}/></Arrow>
       <Font>RELATED PRODUCTS</Font>

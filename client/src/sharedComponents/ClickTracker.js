@@ -13,10 +13,14 @@ const ClickTracker = (WrapperComponent, props) => {
 
     logClick(event) {
       let data = {
-        element: event.target.localName,
-        widget: event.target.classList[2],
-        time: JSON.stringify(event.timeStamp)
+        element: '',
+        widget: '',
+        time: ''
       }
+      data.element = event.target.localName || '';
+      data.widget = event.target.classList[2] || '';
+      data.time =  JSON.stringify(event.timeStamp);
+
       axios.post('/interactions', data)
         .then((response) => {console.log(response.data)})
         .catch((err) =>{console.log(err)})
