@@ -7,6 +7,7 @@ import Photos from './Photos.js';
 import ReviewStar from './ReviewStar.js';
 import validateInfo from './validateInfo.js';
 import Preview from './Preview.js';
+import {AiFillCloseCircle} from 'react-icons/ai';
 
 const ModalWrapper = Styled.div `
 display: flex;
@@ -42,6 +43,7 @@ color: black;
 const Header = Styled.header`
 display: flex;
 flex-direction: row;
+justify-content: space-between;
 `
 
 const SecondRow = Styled.span`
@@ -84,6 +86,23 @@ padding: 5px;
 display: flex;
 flex-direction: row;
 `
+
+const Submit = Styled.input`
+width: 80px;
+text-align: center;
+vertical-align: middle;
+line-height: 10px;
+padding: 10px;
+font-family: Arial, sans-serif;
+font-size: 12px;
+background-color: #FBFCFC;
+color: black;
+&:hover {
+  cursor: pointer;
+  color: #EC7063;
+}
+`
+
 
 const paragraph = {
   marginBottom: '0',
@@ -236,12 +255,10 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
     <ModalWrapper>
       <ModalContent>
         <FormContent onSubmit={(event)=>{handleSubmit(event)}}>
-          <header>
+          <Header>
             <h1>Write a new review</h1>
-            <button className="close" onClick={onClose}>
-              X close
-            </button>
-          </header>
+            <AiFillCloseCircle className="close" onClick={onClose} size={28}/>
+          </Header>
           <SecondRow>
             <Rating>
               <p>Overall Rating</p>
@@ -279,7 +296,8 @@ const Form = ({ id, isOpen, onClose, metadata, createChars}) => {
             {photos.map((photo)=><Preview photo={photo}/>)}
           </PhotoPanel> : null }
           <SpaceV></SpaceV>
-          <input type="submit"/>
+          <Submit type="submit"/>
+          <SpaceV></SpaceV>
         </FormContent>
       </ModalContent>
     </ModalWrapper>,
