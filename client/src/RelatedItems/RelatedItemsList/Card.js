@@ -46,12 +46,12 @@ const Card = (props) => {
 
 
   const getProduct = (id) => {
-    axios.get(`http://localhost:3000/products/${id}`)
+    axios.get(`/products/${id}`)
     .then(result => updateCard(result.data));
   }
 
   const getPic = (id) => {
-    axios.get(`http://localhost:3000/products/${id}/styles`)
+    axios.get(`/products/${id}/styles`)
     .then(result => changePic(result.data.results[0].photos[0].thumbnail_url));
   }
 
