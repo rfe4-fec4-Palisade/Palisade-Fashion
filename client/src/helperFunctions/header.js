@@ -42,6 +42,11 @@ const Button = Styled.button`
   font-family: Noto Sans, sans-serif;
   background-color: inherit;
   color: inherit;
+
+  &:hover {
+    text-Decoration: underline;
+    color: #2471A3 ;
+  }
 `;
 
 const div = {
