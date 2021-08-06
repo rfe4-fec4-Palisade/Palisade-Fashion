@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Sort from './SortComponents/sort.js';
+import Sort from './SortComponents/Sort.js';
 import List from './ReviewList/List.js';
 import Breakdown from './RatingBreakdown/Breakdown.js';
 import NewReview from './WriteNewReview/NewReview.js';

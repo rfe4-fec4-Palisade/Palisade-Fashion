@@ -32,7 +32,7 @@ const OutfitCard = (props) => {
   const [picurl, updatePic] = useState('');
 
   const getPic = (id) => {
-    axios.get(`http://localhost:3000/products/${id}/styles`)
+    axios.get(`/products/${id}/styles`)
     .then(result =>  updatePic(result.data.results[0].photos[0].thumbnail_url));
   }
 
