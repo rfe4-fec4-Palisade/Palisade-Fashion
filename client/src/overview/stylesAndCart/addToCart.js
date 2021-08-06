@@ -47,7 +47,7 @@ function AddToCart(props) {
   }
 
   const itemPostedToCart = (skuCode) => {
-    axios.post('http://localhost:3000/cart', {
+    axios.post('/cart', {
       "sku_id": skuCode
     })
     .then((response) => {
