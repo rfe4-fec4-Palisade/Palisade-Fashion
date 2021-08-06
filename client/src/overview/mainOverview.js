@@ -15,7 +15,7 @@ function MainOverview(props) {
   useEffect(() => { // useEffect is called after page is rendered
     function atelierReq() {
       let productID = props.currentProduct; // will be passed down as props when user clicks on an item
-      axios.get(`http://localhost:3000/products/${productID}`)
+      axios.get(`/products/${productID}`)
       .then((res) => {
         setProduct(res.data); // res.data is an object with info of one product
       })
@@ -29,7 +29,7 @@ function MainOverview(props) {
   useEffect(() => {
     function reviewsReq() {
       let productID = props.currentProduct;
-      axios.get(`http://localhost:3000/reviews?product_id=${productID}&count=40`)
+      axios.get(`/reviews?product_id=${productID}&count=40`)
       .then((res) => {
         setReviews(res.data.results.length);
       })
@@ -65,9 +65,9 @@ function MainOverview(props) {
   }
 
   return (
-  <div style={entireWidget} id="overview" className="overview">
+  <div style={entireWidget} id="overview" >
 
-    <div className="productInfoAndStyles">
+    <div className="productInfoAndStyles" className="overview">
       <ProductInfo currentProduct={product} metadata={props.metadata} totalReviews={totalReviews}/>
       <SelectedStyle currentProduct={product}/>
     </div>
