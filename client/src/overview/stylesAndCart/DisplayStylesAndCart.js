@@ -46,7 +46,7 @@ function SelectedStyle (props) {
 
   useEffect(() => {
     function getStyles() {
-      axios.get(`http://localhost:3000/products/${props.currentProduct.id}/styles`)
+      axios.get(`/products/${props.currentProduct.id}/styles`)
       .then((response) => {
         setAllStyles(response.data.results) // results is an array of objects
         setStyle(response.data.results[0])
