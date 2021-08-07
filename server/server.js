@@ -3,7 +3,8 @@ const axios = require('axios');
 const port = 3000;
 const app = express();
 const path = require('path');
-const { API_KEY } = require('../config.js');
+// const { API_KEY } = require('../config.js');
+require ('dotenv').config()
 // const atelier = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/'
 
 app.use(express.json());
@@ -14,7 +15,7 @@ var getData = function(url) {
   var config = {
     'method': 'GET',
     'url': `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp${url}`,
-    'headers': {'Authorization': `${API_KEY}`},
+    'headers': {'Authorization': `${process.env.API_KEY}`},
     'data': ''
   };
   return config;
