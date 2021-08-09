@@ -20,6 +20,8 @@ As a Front-End Capstone (FEC) project at HackReactor, we were asked to create a 
 
 **Server:** Node, Express, Axios
 
+**Testing:** Jest, Enzyme
+
 
 ## Installation
 
@@ -98,6 +100,23 @@ Modals
 ---------------------------------------------------------------------------
 
 Ratings and Reviews:
+
+The ratings and review section is composed of two main panels, on the left is the aggregate metadata panel that displays a breakdown of the star ratings and average characteristic ratings of the selected product. Each star value listed can be clicked on to sort the current reviews by rating. For example, clicking on ‘5 star’ will display only five star reviews. The user may click on the rating again to remove, or click the ‘remove all’ button to reset the filters.  The filters are also stackable, so users may filter by more than one rating at a time. On the right is the reviews list, which displays two reviews by default, but can display more if the ‘more reviews’ button is clicked. Clicking this button will display two more reviews, until there are no more to display. Users may also sort the reviews by ‘relevance’, ‘helpful’, and ‘newest’.
+
+To implement the ratings and characteristics breakdown, a get request is first made to the metadata endpoint using the current product ID, which is determined by the topmost React component. The response data includes the number of reviews for each star value, which was used to calculate both the average star rating, and the breakdown of ratings. The breakdown visual was achieved by passing in the calculated percentage as a prop to  styled components.Each rating bar is a set of nested divs, with the innermost div being a percentage of the width of the outermost div. The average characteristics visual was achieved in the same way.
+
+One of the major challenges of the metadata panel was implementing the filter feature. The problem was that I needed to display all the reviews when no filter was selected, but only some of the reviews when filters were selected. To solve this problem, I created another state variable for star filters at the topmost review component. The review list component renders the list conditionally: if the filter array is empty, render every review, if it is not empty, render only the reviews that have a star rating included in the array. In the end, this was successful and allowed users to select, stack, and remove filters to their liking.
+
+The review list panel consists of several features. The first of which is the sort component, which functions by taking the selected value and making a new get request to the reviews endpoint of the Atelier API. The sort field is passed in as a query parameter. Each individual review tile consists of data about the review, as well as two buttons to either mark the review as helpful or report. Upon click. The buttons send a put request to the API and thank the user for their feedback.
+
+One of the major challenges of this feature was implementing the ‘more reviews’ button. The problem is that we do not want to display all of the reviews for a product unless the user actually wants to see them all. To solve this problem, I created another state variable in my topmost component that defaulted to 2. The review list would only render the number of reviews that the state specified. Upon clicking the ‘more reviews’ button, the state would increment by two and prompt the review list component to render two more reviews. This would also maintain the order of the reviews listed.
+Lastly, next to the ‘more’ reviews button is the ‘add a review’ button, which opens up a modal for the user to write a new review. It has required fields that will stop a user from posting a review if for example, no username was given. It also features an ‘upload photo’ button.
+
+One of the major challenges of this component was only rendering the characteristics that existed for the selected product. Attempting to send a rating for a characteristic like ‘length’ on a product that did not have that characteristic-- for example, a shoe-- would not succeed because the API does not accept post requests with incorrect fields. To remedy this, I needed to only render radio inputs for valid characteristics. The only way to know which characteristics were present is to reference the metadata, so I passed down the metadata retrieved from my topmost review component to the form component and mapped over it to render the characteristics input form.
+
+Another major challenge I had was implementing the upload file button with preview. I found that photos uploaded locally by a user would not persist since the images aren’t being hosted anywhere. To remedy this, I created a blob url to temporarily render a preview of the photos, but behind the scenes, would send dummy photos to the Atelier API. This way, the user gets the experience of uploading, but we do not actually have to worry about hosting the image behind the scenes.
+
+Overall, this project really highlighted the importance of planning where certain state variables should live and how making API requests and declaring state as high up as possible can really clean up the code and limit the number of requests that need to be made overall. In general, I found that this DRYs up the code and really makes it easier to add additional features.
 
 Review List
 
