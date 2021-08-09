@@ -4,9 +4,7 @@ const port = 3000;
 const app = express();
 const path = require('path');
 const { API_KEY } = require('../config.js');
-require ('dotenv').config()
 // const atelier = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/'
-console.log('dotenv', process.env.API_KEY);
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
